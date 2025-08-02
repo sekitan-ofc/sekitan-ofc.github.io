@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>お問い合わせフォーム | せきたん公式サイト</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- ヘッダー -->
+  <header>
+    <h1><a href="index.html">せきたん公式サイト</a></h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">ホーム</a></li>
+        <li><a href="cottonway-project.html">BVE真岡線</a></li>
+        <li><a href="download.html">データ配布</a></li>
+        <li><a href="profile.html">プロフィール</a></li>
+        <li><a href="support.html">サポート</a></li>
+        <li><a href="news.html">ニュース</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- メインコンテンツ -->
+  <main>
+    <section id="form">
+      <h2>お問い合わせフォーム</h2>
+      <p>下記のフォームに必要事項をご記入の上、送信してください。<br>
+         ※<a href="policy.html">プライバシーポリシー</a>に同意のうえご利用ください。
+      </p>
+
+      <form action="#" method="post">
+        <label for="name">お名前（必須・ハンドルネーム可）:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="email">メールアドレス（必須）:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="subject">お問い合わせ内容（必須）:</label><br>
+        <select id="subject" name="subject" required>
+          <option value="">選択してください</option>
+          <option value="moka">真岡線Projectについて</option>
+          <option value="create">データ制作について</option>
+          <option value="bug">公開中データの不具合について</option>
+          <option value="site">本サイトについて</option>
+          <option value="sns">SNSについて</option>
+          <option value="other">その他</option>
+        </select><br><br>
+
+        <label for="message">お問い合わせ内容（詳細）:</label><br>
+        <textarea id="message" name="message" rows="6" required></textarea><br><br>
+
+        <label>
+          <input type="checkbox" name="confirm" required>
+          入力内容に誤りがないことを確認しました
+        </label><br><br>
+
+        <label>
+          <input type="checkbox" name="privacy" required>
+          <a href="policy.html" target="_blank">プライバシーポリシー</a>に同意します
+        </label><br><br>
+
+        <button type="submit">送信</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- フッター -->
+  <footer>
+    <p>&copy; 2026 せきたん. All rights reserved.</p>
+  </footer>
+</body>
+</html>
