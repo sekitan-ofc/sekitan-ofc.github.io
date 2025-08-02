@@ -1,0 +1,44 @@
+h1 {
+  font-size: 2em;
+  font-weight: bold;
+  color: #000000;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #000000;
+  border-bottom: 4px solid #4CAF50;
+  padding-bottom: 0.3em;
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+h3 {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #000000;
+  margin-top: 1.5em;
+  margin-bottom: 0.7em;
+}
+
+body {
+  background-color: #f5f5f5;
+  color: #333333;
+  font-family: 'Noto Sans JP', sans-serif;
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+/* リンクのスタイル設定 */
+a {
+  color: #065FD4; /* 通常：はっきりした青 */
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: #003c99; /* ホバー：さらに濃く */
+}

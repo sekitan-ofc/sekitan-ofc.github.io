@@ -1,0 +1,108 @@
+/* SNSリンクリスト全体 */
+.sns-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 320px;
+}
+
+/* リスト項目 */
+.sns-list li {
+  position: relative;
+}
+
+/* リンク全体 */
+.sns-list a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0px 8px;
+  font-size: 1.5rem;
+  font-family: 'Noto Sans JP', sans-serif;
+  color: #333333;
+  text-decoration: none;
+  box-sizing: border-box;
+  width: 100%;
+  cursor: pointer;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+/* アイコン */
+.sns-list a i {
+  font-size: 24px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333333;
+  transition: color 0.3s ease;
+  flex-shrink: 0;
+}
+
+/* SNS名とID共通の表示エリア */
+.sns-text {
+  position: relative;
+  height: 1em;
+  overflow: hidden;
+  min-width: 0; /* Flexboxで省略されないようにする */
+  flex-grow: 1; /* 必要に応じて可変幅にする */
+}
+
+/* SNS名 */
+.sns-name,
+.sns-id {
+  display: block;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  font-size: 1rem;
+  line-height: 1.5em;
+  white-space: nowrap;
+}
+
+/* 通常：IDを非表示で上へ */
+.sns-id {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transform: translateY(100%);
+}
+
+/* ホバー時：nameを上へ、idを表示 */
+.sns-list a:hover .sns-name {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+.sns-list a:hover .sns-id {
+  transform: translateY(0%);
+  opacity: 1;
+}
+
+/* 各SNS固有ホバー色の反映 */
+.sns-list a:hover i,
+.sns-list a:hover .sns-name,
+.sns-list a:hover .sns-id {
+  color: inherit;
+}
+
+.sns-list a.fa-x-twitter:hover {
+  color: #1DA1F2;
+}
+.sns-list a.fa-youtube:hover {
+  color: #FF0000;
+}
+.sns-list a.fa-instagram:hover {
+  color: #E1306C;
+}
+.sns-list a.fa-bluesky:hover {
+  color: #118BED;
+}
+.sns-list a.fa-github:hover {
+  color: #333333;
+}
+.sns-list a.fa-line:hover {
+  color: #00C300;
+}

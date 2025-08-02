@@ -1,0 +1,23 @@
+.tag-buttons button {
+  margin: 0.2em;
+  padding: 0.3em 0.6em;
+  background-color: #e0f2e9;
+  border: 1px solid #a5d6a7;
+  border-radius: 0.3em;
+  cursor: pointer;
+}
+
+.news-item {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 1em;
+  padding-bottom: 1em;
+}
+
+.hidden {
+  display: none;
+}
+
+.tags {
+  font-size: 0.9em;
+  color: #555;
+}
