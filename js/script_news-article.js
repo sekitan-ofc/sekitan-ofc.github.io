@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
         tagElem.textContent = "なし";
       }
 
-      document.title = `${currentItem["タイトル"]} | News | せきたん公式サイト`;
+      document.title = `${currentItem["タイトル"]} | せきたん公式サイト`;
 
       // ▼ ナビゲーション設定 ▼
       const prevBtn = document.querySelector(".nav-btn.prev");

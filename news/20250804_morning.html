@@ -4,6 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>News | せきたん公式サイト</title> <!-- JSで動的に書き換え -->
+
+    <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0FZX21V1LN"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-0FZX21V1LN');
+  </script>
+  
   <link rel="stylesheet" href="../css/style.css" />
   <link rel="stylesheet" href="../css/style_news-article.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" />
@@ -54,15 +64,16 @@
       <a class="nav-btn circle prev" aria-label="前の記事">
         <i class="fas fa-chevron-left"></i>
       </a>
-      <a href="../news.html" class="nav-btn top-link">Newsトップへ</a>
+
+      <div class="nav-center-group">
+        <a href="../news.html" class="nav-btn top-link">Newsトップへ</a>
+        <a href="../news-archive.html" class="nav-btn archive-link">一覧を表示</a>
+      </div>
+
       <a class="nav-btn circle next" aria-label="次の記事">
         <i class="fas fa-chevron-right"></i>
       </a>
     </section>
-
-    <div class="news-archive-button">
-      <a href="../news-archive.html" class="archive-link">アーカイブへ</a>
-    </div>
   </main>
 
   <!-- フッター -->
@@ -86,7 +97,7 @@
         <div class="sns-buttons">
           <a href="https://twitter.com/sekitan_ofc" class="sns-btn twitter" target="_blank"><i class="fab fa-x-twitter"></i><span class="circle-border"></span></a>
           <a href="https://youtube.com/@sekitan_ofc" class="sns-btn youtube" target="_blank"><i class="fab fa-youtube"></i><span class="circle-border"></span></a>
-          <a href="https://lin.ee/qwxmeAy" class="sns-btn line" target="_blank"><i class="fab fa-line"></i><span class="circle-border"></span></a>
+          <a href="https://lin.ee/qwxmeAy" class="sns-btn line" target="_blank"><i class="fab fa-line"></i></a>
         </div>
       </div>
     </div>
