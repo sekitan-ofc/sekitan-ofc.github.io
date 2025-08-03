@@ -5,8 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const filterYearElem = document.getElementById("filter-year");
   const filterMonthElem = document.getElementById("filter-month");
   const clearFiltersBtn = document.getElementById("clear-filters");
-
-  // 検索ボックス静的取得（HTML上に配置済み）
   const searchBox = document.getElementById("search-title");
 
   const apiUrl = "https://script.google.com/macros/s/AKfycbwoMvXkxIb0jmZRwnB_OR6pqe3062ZTv8596akKmDdj9eh3YJ7F0RoB1Y4kuzxWnn4b/exec";
@@ -15,17 +13,20 @@ document.addEventListener("DOMContentLoaded", () => {
   let selectedCategories = new Set();
   let selectedTags = new Set();
 
-  // 日本時間で現在日時を取得
-  const now = new Date(new Date().toLocaleString("ja-JP", { timeZone: "Asia/Tokyo" }));
+  const now = new Date();
 
   fetch(apiUrl)
     .then(response => response.json())
     .then(data => {
       allNewsData = data.filter(item => {
-        if (!item["公開日時"]) return true;
-        const pubDate = new Date(item["公開日時"].replace(" ", "T") + ":00+09:00");
+        if (!item["日付"] || !item["時刻"]) return true;
+        const pubDate = toDateTimeJST(item["日付"], item["時刻"]);
         return pubDate <= now;
-      }).sort((a, b) => new Date(b["公開日時"]) - new Date(a["公開日時"]));
+      }).sort((a, b) => {
+        const aDate = toDateTimeJST(a["日付"], a["時刻"]);
+        const bDate = toDateTimeJST(b["日付"], b["時刻"]);
+        return bDate - aDate;
+      });
 
       setupFiltersFromData(allNewsData);
       setupYearMonthFilters(allNewsData);
@@ -38,11 +39,20 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
   function renderNewsList(newsArray) {
+    newsListElem.innerHTML = "";
+
+    const description = document.createElement("p");
+    description.className = "news-description";
+    description.innerHTML = "過去に公開されたニュースの一覧です。<br>各見出しをタップすると詳細をご覧いただけます。";
+    newsListElem.appendChild(description);
+
     if (!newsArray.length) {
-      newsListElem.innerHTML = "<p>該当するニュースがありません。</p>";
+      const noNews = document.createElement("p");
+      noNews.textContent = "該当するニュースがありません。";
+      newsListElem.appendChild(noNews);
       return;
     }
-    newsListElem.innerHTML = "";
+
     newsArray.forEach(item => {
       const a = document.createElement("a");
       a.href = item["URL"];
@@ -65,6 +75,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const m = String(d.getMonth() + 1).padStart(2, '0');
     const day = String(d.getDate()).padStart(2, '0');
     return `${y}.${m}.${day}`;
+  }
+
+  function toDateTimeJST(dateStr, timeStr) {
+    const [y, m, d] = dateStr.split('-').map(Number);
+    const [hh, mm] = timeStr.split(':').map(Number);
+    return new Date(y, m - 1, d, hh, mm);
   }
 
   function setupFiltersFromData(data) {
@@ -110,8 +126,8 @@ document.addEventListener("DOMContentLoaded", () => {
   function setupYearMonthFilters(data) {
     const yearSet = new Set();
     data.forEach(item => {
-      if (item["公開日時"]) {
-        const d = new Date(item["公開日時"].replace(" ", "T") + ":00+09:00");
+      if (item["日付"] && item["時刻"]) {
+        const d = toDateTimeJST(item["日付"], item["時刻"]);
         yearSet.add(d.getFullYear());
       }
     });
@@ -145,7 +161,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     filterMonthElem.addEventListener("change", filterAndRender);
-
     searchBox.addEventListener("input", filterAndRender);
 
     clearFiltersBtn.addEventListener("click", () => {
@@ -174,8 +189,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!itemTags.some(t => selectedTags.has(t))) return false;
       }
       if (year || month) {
-        if (!item["公開日時"]) return false;
-        const d = new Date(item["公開日時"].replace(" ", "T") + ":00+09:00");
+        if (!item["日付"] || !item["時刻"]) return false;
+        const d = toDateTimeJST(item["日付"], item["時刻"]);
         if (year && d.getFullYear().toString() !== year) return false;
         if (month && String(d.getMonth() + 1).padStart(2, '0') !== month) return false;
       }

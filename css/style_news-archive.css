@@ -23,8 +23,20 @@
   color: #1A0000;
   border-bottom: 4px solid #4caf50;
   padding-bottom: 0.3em;
-  margin-bottom: 1.2em;
+  margin-bottom: 0.5em;
 }
+
+/* 説明文・読み込み中メッセージ */
+.news-description,
+#loading-message {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 0em;
+  padding: 0 0.5em;
+  line-height: 1.6;
+ white-space: pre-line; /* ←これがポイント */
+}
+
 
 /* ニュース一覧カード（ニューストップの少し小さい版） */
 .news-list {
@@ -38,7 +50,7 @@
   background-color: #fefefe;
   border-radius: 10px;
   padding: 0.9em 1.2em;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
   text-decoration: none;
   color: inherit;
   transition: box-shadow 0.3s ease, transform 0.2s ease;
