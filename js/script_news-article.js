@@ -9,7 +9,15 @@ document.addEventListener("DOMContentLoaded", () => {
   fetch(apiUrl)
     .then(response => response.json())
     .then(data => {
-      const currentItem = data.find(item => item["URL"] === pathFromRoot);
+      // 日時でソート（昇順）
+      const sorted = data.sort((a, b) => {
+        const dateA = new Date(`${a["日付"]}T${a["時刻"] || "00:00"}`);
+        const dateB = new Date(`${b["日付"]}T${b["時刻"] || "00:00"}`);
+        return dateA - dateB;
+      });
+
+      const currentIndex = sorted.findIndex(item => item["URL"] === pathFromRoot);
+      const currentItem = sorted[currentIndex];
       console.log("📦 該当記事:", currentItem);
 
       if (!currentItem) {
@@ -17,35 +25,43 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // タイトル
-      const titleElem = document.querySelector(".article-title");
-      if (titleElem) titleElem.textContent = currentItem["タイトル"] || "";
+      // ▼ データ反映 ▼
+      document.querySelector(".article-title").textContent = currentItem["タイトル"] || "";
+      document.querySelector(".article-category").textContent = currentItem["カテゴリ"] || "";
+      document.querySelector(".article-date").textContent = formatDate(currentItem["日付"]);
 
-      // カテゴリ
-      const categoryElem = document.querySelector(".article-category");
-      if (categoryElem) categoryElem.textContent = currentItem["カテゴリ"] || "";
-
-      // 日付
-      const dateElem = document.querySelector(".article-date");
-      if (dateElem) dateElem.textContent = formatDate(currentItem["日付"]);
-
-      // タグ
       const tagElem = document.querySelector(".tag-list");
-      if (tagElem) {
-        if (currentItem["タグ"]) {
-          const tags = currentItem["タグ"].split(",").map(t => t.trim());
-          tagElem.innerHTML = tags.map(t => `<span>${t}</span>`).join(" / ");
-        } else {
-          tagElem.textContent = "なし";
-        }
+      if (currentItem["タグ"]) {
+        const tags = currentItem["タグ"].split(",").map(t => t.trim());
+        tagElem.innerHTML = tags.map(t => `<span>${t}</span>`).join(" / ");
+      } else {
+        tagElem.textContent = "なし";
       }
 
-      // ページタイトル
       document.title = `${currentItem["タイトル"]} | News | せきたん公式サイト`;
 
-      // 表示切り替え
-      loadingMessage.style.display = "none";
+      // ▼ ナビゲーション設定 ▼
+      const prevBtn = document.querySelector(".nav-btn.prev");
+      const nextBtn = document.querySelector(".nav-btn.next");
+
+      if (currentIndex > 0) {
+        const prev = sorted[currentIndex - 1];
+        prevBtn.setAttribute("href", `/${prev["URL"]}`);
+      } else {
+        prevBtn.style.display = "none";
+      }
+
+      if (currentIndex < sorted.length - 1) {
+        const next = sorted[currentIndex + 1];
+        nextBtn.setAttribute("href", `/${next["URL"]}`);
+      } else {
+        nextBtn.style.display = "none";
+      }
+
+      // ▼ 表示切り替え ▼
+      loadingMessage.remove();
       articleElem.style.display = "block";
+      document.querySelector(".article-nav")?.removeAttribute("style");
     })
     .catch(err => {
       console.error("❌ 記事情報の取得に失敗しました", err);
