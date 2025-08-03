@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>サイト仮公開テスト完了 | News | せきたん公式サイト</title>
+  <title>News | せきたん公式サイト</title> <!-- タイトルもJSで設定してOK -->
   <link rel="stylesheet" href="../css/style.css" />
   <link rel="stylesheet" href="../css/style_article.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" />
@@ -31,10 +31,10 @@
   <!-- メイン -->
   <main class="container">
     <article class="news-article">
-      <h2 class="article-title">おはよう。</h2>
+      <h2 class="article-title"></h2> <!-- JSでタイトルを埋め込む -->
       <div class="article-meta">
-        <span class="article-category">お知らせ</span>
-        <span class="article-date">2025.08.02</span>
+        <span class="article-category"></span> <!-- JSでカテゴリを埋め込む -->
+        <span class="article-date"></span>     <!-- JSで日付を埋め込む -->
       </div>
 
       <div class="article-body">
@@ -45,16 +45,16 @@
         </p>
       </div>
 
-      <p class="article-tags">タグ：<span>公開</span> / <span>GitHub</span></p>
+      <p class="article-tags">タグ：<span class="tag-list"></span></p> <!-- タグもJSで埋める -->
     </article>
 
     <!-- ナビゲーション -->
     <section class="article-nav">
-      <a href="2025-07-25-plugin.html" class="nav-btn circle prev" aria-label="前の記事">
+      <a class="nav-btn circle prev" aria-label="前の記事">
         <i class="fas fa-chevron-left"></i>
       </a>
       <a href="../news.html" class="nav-btn top-link">Newsトップへ</a>
-      <a href="2025-08-10-release.html" class="nav-btn circle next" aria-label="次の記事">
+      <a class="nav-btn circle next" aria-label="次の記事">
         <i class="fas fa-chevron-right"></i>
       </a>
     </section>
@@ -91,5 +91,8 @@
       </div>
     </div>
   </footer>
+
+  <!-- ✅ ここで news-article.js を読み込み -->
+  <script src="../js/news-article.js"></script>
 </body>
 </html>
