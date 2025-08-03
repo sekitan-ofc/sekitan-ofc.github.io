@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>News | せきたん公式サイト</title> <!-- タイトルもJSで設定してOK -->
+  <title>News | せきたん公式サイト</title> <!-- JSで動的に書き換え -->
   <link rel="stylesheet" href="../css/style.css" />
   <link rel="stylesheet" href="../css/style_article.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" />
@@ -31,10 +31,10 @@
   <!-- メイン -->
   <main class="container">
     <article class="news-article">
-      <h2 class="article-title"></h2> <!-- JSでタイトルを埋め込む -->
+      <h2 class="article-title"></h2> <!-- JSでタイトルを埋め込み -->
       <div class="article-meta">
-        <span class="article-category"></span> <!-- JSでカテゴリを埋め込む -->
-        <span class="article-date"></span>     <!-- JSで日付を埋め込む -->
+        <span class="article-category"></span> <!-- JSでカテゴリを埋め込み -->
+        <span class="article-date"></span>     <!-- JSで日付を埋め込み -->
       </div>
 
       <div class="article-body">
@@ -45,7 +45,7 @@
         </p>
       </div>
 
-      <p class="article-tags">タグ：<span class="tag-list"></span></p> <!-- タグもJSで埋める -->
+      <p class="article-tags">タグ：<span class="tag-list"></span></p> <!-- JSでタグを埋め込み -->
     </article>
 
     <!-- ナビゲーション -->
@@ -92,7 +92,7 @@
     </div>
   </footer>
 
-  <!-- ✅ ここで news-article.js を読み込み -->
+  <!-- JS読み込み -->
   <script src="../js/news-article.js"></script>
 </body>
 </html>

@@ -1,12 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
   const apiUrl = "https://script.google.com/macros/s/AKfycbwoMvXkxIb0jmZRwnB_OR6pqe3062ZTv8596akKmDdj9eh3YJ7F0RoB1Y4kuzxWnn4b/exec";
 
+  // 現在のページの相対パス（先頭のスラッシュは除去）
   const pathFromRoot = location.pathname.replace(/^\/+/, ''); // 例: "news/20250802_test.html"
 
   fetch(apiUrl)
     .then(response => response.json())
     .then(data => {
-      // 相対パスで比較
+      // 現ページのURLに一致する記事を取得
       const currentItem = data.find(item => item["URL"] === pathFromRoot);
 
       if (!currentItem) {
@@ -14,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // タイトルを反映
+      // タイトル
       const titleElem = document.querySelector(".article-title");
       if (titleElem) titleElem.textContent = currentItem["タイトル"] || "";
 
@@ -22,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const categoryElem = document.querySelector(".article-category");
       if (categoryElem) categoryElem.textContent = currentItem["カテゴリ"] || "";
 
-      // 日付（フォーマット処理あり）
+      // 日付（フォーマット適用）
       const dateElem = document.querySelector(".article-date");
       if (dateElem) dateElem.textContent = formatDate(currentItem["日付"]);
 
@@ -37,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
 
-      // ページタイトルも書き換え
+      // ページタイトル書き換え
       document.title = `${currentItem["タイトル"]} | News | せきたん公式サイト`;
 
     })
