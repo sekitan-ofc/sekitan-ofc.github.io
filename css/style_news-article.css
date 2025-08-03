@@ -6,10 +6,10 @@ body {
   color: #333;
 }
 
+/* 記事タイトル周り */
 .news-article {
   margin-top: 2em;
 }
-
 .article-title {
   font-family: 'Zen Kaku Gothic New', sans-serif;
   font-size: 2rem;
@@ -20,6 +20,7 @@ body {
   margin-bottom: 1em;
 }
 
+/* メタ情報 */
 .article-meta {
   display: flex;
   justify-content: space-between;
@@ -27,45 +28,42 @@ body {
   margin-bottom: 1em;
   font-size: 0.95rem;
 }
-
 .article-category {
   background-color: #dadbdb;
   color: #000;
   padding: 0.4em 1em;
   border-radius: 999px;
   font-weight: 600;
-  font-size: 0.95rem;
   min-width: 110px;
   text-align: center;
 }
-
 .article-date {
-  font-size: 0.95rem;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
   color: #333;
 }
 
+/* 本文 */
 .article-body p {
   font-size: 1rem;
   line-height: 1.8;
   margin-bottom: 1.5em;
 }
 
+/* タグ */
 .article-tags {
   font-size: 0.9rem;
   color: #2a5d34;
   margin-top: 1.2em;
 }
-
 .article-tags span {
   background-color: #d8e8d8;
   border-radius: 8px;
   padding: 0.2em 0.6em;
   margin-right: 0.4em;
   font-weight: 600;
-  user-select: none;
   display: inline-block;
+  user-select: none;
 }
 
 /* 読み込み中メッセージ */
@@ -73,20 +71,19 @@ body {
   text-align: center;
   font-size: 1.2rem;
   color: #555;
-  margin-top: 4em;
-  margin-bottom: 4em;
+  margin: 4em 0;
   user-select: none;
 }
 
-/* ナビゲーション全体のラッパー */
+/* ナビゲーション全体 */
 .article-nav {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 42px 1fr 42px;
   align-items: center;
+  justify-items: center;
   gap: 1em;
   margin-top: 3em;
-  flex-wrap: nowrap;
-  position: relative;
+  margin-bottom: 2em;
 }
 
 /* 矢印ボタン（戻る・進む） */
@@ -99,35 +96,28 @@ body {
   color: #fff;
   border: none;
   display: flex;
-  justify-content: center;
   align-items: center;
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  justify-content: center;
+  text-decoration: none;
+  transition: box-shadow 0.3s, transform 0.3s;
   user-select: none;
-  text-decoration: none;  /* ← 下線消し */
 }
+/* 左右のセルは常に固定幅を保持 */
+.nav-btn.circle.prev { /* left cell */ }
+.nav-btn.circle.next { /* right cell */ }
 
-/* 矢印ボタンの位置とマージン */
-.nav-btn.circle.prev {
-  margin-right: 1em;
-  align-self: center;
-}
-
-.nav-btn.circle.next {
-  margin-left: 1em;
-  align-self: center;
-}
-
-/* Newsトップへ と 一覧を表示 のラッパー */
+/* 中央グループ */
 .nav-center-group {
   display: flex;
   flex-direction: column;
   gap: 0.6em;
-  justify-content: center;
   align-items: center;
-  min-width: 140px; /* 幅をある程度確保 */
+  justify-content: center;
+  width: 100%;
+  max-width: 240px;
 }
 
-/* Newsトップへ と 一覧を表示 ボタン共通 */
+/* 中央の丸みボタン共通 */
 .nav-btn.top-link,
 .nav-btn.archive-link {
   background-color: #4caf50;
@@ -135,20 +125,21 @@ body {
   padding: 0.6em 1.2em;
   border-radius: 999px;
   font-weight: 600;
+  font-size: 1rem;
   text-decoration: none;
   border: none;
-  font-size: 1rem;
-  min-width: 120px; /* サイズ統一 */
+  transition: box-shadow 0.3s, transform 0.3s;
+  min-width: 120px;
   text-align: center;
   user-select: none;
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
-/* ホバー効果共通 */
+/* ホバー効果 */
 .nav-btn:hover,
+.nav-btn:focus,
 .archive-link:hover {
   transform: translateY(-3px) scale(1.1);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
   color: #fff;
   text-decoration: none;
 }

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><!-- ##TITLE## --> | News | せきたん公式サイト</title>
+
+    <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0FZX21V1LN"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-0FZX21V1LN');
+  </script>
+
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/style_news-article.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <!-- ヘッダー -->
+  <header class="site-header">
+    <div class="container">
+      <h1 class="site-title"><a href="../index.html">せきたん公式サイト</a></h1>
+      <nav class="site-nav">
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../cottonway-project.html">Cottonway Project</a></li>
+          <li><a href="../download.html">BVE Data</a></li>
+          <li><a href="../news.html" class="current">News</a></li>
+          <li><a href="../profile.html">Profile</a></li>
+          <li><a href="../support.html">Support</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- メインコンテンツ -->
+  <main class="container">
+    <!-- 読み込み中メッセージ -->
+    <div id="loading-message">読み込み中です...</div>
+
+    <!-- 記事本体 -->
+    <article class="news-article" id="news-article" style="display:none;">
+      <!-- タイトル -->
+      <h2 class="article-title"><!-- ##TITLE## --></h2>
+
+      <!-- メタ情報 -->
+      <div class="article-meta">
+        <span class="article-category"><!-- ##CATEGORY## --></span>
+        <span class="article-date"><!-- ##DATE## --></span>
+      </div>
+
+      <!-- イントロ・リード文（任意） -->
+      <!-- <p class="article-lead">リード文を追加したい場合はここに記述します。</p> -->
+
+      <!-- 本文 -->
+      <div class="article-body">
+        <!-- ##BODY_HTML## -->
+      </div>
+
+      <!-- 画像添付例 -->
+      <!--
+      <figure>
+        <img src="../images/IMAGE_FILENAME.png" alt="説明文" />
+        <figcaption>画像キャプション（任意）</figcaption>
+      </figure>
+      -->
+
+      <!-- タグ -->
+      <p class="article-tags">タグ：<span class="tag-list"><!-- ##TAGS## --></span></p>
+    </article>
+
+    <!-- ナビゲーション -->
+    <section class="article-nav">
+      <a class="nav-btn circle prev" aria-label="前の記事"><i class="fas fa-chevron-left"></i></a>
+      <div class="nav-center-group">
+        <a href="../news.html" class="nav-btn top-link">Newsトップへ</a>
+        <a href="../news-archive.html" class="nav-btn archive-link">一覧を表示</a>
+      </div>
+      <a class="nav-btn circle next" aria-label="次の記事"><i class="fas fa-chevron-right"></i></a>
+    </section>
+  </main>
+
+  <!-- フッター -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <div class="footer-left">
+        <div class="footer-top">
+          <a href="../index.html" class="footer-logo">せきたん / sekitan</a>
+          <nav class="footer-nav">
+            <ul>
+              <li><a href="../support.html">お問い合わせ</a></li>
+              <li><a href="../policy.html">プライバシーポリシー</a></li>
+              <li><a href="../terms.html">利用規約</a></li>
+            </ul>
+          </nav>
+        </div>
+        <small class="copyright">&copy; 2026 せきたん. All rights reserved.</small>
+      </div>
+
+      <div class="footer-right">
+        <div class="sns-buttons">
+          <a href="https://twitter.com/sekitan_ofc" class="sns-btn twitter" target="_blank"><i class="fab fa-x-twitter"></i></a>
+          <a href="https://youtube.com/@sekitan_ofc" class="sns-btn youtube" target="_blank"><i class="fab fa-youtube"></i></a>
+          <a href="https://lin.ee/qwxmeAy" class="sns-btn line" target="_blank"><i class="fab fa-line"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 汎用JS読み込み -->
+  <script src="/js/script_news-article.js"></script>
+</body>
+</html>
