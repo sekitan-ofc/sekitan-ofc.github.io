@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New&display=swap');
+
+#news {
+  margin-top: 2em;
+}
+
+#news h2 {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+  color: #1A0000;
+  border-bottom: 4px solid #4caf50;
+  padding-bottom: 0.3em;
+  margin-bottom: 1em;
+}
+
+/* ニュースリスト */
+#news-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+}
+
+/* カード全体リンク */
+.news-item {
+  display: block;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  padding: 1.2em 1.5em;
+  text-decoration: none;
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+  color: inherit;
+}
+
+.news-item:hover {
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  transform: translateY(-2px);
+}
+
+/* グリッドレイアウトで左から日付・カテゴリ・タイトルを揃える */
+.news-summary {
+  display: grid;
+  grid-template-columns: 120px 110px 1fr;
+  align-items: center;
+  gap: 1em;
+  padding-left: 0.5em;
+}
+
+/* 日付 */
+.news-summary .date {
+  color: #444; /* ← 少し濃くして読みやすく */
+  font-size: 0.9rem;
+  font-weight: 500; /* ← 太さも少しアップ */
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  pointer-events: none; /* ← ホバー無効化（任意） */
+}
+
+/* カテゴリ */
+.news-category {
+  background-color: #bababa;
+  color: #1A0000;
+  font-weight: bold;
+  padding: 0.4em 1.2em;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  min-width: auto;  /* ← 固定幅を解除して自然な左寄せへ */
+  text-align: center;
+  white-space: nowrap;
+}
+
+
+/* タイトル */
+.news-summary h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #2a5d34;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  padding-left: 0.5em; /* ← 少し右へ寄せる */
+}
+
+/* アーカイブへボタン */
+.news-archive-button {
+  margin-top: 2em;
+  text-align: center;
+}
+
+.archive-link {
+  display: inline-block;
+  background-color: #4caf50;
+  color: #fff;
+  padding: 0.6em 1.4em;
+  font-weight: bold;
+  border-radius: 999px;
+  text-decoration: none;
+  border: none;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.archive-link:hover {
+  transform: translateY(-3px) scale(1.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  color: #fff; /* ← 明示的に色を維持 */
+}

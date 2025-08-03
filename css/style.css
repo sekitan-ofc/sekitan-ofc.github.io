@@ -1,3 +1,109 @@
+/* 共通コンテナ */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 8em; /* ← 横方向余白（左右とも）を追加！ */
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+
+/* ヘッダー */
+.site-header {
+  width: 100vw; /* 画面幅いっぱいに */
+  background-color: #f5f5f5;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* ここを追加 */
+  padding: 1em 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-sizing: border-box; /* これも入れておくと安全 */
+}
+/* 内側コンテンツを中央寄せにする */
+.site-header .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1em;
+  display: flex;
+  justify-content: space-between; /* タイトルとナビゲーションを左右に分けるなど */
+  align-items: center;
+}
+
+header h1,
+header nav a {
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+.site-title {
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+.site-title a {
+  color: #4CAF50;
+  text-decoration: none;
+}
+
+.site-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end; /* 右寄せ */
+  gap: 1.5em;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ナビゲーションリンクスタイル */
+.site-nav a {
+  position: relative;
+  text-decoration: none;
+  color: #333333;
+  font-weight: 400;
+  transition: color 0.3s ease;
+  padding-bottom: 4px; /* 下線アニメーションスペース */
+}
+
+
+/* ホバー時：文字色は変えず、下線だけ */
+.site-nav a:hover {
+  color: #333333; /* 明示的に上書き */
+}
+
+/* 下線バーの疑似要素 */
+.site-nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: currentColor; /* 文字と同じ色 */
+  transition: width 0.3s ease;
+  border-radius: 1px;
+}
+
+/* ホバー時にバーを左から右へ表示 */
+.site-nav a:hover::after {
+  width: 100%;
+}
+
+/* 特別なリンクデザイン：Cottonway Project */
+.site-nav a.project-link {
+  color: #1a214d;
+}
+
+.site-nav a.project-link::after {
+  background-color: #1a214d;
+}
+/* ヘッダー終わり */
+
+
+
+/* 中身 */
 h1 {
   font-size: 2em;
   font-weight: bold;
@@ -42,3 +148,153 @@ a {
 a:hover {
   color: #003c99; /* ホバー：さらに濃く */
 }
+
+
+/* ========== フッター ========== */
+.site-footer {
+  width: 100vw;
+  background-color: #e0e0e0;
+  padding: 4em 0 4em; /* 上下のパディングを調整：下を多めに */
+  margin-top: 3em;
+  font-size: 0.95rem;
+}
+
+.footer-content {
+  align-items: center;     /* 垂直中央揃え */
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 2em;
+}
+
+/* フッター左側 */
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  min-width: 250px;
+}
+
+.footer-top {
+  display: flex;
+  align-items: center;
+  gap: 2em;
+  flex-wrap: wrap;
+}
+
+/* フッターロゴリンク */
+.footer-logo {
+  font-weight: 700;
+  font-size: 1rem;
+  color: #444444; /* より濃く */
+  text-decoration: none;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+/* 下線アニメーション */
+.footer-logo::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 2px;
+  width: 0;
+  background-color: currentColor;
+  transition: width 0.3s ease;
+}
+
+/* ホバー時も文字色はそのまま、下線だけ表示 */
+.footer-logo:hover {
+  color: #444444; /* 明示的に色を変えない */
+}
+
+.footer-logo:hover::after {
+  width: 100%;
+}
+
+
+.footer-nav ul {
+  display: flex;
+  list-style: none;
+  gap: 1em;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-nav a {
+  font-size: 14px;
+  text-decoration: none;
+  color: #333333;
+  font-weight: 400;
+  position: relative;
+  padding-bottom: 4px;
+}
+.footer-nav a:hover {
+  color: #333333;
+}
+.footer-nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: currentColor;
+  border-radius: 1px;
+  transition: width 0.3s ease;
+}
+.footer-nav a:hover::after {
+  width: 100%;
+}
+
+.copyright {
+  margin-top: 5em;  /* 上に余白を追加（お好みで増減） */
+  padding-top: 2em;
+  color: #888888;
+  font-size: 0.6rem;
+  margin-top: 0.5em;
+}
+
+/* フッター右側 */
+.footer-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+}
+
+/* SNSボタンの親エリア */
+.sns-buttons {
+  display: flex;
+  gap: 1em;
+}
+
+/* 各ボタン共通 */
+.sns-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+  text-decoration: none;
+  font-size: 1.5rem;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* ホバー時に影のみ表示 */
+.sns-btn:hover {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  transform: scale(1.1);
+}
+
+
+/* SNSごとの色（オプションで変更したければ） */
+.sns-btn.twitter:hover { color: #1DA1F2; }
+.sns-btn.youtube:hover { color: #FF0000; }
+.sns-btn.line:hover  { color: #00C300; }
+

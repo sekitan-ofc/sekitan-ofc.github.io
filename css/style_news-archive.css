@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New&display=swap');
+
+.archive-main {
+  display: flex;
+  gap: 2em;
+  margin-top: 2em;
+  min-height: 80vh;
+}
+
+/* 左カラム ニュースリスト */
+.archive-left {
+  flex: 1.9;
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 0em 2em 1.5em 2em; /* ← 上だけ少し減らした */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.archive-left h2 {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: #1A0000;
+  border-bottom: 4px solid #4caf50;
+  padding-bottom: 0.3em;
+  margin-bottom: 1.2em;
+}
+
+/* ニュース一覧カード（ニューストップの少し小さい版） */
+.news-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3em;
+}
+
+.news-item {
+  display: block;
+  background-color: #fefefe;
+  border-radius: 10px;
+  padding: 0.9em 1.2em;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+.news-item:hover {
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+  transform: translateY(-2px);
+}
+
+/* グリッドで日付・カテゴリ・タイトル横並び */
+.news-summary {
+  display: grid;
+  grid-template-columns: 100px 100px 1fr;
+  align-items: center;
+  gap: 0.8em;
+  padding-left: 0.4em;
+}
+
+/* 日付 */
+.news-summary .date {
+  color: #444;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+}
+
+/* カテゴリ */
+.news-category {
+  background-color: #bababa;
+  color: #1A0000;
+  font-weight: 600;
+  padding: 0.25em 0.9em;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  min-width: auto;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* タイトル */
+.news-summary h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #2a5d34;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  padding-left: 0.4em;
+}
+
+/* 右カラム 絞り込み */
+.archive-right {
+  width: 300px;
+  padding: 1.5em 1.8em;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  font-size: 0.95rem;
+  color: #333;
+  user-select: none;
+}
+
+.archive-right h3 {
+  margin-top: 0;
+  margin-bottom: 0.8em;
+  font-weight: 700;
+  color: #1A0000;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 1.1rem;
+  border-bottom: 3px solid #4caf50;
+  padding-bottom: 0.3em;
+}
+
+/* チェックボックスグループ */
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  margin-bottom: 1.2em;
+}
+
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  cursor: pointer;
+  user-select: none;
+  font-weight: 600;
+  color: #2a5d34;
+}
+
+.checkbox-group input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+/* セレクトボックス */
+select#filter-year,
+select#filter-month {
+  width: 100%;
+  padding: 0.3em 0.6em;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #2a5d34;
+  background-color: #fff;
+  margin-bottom: 1.3em;
+  cursor: pointer;
+}
+
+select:disabled {
+  background-color: #f0f0f0;
+  cursor: not-allowed;
+}
+
+/* クリアボタン */
+.clear-filters-btn {
+  background-color: #4caf50;
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  border-radius: 999px;
+  padding: 0.6em;
+  width: 100%;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  user-select: none;
+}
+
+.clear-filters-btn:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transform: translateY(-3px);
+  color: #fff; /* 文字色固定 */
+}

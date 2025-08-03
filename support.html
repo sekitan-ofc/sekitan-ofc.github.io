@@ -5,25 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Support | せきたん公式サイト</title>
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
 </head>
 <body>
   <!-- ヘッダー -->
-  <header>
-    <h1><a href="index.html">せきたん公式サイト</a></h1>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="cottonway-project.html">Cottonway Project</a></li>
-        <li><a href="download.html">BVE Data</a></li>
-        <li><a href="news.html">News</a></li>
-        <li><a href="profile.html">Profile</a></li>
-        <li><a href="support.html">Support</a></li>
-      </ul>
-    </nav>
+  <header class="site-header">
+    <div class="container">
+      <h1 class="site-title"><a href="index.html">せきたん公式サイト</a></h1>
+      <nav class="site-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="cottonway-project.html">Cottonway Project</a></li>
+          <li><a href="download.html">BVE Data</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="profile.html">Profile</a></li>
+          <li><a href="support.html">Support</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
   <!-- メインコンテンツ -->
-  <main>
+  <main class="container">
     <section id="support">
       <h2>サポート・お問い合わせ</h2>
       <p>不具合の報告、質問、ご意見などは以下のいずれかの方法で受け付けています。</p>
@@ -48,8 +52,39 @@
   </main>
 
   <!-- フッター -->
-  <footer>
-    <p>&copy; 2026 せきたん. All rights reserved.</p>
+  <footer class="site-footer">
+    <div class="container footer-content">
+     <div class="footer-left">
+        <div class="footer-top">
+          <a href="index.html" class="footer-logo">せきたん / sekitan</a>
+          <nav class="footer-nav">
+            <ul>
+              <li><a href="support.html">お問い合わせ</a></li>
+              <li><a href="policy.html">プライバシーポリシー</a></li>
+              <li><a href="terms.html">利用規約</a></li>
+            </ul>
+          </nav>
+        </div>
+        <small class="copyright">&copy; 2026 せきたん. All rights reserved.</small>
+      </div>
+
+      <div class="footer-right">
+        <div class="sns-buttons">
+          <a href="https://twitter.com/sekitan_ofc" class="sns-btn twitter" target="_blank" aria-label="X (Twitter)">
+            <i class="fab fa-x-twitter"></i>
+            <span class="circle-border"></span>
+          </a>
+          <a href="https://youtube.com/@sekitan_ofc" class="sns-btn youtube" target="_blank" aria-label="YouTube">
+            <i class="fab fa-youtube"></i>
+            <span class="circle-border"></span>
+          </a>
+          <a href="https://lin.ee/qwxmeAy" class="sns-btn line" target="_blank" aria-label="Line">
+            <i class="fab fa-line"></i>
+            <span class="circle-border"></span>
+        </a>
+      </div>
+    </div>
   </footer>
+  
 </body>
 </html>

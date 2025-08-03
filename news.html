@@ -3,61 +3,104 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>News| せきたん公式サイト</title>
+  <title>News | せきたん公式サイト</title>
   <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/news.css" />
+  <link rel="stylesheet" href="css/style_news.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New&display=swap" rel="stylesheet" />
 </head>
 <body>
   <!-- ヘッダー -->
-  <header>
-    <h1><a href="index.html">せきたん公式サイト</a></h1>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="cottonway-project.html">Cottonway Project</a></li>
-        <li><a href="download.html">BVE Data</a></li>
-        <li><a href="news.html">News</a></li>
-        <li><a href="profile.html">Profile</a></li>
-        <li><a href="support.html">Support</a></li>
-      </ul>
-    </nav>
+  <header class="site-header">
+    <div class="container">
+      <h1 class="site-title"><a href="index.html">せきたん公式サイト</a></h1>
+      <nav class="site-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="cottonway-project.html">Cottonway Project</a></li>
+          <li><a href="download.html">BVE Data</a></li>
+          <li><a href="news.html" class="current">News</a></li>
+          <li><a href="profile.html">Profile</a></li>
+          <li><a href="support.html">Support</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
   <!-- メイン -->
-  <main>
+  <main class="container">
     <section id="news">
       <h2>お知らせ・更新情報</h2>
 
-      <!-- タグ -->
-      <div class="tag-buttons">
-        <strong>タグで絞り込む：</strong>
-        <button data-filter="all">すべて</button>
-        <button data-filter="公開">公開</button>
-        <button data-filter="GitHub">GitHub</button>
-        <button data-filter="制作">制作</button>
-      </div>
-
       <!-- ニュース一覧 -->
       <div id="news-list">
-        <article class="news-item" data-tags="公開 GitHub">
-          <h3><a href="news/2025-08-02-test.html">サイト仮公開テスト完了</a></h3>
-          <p class="date">2025年8月2日</p>
-          <img src="images/news/thumb_20250802.jpg" alt="テスト公開" width="200" />
-          <p class="tags">タグ：<span>公開</span> / <span>GitHub</span></p>
-          <p>GitHub Pages によるサイト仮公開が完了しました。各ページの整備を今後進めていきます。</p>
-        </article>
+        <a href="news/news_20250802_test.html" class="news-item" data-tags="公開 GitHub">
+          <div class="news-summary">
+            <p class="date">2025.08.02</p>
+            <span class="news-category">お知らせ</span>
+            <h3>サイト仮公開テスト完了</h3>
+          </div>
+        </a>
 
-        <!-- 他の記事があればここに追加 -->
+        <a href="#" class="news-item" data-tags="制作">
+          <div class="news-summary">
+            <p class="date">2025.07.25</p>
+            <span class="news-category">BVE真岡線</span>
+            <h3>新しいBVE真岡線プラグインの開発開始</h3>
+          </div>
+        </a>
+
+        <a href="#" class="news-item" data-tags="公開">
+          <div class="news-summary">
+            <p class="date">2025.07.10</p>
+            <span class="news-category">重要</span>
+            <h3>サイトのトップページをリニューアル</h3>
+          </div>
+        </a>
       </div>
+
+      <!-- アーカイブボタン -->
+      <div class="news-archive-button">
+        <a href="news-archive.html" class="archive-link">アーカイブへ</a>
+      </div>
+
     </section>
   </main>
 
   <!-- フッター -->
-  <footer>
-    <p>&copy; 2026 せきたん. All rights reserved.</p>
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <div class="footer-left">
+        <div class="footer-top">
+          <a href="index.html" class="footer-logo">せきたん / sekitan</a>
+          <nav class="footer-nav">
+            <ul>
+              <li><a href="support.html">お問い合わせ</a></li>
+              <li><a href="policy.html">プライバシーポリシー</a></li>
+              <li><a href="terms.html">利用規約</a></li>
+            </ul>
+          </nav>
+        </div>
+        <small class="copyright">&copy; 2026 せきたん. All rights reserved.</small>
+      </div>
+
+      <div class="footer-right">
+        <div class="sns-buttons">
+          <a href="https://twitter.com/sekitan_ofc" class="sns-btn twitter" target="_blank" aria-label="X (Twitter)">
+            <i class="fab fa-x-twitter"></i>
+          </a>
+          <a href="https://youtube.com/@sekitan_ofc" class="sns-btn youtube" target="_blank" aria-label="YouTube">
+            <i class="fab fa-youtube"></i>
+          </a>
+          <a href="https://lin.ee/qwxmeAy" class="sns-btn line" target="_blank" aria-label="Line">
+            <i class="fab fa-line"></i>
+          </a>
+        </div>
+      </div>
+    </div>
   </footer>
 
-  <!-- 外部スクリプト -->
-  <script src="js/script-news.js"></script>
+  <script src="js/script_news.js"></script>
 </body>
 </html>
