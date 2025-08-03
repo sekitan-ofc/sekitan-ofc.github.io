@@ -6,7 +6,14 @@ body {
   color: #333;
 }
 
-/* 記事タイトル周り */
+/* 要素間マージンをリセット（必要に応じて） */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 記事タイトル */
 .news-article {
   margin-top: 2em;
 }
@@ -66,7 +73,7 @@ body {
   user-select: none;
 }
 
-/* 読み込み中メッセージ */
+/* 読み込み中 */
 #loading-message {
   text-align: center;
   font-size: 1.2rem;
@@ -75,71 +82,71 @@ body {
   user-select: none;
 }
 
-/* ナビゲーション全体 */
+/* ================================================
+   ナビゲーション：進む／戻る／Newsトップへ／一覧表示
+   ================================================ */
 .article-nav {
   display: grid;
-  grid-template-columns: 42px 1fr 42px;
-  align-items: center;
-  justify-items: center;
-  gap: 1em;
-  margin-top: 3em;
-  margin-bottom: 2em;
+  grid-template-columns: 42px auto 42px;
+  align-items: center;      /* 垂直中央揃え */
+  justify-items: center;    /* 各セル内中央 */
+  gap: 1rem;
+  margin: 3em 0 2em;
 }
 
-/* 矢印ボタン（戻る・進む） */
+/* 矢印ボタン */
 .nav-btn.circle {
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  font-size: 1.2rem;
   background-color: #4caf50;
   color: #fff;
   border: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-decoration: none;
+  text-decoration: none;          /* 下線消し */
   transition: box-shadow 0.3s, transform 0.3s;
   user-select: none;
+  font-size: 1.2rem;
 }
-/* 左右のセルは常に固定幅を保持 */
-.nav-btn.circle.prev { /* left cell */ }
-.nav-btn.circle.next { /* right cell */ }
 
-/* 中央グループ */
+/* セル固定なので margin 削除 */
+.nav-btn.circle.prev,
+.nav-btn.circle.next {
+  margin: 0;
+}
+
+/* 中央ボタン群 */
 .nav-center-group {
   display: flex;
   flex-direction: column;
   gap: 0.6em;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  max-width: 240px;
 }
 
-/* 中央の丸みボタン共通 */
+/* 中央のボタン共通 */
 .nav-btn.top-link,
 .nav-btn.archive-link {
   background-color: #4caf50;
   color: #fff;
-  padding: 0.6em 1.2em;
+  padding: 0.6em 1.2em;   /* 左右のみ */
   border-radius: 999px;
   font-weight: 600;
   font-size: 1rem;
   text-decoration: none;
   border: none;
   transition: box-shadow 0.3s, transform 0.3s;
-  min-width: 120px;
-  text-align: center;
   user-select: none;
+  min-width: 120px;       /* 幅統一 */
+  line-height: 1;         /* 高さ固定 */
 }
 
 /* ホバー効果 */
 .nav-btn:hover,
-.nav-btn:focus,
 .archive-link:hover {
   transform: translateY(-3px) scale(1.1);
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
   color: #fff;
-  text-decoration: none;
 }
