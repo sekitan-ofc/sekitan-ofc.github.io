@@ -70,9 +70,10 @@ body {
 
 /* ナビゲーション */
 .article-nav {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
+  justify-items: center;
   margin-top: 3em;
   gap: 1em;
 }
@@ -91,7 +92,7 @@ body {
 }
 
 /* 丸ボタン */
-.nav-btn.circle {
+.article-nav .nav-btn.circle {
   width: 42px;
   height: 42px;
   border-radius: 50%;
@@ -103,7 +104,7 @@ body {
 }
 
 /* トップボタン */
-.nav-btn.top-link {
+.article-nav .top-link {
   background-color: #4caf50;
   color: #fff;
   padding: 0.6em 1.2em;
@@ -112,6 +113,11 @@ body {
   text-decoration: none;
   border: none;
   transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* 「非表示」ボタンでもスペース確保 */
+.article-nav .nav-btn.invisible {
+  visibility: hidden;
 }
 
 /* 全ボタンの共通 hover アニメーション（SNSと同じ） */
