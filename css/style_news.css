@@ -14,11 +14,25 @@
   margin-bottom: 1em;
 }
 
+.news-description {
+  margin: 0 0 1.5em;
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.6;
+}
+
 /* ニュースリスト */
 #news-list {
   display: flex;
   flex-direction: column;
   gap: 1.5em;
+}
+
+#news-list .loading {
+  color: #666;
+  font-size: 1rem;
+  padding: 1em;
+  text-align: center;
 }
 
 /* カード全体リンク */
@@ -48,17 +62,15 @@
   padding-left: 0.5em;
 }
 
-/* 日付 */
 .news-summary .date {
-  color: #444; /* ← 少し濃くして読みやすく */
+  color: #444;
   font-size: 0.9rem;
-  font-weight: 500; /* ← 太さも少しアップ */
+  font-weight: 500;
   white-space: nowrap;
   font-variant-numeric: tabular-nums;
-  pointer-events: none; /* ← ホバー無効化（任意） */
+  pointer-events: none;
 }
 
-/* カテゴリ */
 .news-category {
   background-color: #bababa;
   color: #1A0000;
@@ -66,20 +78,17 @@
   padding: 0.4em 1.2em;
   border-radius: 999px;
   font-size: 0.95rem;
-  min-width: auto;  /* ← 固定幅を解除して自然な左寄せへ */
   text-align: center;
   white-space: nowrap;
 }
 
-
-/* タイトル */
 .news-summary h3 {
   margin: 0;
   font-size: 1.1rem;
   font-weight: 700;
   color: #2a5d34;
   font-family: 'Zen Kaku Gothic New', sans-serif;
-  padding-left: 0.5em; /* ← 少し右へ寄せる */
+  padding-left: 0.5em;
 }
 
 /* アーカイブへボタン */
@@ -103,5 +112,5 @@
 .archive-link:hover {
   transform: translateY(-3px) scale(1.1);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  color: #fff; /* ← 明示的に色を維持 */
+  color: #fff;
 }

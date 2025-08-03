@@ -3,8 +3,8 @@
 .archive-main {
   display: flex;
   gap: 2em;
-  margin-top: 2em;
-  min-height: 80vh;
+  margin-block: 2em;
+  align-items: flex-start;
 }
 
 /* 左カラム ニュースリスト */
@@ -157,6 +157,21 @@ select#filter-month {
 select:disabled {
   background-color: #f0f0f0;
   cursor: not-allowed;
+}
+
+/* タイトル検索ボックス */
+.search-title-box {
+  width: 100%;
+  max-width: 100%;
+  padding: 0.3em 0.6em;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #2a5d34;
+  background-color: #fff;
+  margin-bottom: 1.3em;
+  box-sizing: border-box;
 }
 
 /* クリアボタン */

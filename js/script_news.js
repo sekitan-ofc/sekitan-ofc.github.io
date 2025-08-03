@@ -1,28 +1,51 @@
-// ニュース記事のタグによる絞り込み処理
 document.addEventListener('DOMContentLoaded', () => {
-  const buttons = document.querySelectorAll('.tag-buttons button');
-  const newsItems = document.querySelectorAll('.news-item');
+  const newsList = document.getElementById('news-list');
+  const apiUrl = 'https://script.google.com/macros/s/AKfycbwoMvXkxIb0jmZRwnB_OR6pqe3062ZTv8596akKmDdj9eh3YJ7F0RoB1Y4kuzxWnn4b/exec';
 
-  buttons.forEach(button => {
-    button.addEventListener('click', () => {
-      // activeクラス切り替え
-      buttons.forEach(btn => btn.classList.remove('active'));
-      button.classList.add('active');
+  const now = new Date(new Date().toLocaleString("ja-JP", { timeZone: "Asia/Tokyo" }));
 
-      const filter = button.getAttribute('data-filter');
+  fetch(apiUrl)
+    .then(response => response.json())
+    .then(data => {
+      const filtered = data.filter(item => {
+        if (!item["公開日時"]) return true;
+        const pubDate = new Date(item["公開日時"].replace(" ", "T") + ":00+09:00");
+        return pubDate <= now;
+      }).sort((a, b) => new Date(b["公開日時"]) - new Date(a["公開日時"]))
+        .slice(0, 5);
 
-      newsItems.forEach(item => {
-        if (filter === 'all') {
-          item.style.display = '';
-        } else {
-          const tags = item.getAttribute('data-tags').split(' ');
-          if (tags.includes(filter)) {
-            item.style.display = '';
-          } else {
-            item.style.display = 'none';
-          }
-        }
+      newsList.innerHTML = ""; // ← 読み込み中メッセージを消す
+
+      if (filtered.length === 0) {
+        newsList.innerHTML = '<p>現在お知らせはありません。</p>';
+        return;
+      }
+
+      filtered.forEach(item => {
+        const a = document.createElement('a');
+        a.href = item["URL"];
+        a.className = "news-item";
+        a.innerHTML = `
+          <div class="news-summary">
+            <p class="date">${formatDate(item["日付"])}</p>
+            <span class="news-category">${item["カテゴリ"]}</span>
+            <h3>${item["タイトル"]}</h3>
+          </div>
+        `;
+        newsList.appendChild(a);
       });
+    })
+    .catch(error => {
+      newsList.innerHTML = "<p>ニュースを取得できませんでした。</p>";
+      console.error("取得エラー:", error);
     });
-  });
+
+  function formatDate(dateStr) {
+    const d = new Date(dateStr);
+    if (isNaN(d)) return dateStr;
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${y}.${m}.${day}`;
+  }
 });
