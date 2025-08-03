@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const newsListElem = document.getElementById("news-list");
-  const apiUrl = "https://script.google.com/macros/s/AKfycby-3GvzF2LXa6yUm9akvKkWEZvYkegIxOOhlW0vKSpP9e0RztoeXmbtk8JVAPj1KJZB/exec";
+  const apiUrl = "https://script.google.com/macros/s/AKfycbyRg-JFYrFEoCjXbJgpuyo-6HLx-IKqvdMT_Hiev7U7f9-xk8axN3otU6ULDHmFKHsq/exec";
 
   fetch(apiUrl)
     .then(response => response.json())
