@@ -9,16 +9,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New&display=swap" rel="stylesheet" />
-  <style>
-    /* 読み込み中メッセージのスタイル */
-    #loading-message {
-      text-align: center;
-      margin: 1em 0;
-      font-weight: bold;
-      font-size: 1.2em;
-      color: #555;
-    }
-  </style>
 </head>
 <body>
   <!-- ヘッダー -->
@@ -40,14 +30,13 @@
 
   <!-- メイン -->
   <main class="container">
-    <!-- 読み込み中メッセージ -->
-    <div id="loading-message">読み込み中…</div>
+    <div id="loading-message">読み込み中...</div>
 
-    <article class="news-article" id="news-article" style="display:none;">
-      <h2 class="article-title"></h2> <!-- JSでタイトルを埋め込み -->
+    <article class="news-article" id="news-article" style="display: none;">
+      <h2 class="article-title"></h2>
       <div class="article-meta">
-        <span class="article-category"></span> <!-- JSでカテゴリを埋め込み -->
-        <span class="article-date"></span>     <!-- JSで日付を埋め込み -->
+        <span class="article-category"></span>
+        <span class="article-date"></span>
       </div>
 
       <div class="article-body">
@@ -58,10 +47,9 @@
         </p>
       </div>
 
-      <p class="article-tags">タグ：<span class="tag-list"></span></p> <!-- JSでタグを埋め込み -->
+      <p class="article-tags">タグ：<span class="tag-list"></span></p>
     </article>
 
-    <!-- ナビゲーション -->
     <section class="article-nav">
       <a class="nav-btn circle prev" aria-label="前の記事">
         <i class="fas fa-chevron-left"></i>
@@ -72,7 +60,6 @@
       </a>
     </section>
 
-    <!-- アーカイブへ -->
     <div class="news-archive-button">
       <a href="../news-archive.html" class="archive-link">アーカイブへ</a>
     </div>
@@ -105,7 +92,7 @@
     </div>
   </footer>
 
-  <!-- JS読み込み -->
+  <!-- JS -->
   <script src="/js/script_news-article.js"></script>
 </body>
 </html>
