@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const description = document.createElement("p");
     description.className = "news-description";
-    description.innerHTML = "過去に公開されたニュースの一覧です。<br>各見出しをタップすると詳細をご覧いただけます。";
+    description.innerHTML = "過去に公開されたニュースの一覧です。<br>見出しをタップすると詳細をご覧いただけます。";
     newsListElem.appendChild(description);
 
     if (!newsArray.length) {
