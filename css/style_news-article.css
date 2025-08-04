@@ -75,15 +75,15 @@ body {
   user-select: none;
 }
 
-/* ナビゲーション全体 */
 .article-nav {
   display: grid;
-  grid-template-columns: 42px 1fr 42px;
-  align-items: center;
-  justify-items: center;
-  gap: 1em;
-  margin-top: 3em;
-  margin-bottom: 2em;
+  /* 左右セルは内容幅、中央セルを160pxで固定 */
+  grid-template-columns: max-content 160px max-content;
+  align-items: center;      /* 垂直中央揃え */
+  justify-items: center;    /* 各セル内中央 */
+  justify-content: center;  /* グリッド全体を中央寄せ */
+  gap: 2em;                 /* セル間の余白 */
+  margin: 3em 0 2em;
 }
 
 /* 矢印ボタン（戻る・進む） */
@@ -102,9 +102,10 @@ body {
   transition: box-shadow 0.3s, transform 0.3s;
   user-select: none;
 }
-/* 左右のセルは常に固定幅を保持 */
-.nav-btn.circle.prev { /* left cell */ }
-.nav-btn.circle.next { /* right cell */ }
+.nav-btn.circle.prev,
+.nav-btn.circle.next {
+  margin: 0;
+}
 
 /* 中央グループ */
 .nav-center-group {
@@ -113,8 +114,6 @@ body {
   gap: 0.6em;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  max-width: 240px;
 }
 
 /* 中央の丸みボタン共通 */
