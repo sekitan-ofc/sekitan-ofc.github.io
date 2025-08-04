@@ -12,21 +12,54 @@ html, body {
 
 
 /* ヘッダー */
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-left {
+  width: 25%;
+  padding-left: 1em;
+  display: flex;              /* ← Flexbox */
+  align-items: center;        /* ← 鉛直方向に中央揃え */
+  height: 100%;               /* 高さを親要素に合わせる（念のため） */
+}
+
+.header-right {
+  flex: 1;
+  padding: 0 1em; /* ナビゲーション側にだけ余白を残す */
+  padding-right: 1em; /* 右側の余白を追加 */
+}
+
+.logo-link {
+  display: inline-block;
+}
+
+
 .site-header {
   width: 100vw; /* 画面幅いっぱいに */
   background-color: #f5f5f5;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* ここを追加 */
-  padding: 1em 0;
+  padding: 0.8em 0;
   position: sticky;
   top: 0;
   z-index: 1000;
   box-sizing: border-box; /* これも入れておくと安全 */
 }
+
+/* ロゴ画像のスタイル せきたん*/
+.site-logo {
+  height: 45px; /* 適宜調整（例：40〜60px） */
+  width: auto;
+  display: block;
+}
+
 /* 内側コンテンツを中央寄せにする */
 .site-header .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1em;
+  padding: 0 0.4em;
   display: flex;
   justify-content: space-between; /* タイトルとナビゲーションを左右に分けるなど */
   align-items: center;
