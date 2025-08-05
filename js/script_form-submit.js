@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const endpoint = 'https://script.google.com/macros/s/AKfycbz21bq3Wb_VCeTalBzAApuLypHfSieWz-og6AWVpu5Mm6MbtJ_A7ZWasrJGaED-JWPHYg/exec';
+    const endpoint = 'https://script.google.com/macros/s/AKfycbwpO-ZfWJ_wt_T-lA3C2HmV9ohHFybNn-qI8eZEbxiB0ErTlXXJcLqVJY16R8Y8CtobTA/exec';
 
     const formData = new FormData(form);
 
