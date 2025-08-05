@@ -34,7 +34,7 @@ document.querySelector('form').addEventListener('submit', async function(e) {
     fileData: base64
   };
 
-  const res = await fetch('https://script.google.com/macros/s/AKfycbzLnbitx89D4SzLQj1GmyeGxGDZPRHbOxOL_uCcKhVAm38WZyGtjEVhI9hfymlZAV_Ggw/exec', {
+  const res = await fetch('https://script.google.com/macros/s/AKfycbymZMYTKI08Fk36nPEWKJ34KA9WkoM0d_AZOHzEFc5kOR55bUKTg3hRXcyXgAHnLVpWZw/exec', {
     method: 'POST',
     body: JSON.stringify(formData),
     headers: {
