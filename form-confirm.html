@@ -3,44 +3,79 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home | せきたん公式サイト</title>
-
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0FZX21V1LN"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-0FZX21V1LN');
-  </script>
-
+  <title>送信完了 | せきたん公式サイト</title>
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style_form.css">
+  <style>
+    main {
+      max-width: 600px;
+      margin: 4em auto;
+      padding: 2em;
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      color: #1a0000;
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+    h2 {
+      font-size: 1.5rem;
+      color: #000;
+      border-bottom: 4px solid #4CAF50;
+      padding-bottom: 0.3em;
+      margin-bottom: 1em;
+    }
+    .confirm-info {
+      line-height: 1.8;
+      font-size: 1rem;
+    }
+    .confirm-info span {
+      font-weight: bold;
+    }
+    .back-link {
+      display: inline-block;
+      margin-top: 2em;
+      color: #065FD4;
+      text-decoration: underline;
+      font-size: 1rem;
+    }
+  </style>
 </head>
-
 <body>
-  <main class="container">
-    <h2>送信内容のご確認</h2>
-    <div id="confirmation"></div>
-    <button id="back-button">修正する</button>
+
+  <main>
+    <h2>送信が完了しました</h2>
+    <div class="confirm-info">
+      <p>お問い合わせを受け付けました。ありがとうございました。</p>
+      <p>受付ID：<span id="confirm-id">-</span></p>
+      <p>お問い合わせ種別：<span id="confirm-subject">-</span></p>
+      <p>お名前：<span id="confirm-name">-</span></p>
+      <p>メールアドレス：<span id="confirm-email">-</span></p>
+    </div>
+
+    <a href="index.html" class="back-link">トップページへ戻る</a>
   </main>
+
   <script>
-    document.addEventListener('DOMContentLoaded', ()=>{
-      const data = JSON.parse(sessionStorage.getItem('lastSubmission')||'{}');
-      const c = document.getElementById('confirmation');
-      if (!data.id) { c.textContent='データが見つかりません'; return; }
-      c.innerHTML = `
-        <div class="submission-id">お問い合わせID：${data.id}</div>
-        <p><strong>お名前：</strong>${data.name}</p>
-        <p><strong>メールアドレス：</strong>${data.email}</p>
-        <p><strong>件名：</strong>${data.subject}</p>
-        <p><strong>内容：</strong><br>${data.message.replace(/\n/g,'<br>')}</p>
-        <p>上記内容で送信が完了しました。ありがとうございました。</p>
-      `;
-      sessionStorage.removeItem('lastSubmission');
-    });
-    document.getElementById('back-button').addEventListener('click', ()=>history.back());
+    // URLのクエリパラメータから値を取得して表示
+    const params = new URLSearchParams(window.location.search);
+    document.getElementById('confirm-id').textContent = params.get('id') || '-';
+    document.getElementById('confirm-subject').textContent = subjectLabel(params.get('subject')) || '-';
+    document.getElementById('confirm-name').textContent = params.get('name') || '-';
+    document.getElementById('confirm-email').textContent = params.get('email') || '-';
+
+    // 件名の表示変換（日本語ラベル）
+    function subjectLabel(value) {
+      const map = {
+        moka: "真岡線Projectについて",
+        create: "データ制作について",
+        bug: "公開中データの不具合について",
+        site: "本サイトについて",
+        sns: "SNSについて",
+        other: "その他"
+      };
+      return map[value] || value;
+    }
   </script>
+
 </body>
 </html>
