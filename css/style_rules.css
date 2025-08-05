@@ -1,0 +1,113 @@
+/* コンテナ共通 */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 4em;
+}
+
+/* ページタイトル */
+h1 {
+  font-size: 2em;
+  font-weight: bold;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  color: #333;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+/* 全体フォント・文字色 */
+body, main.container, .policy-card {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  color: #1a0000;
+}
+
+/* タイトル（緑の下線） */
+main.container > h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #1a0000;
+  border-bottom: 4px solid #4CAF50;
+  padding-bottom: 0.3em;
+  margin-bottom: 1.5em;
+}
+
+/* 説明文 */
+.policy-note p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #1a0000;
+  margin-bottom: 2em;
+}
+
+/* カード一覧 */
+.policy-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+}
+
+/* 規約カード */
+.policy-card {
+  display: block;
+  padding: 1.2em 1.5em;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  text-decoration: none;
+  color: #1a0000;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+  border: none;
+}
+
+/* ホバー時：色は変えない、影と動きだけ */
+.policy-card:hover,
+.policy-card:focus {
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  transform: translateY(-3px);
+  color: #1a0000;         /* 明示的に色を固定 */
+  text-decoration: none;  /* 下線も防止 */
+}
+
+/* 規約名 */
+.policy-card h2 {
+  margin-top: 0;
+  margin-bottom: 0.4em;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #1a0000;
+  border-bottom: none;
+}
+
+/* 概要文 */
+.policy-card p {
+  margin-top: 0;
+  margin-bottom: 1em;
+  line-height: 1.5;
+}
+
+/* 日付情報 */
+.policy-meta p {
+  font-size: 0.875rem;
+  color: #666666;
+  margin: 0.1em 0;
+}
+
+
+
+/* スマホ対応 */
+@media (max-width: 600px) {
+  .policy-list {
+    gap: 1em;
+  }
+
+  .policy-card {
+    padding: 1em 1.2em;
+  }
+
+  .policy-meta {
+    flex-direction: column;
+    gap: 0.3em;
+  }
+}

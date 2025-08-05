@@ -1,0 +1,187 @@
+/* 共通設定 */
+#form {
+  padding: 2em 0;
+  color: #1a0000;
+  font-size: 16px;
+}
+
+#form form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* 必須マーク */
+.required {
+  color: #e60012;
+  font-weight: bold;
+}
+
+/* ラベル */
+#form label {
+  display: block;
+  font-weight: 600;
+  margin-top: 1.5em;
+  margin-bottom: 0.2em; /* 全体のラベルのデフォルト下余白 */
+}
+
+/* 通常の入力ボックス */
+#form input[type="text"],
+#form input[type="email"],
+#form select,
+#form textarea {
+  width: 100%;
+  max-width: 600px;
+  padding: 0.7em 1em;
+  font-size: 1rem;
+  border: 1.5px solid #1a0000;
+  border-radius: 6px;
+  box-sizing: border-box;
+  font-family: inherit;
+  color: #1a0000;
+  background-color: #fff;
+  margin-top: 0.3em; /* ラベルからの距離 */
+}
+
+#form input:focus,
+#form select:focus,
+#form textarea:focus {
+  border-color: #4CAF50;
+  outline: none;
+}
+
+/* テキストエリア */
+#form textarea {
+  resize: vertical;
+  min-height: 140px;
+}
+
+---
+
+/* ラベルの見出し（添付ファイル用） */
+#form .form-label {
+  display: block;
+  margin-top: 1.5em;
+  margin-bottom: 0;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+/* ============================= */
+/* 添付ファイルボックス         */
+/* ============================= */
+/* ボックス全体 */
+.file-wrapper {
+  display: block; /* inline-block から block に変更 */
+  position: relative;
+  width: 100%; /* ★追加：横幅を親要素に合わせる★ */
+  max-width: 600px; /* ★追加：input要素とmax-widthを合わせる★ */
+  padding: 0.7em 1em; /* ★変更：input要素のpaddingに合わせる★ */
+  border: 1.5px dashed #1a0000; /* ★変更：borderをinput要素に合わせる★ */
+  border-radius: 6px;
+  background-color: #fafafa;
+  font-size: 1rem;
+  font-family: inherit;
+  color: #1a0000;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border 0.3s ease;
+  margin-top: 0.3em;
+  margin-bottom: 1.5em;
+  line-height: 1.6; /* テキストの行の高さ */
+  box-sizing: border-box; /* paddingとborderをwidthに含める */
+}
+
+.file-wrapper input[type="file"] {
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+}
+
+/* ホバー時 */
+.file-wrapper:hover {
+  background-color: #f0f0f0;
+}
+
+/* 説明用テキストと同じ書体に */
+.file-wrapper .file-note {
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: normal;
+  color: #555555;
+  line-height: 1.6;
+  margin: 0; /* ★変更：このマージンを0にするか、必要なら微調整★ */
+  display: block; /* ★追加：spanをブロック要素にして、パディングと高さをコントロールしやすくする★ */
+}
+
+/* 選択後のスタイル */
+.file-wrapper.selected {
+  /* display: flex; は不要になるか、調整が必要 */
+  /* justify-content: center; は不要になるか、調整が必要 */
+  /* align-items: center; は不要になるか、調整が必要 */
+  /* width: 100%; は .file-wrapper で設定済みなので削除 */
+  /* height: 120px; は削除 */
+  border-style: solid; /* 点線から実線へ変更 */
+}
+
+/* 選択後のファイル名だけ黒に上書き */
+.file-wrapper.selected .file-note {
+  color: #1a0000;
+  font-weight: 500;
+}
+
+
+
+
+/* チェックボックスのラベルテキストのスタイル調整 */
+#form .checkbox-label {
+  display: flex; /* チェックボックスとテキストを横並びにするため */
+  align-items: center; /* 垂直方向の中央揃え */
+  margin-top: 1.5em; /* 他のラベルと同じ上マージン */
+  font-weight: normal; /* 太字を解除 */
+  font-size: 1rem; /* 親の16pxを継承しつつ明示的に1remに */
+  color: #1a0000; /* 親から継承 */
+}
+
+/* チェックボックス本体のマージン調整 */
+#form input[type="checkbox"] {
+  margin-right: 0.5em; /* チェックボックスとテキストの間隔 */
+  margin-top: 0; /* flexアイテムとして扱われるためマージンをリセット */
+}
+
+/* 送信ボタン */
+#form button[type="submit"] {
+  display: inline-block; /* archive-linkに合わせる */
+  background-color: #4CAF50;
+  color: white;
+  padding: 0.6em 1.4em; /* archive-linkに合わせる */
+  font-size: 1.1rem; /* 元々のサイズを維持 */
+  font-weight: bold; /* archive-linkに合わせる */
+  border-radius: 999px; /* archive-linkに合わせる（より丸く） */
+  border: none; /* 元々border:noneなので変更なし */
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, transform 0.3s ease; /* archive-linkに合わせる */
+  margin-top: 2em;
+}
+
+#form button[type="submit"]:hover {
+  background-color: #4CAF50; /* ホバー時の色を元々の緑に固定 */
+  transform: translateY(-3px) scale(1.1); /* archive-linkに合わせる */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* archive-linkに合わせる */
+  color: #fff; /* ホバー時も白文字を維持 */
+}
+
+
+/* スマホ対応 */
+@media (max-width: 600px) {
+  #form form {
+    padding: 0 1em;
+  }
+
+  #form button[type="submit"] {
+    width: 100%;
+  }
+}

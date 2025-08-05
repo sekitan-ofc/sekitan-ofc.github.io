@@ -1,17 +1,50 @@
-/* 共通コンテナ */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 8em; /* ← 横方向余白（左右とも）を追加！ */
-}
+/* ============================= */
+/* 共通設定                     */
+/* ============================= */
 
 html, body {
   margin: 0;
   padding: 0;
 }
 
+body {
+  background-color: #f5f5f5;
+  color: #333333;
+  font-family: 'Noto Sans JP', sans-serif;
+  line-height: 1.6;
+  font-size: 16px;
+}
 
-/* ヘッダー */
+/* ============================= */
+/* コンテナ設定                 */
+/* ============================= */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 4em;
+}
+
+/* ============================= */
+/* ヘッダー                      */
+/* ============================= */
+.site-header {
+  width: 100vw;
+  background-color: #f5f5f5;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 0.8em 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+.site-header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0.4em;
+}
+
 .header-container {
   display: flex;
   align-items: center;
@@ -21,53 +54,25 @@ html, body {
 .header-left {
   width: 25%;
   padding-left: 1em;
-  display: flex;              /* ← Flexbox */
-  align-items: center;        /* ← 鉛直方向に中央揃え */
-  height: 100%;               /* 高さを親要素に合わせる（念のため） */
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 
 .header-right {
   flex: 1;
-  padding: 0 1em; /* ナビゲーション側にだけ余白を残す */
-  padding-right: 1em; /* 右側の余白を追加 */
+  padding: 0 1em;
+  padding-right: 1em;
 }
 
 .logo-link {
   display: inline-block;
 }
 
-
-.site-header {
-  width: 100vw; /* 画面幅いっぱいに */
-  background-color: #f5f5f5;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* ここを追加 */
-  padding: 0.8em 0;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  box-sizing: border-box; /* これも入れておくと安全 */
-}
-
-/* ロゴ画像のスタイル せきたん*/
 .site-logo {
-  height: 45px; /* 適宜調整（例：40〜60px） */
+  height: 45px;
   width: auto;
   display: block;
-}
-
-/* 内側コンテンツを中央寄せにする */
-.site-header .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 0.4em;
-  display: flex;
-  justify-content: space-between; /* タイトルとナビゲーションを左右に分けるなど */
-  align-items: center;
-}
-
-header h1,
-header nav a {
-  font-family: 'Noto Sans JP', sans-serif;
 }
 
 .site-title {
@@ -75,38 +80,35 @@ header nav a {
   margin: 0;
 }
 
-.site-title a {
-  color: #4CAF50;
-  text-decoration: none;
+header h1,
+header nav a {
+  font-family: 'Noto Sans JP', sans-serif;
 }
 
+/* ナビゲーション */
 .site-nav ul {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-end; /* 右寄せ */
+  justify-content: flex-end;
   gap: 1.5em;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-/* ナビゲーションリンクスタイル */
 .site-nav a {
   position: relative;
   text-decoration: none;
   color: #333333;
   font-weight: 400;
+  padding-bottom: 4px;
   transition: color 0.3s ease;
-  padding-bottom: 4px; /* 下線アニメーションスペース */
 }
 
-
-/* ホバー時：文字色は変えず、下線だけ */
 .site-nav a:hover {
-  color: #333333; /* 明示的に上書き */
+  color: #333333;
 }
 
-/* 下線バーの疑似要素 */
 .site-nav a::after {
   content: '';
   position: absolute;
@@ -114,17 +116,16 @@ header nav a {
   bottom: 0;
   width: 0;
   height: 2px;
-  background-color: currentColor; /* 文字と同じ色 */
-  transition: width 0.3s ease;
+  background-color: currentColor;
   border-radius: 1px;
+  transition: width 0.5s cubic-bezier(0, .32, .23, .95); /* ← 消えるとき */
 }
 
-/* ホバー時にバーを左から右へ表示 */
 .site-nav a:hover::after {
   width: 100%;
+  transition: width 0.5s cubic-bezier(.05,.73,.68,1); /* ← 出るとき */
 }
 
-/* 特別なリンクデザイン：Cottonway Project */
 .site-nav a.project-link {
   color: #1a214d;
 }
@@ -132,11 +133,10 @@ header nav a {
 .site-nav a.project-link::after {
   background-color: #1a214d;
 }
-/* ヘッダー終わり */
 
-
-
-/* 中身 */
+/* ============================= */
+/* 中身                          */
+/* ============================= */
 h1 {
   font-size: 2em;
   font-weight: bold;
@@ -163,37 +163,28 @@ h3 {
   margin-bottom: 0.7em;
 }
 
-body {
-  background-color: #f5f5f5;
-  color: #333333;
-  font-family: 'Noto Sans JP', sans-serif;
-  line-height: 1.6;
-  font-size: 16px;
-}
-
-/* リンクのスタイル設定 */
 a {
-  color: #065FD4; /* 通常：はっきりした青 */
+  color: #065FD4;
   text-decoration: underline;
   transition: color 0.2s ease;
 }
 
 a:hover {
-  color: #003c99; /* ホバー：さらに濃く */
+  color: #003c99;
 }
 
-
-/* ========== フッター ========== */
+/* ============================= */
+/* フッター                      */
+/* ============================= */
 .site-footer {
   width: 100vw;
   background-color: #e0e0e0;
-  padding: 4em 0 4em; /* 上下のパディングを調整：下を多めに */
+  padding: 4em 0;
   margin-top: 3em;
   font-size: 0.95rem;
 }
 
 .footer-content {
-  align-items: center;     /* 垂直中央揃え */
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -201,7 +192,6 @@ a:hover {
   gap: 2em;
 }
 
-/* フッター左側 */
 .footer-left {
   display: flex;
   flex-direction: column;
@@ -216,17 +206,15 @@ a:hover {
   flex-wrap: wrap;
 }
 
-/* フッターロゴリンク */
 .footer-logo {
   font-weight: 700;
   font-size: 1rem;
-  color: #444444; /* より濃く */
+  color: #444444;
   text-decoration: none;
   position: relative;
   transition: color 0.3s ease;
 }
 
-/* 下線アニメーション */
 .footer-logo::after {
   content: '';
   position: absolute;
@@ -235,18 +223,15 @@ a:hover {
   height: 2px;
   width: 0;
   background-color: currentColor;
-  transition: width 0.3s ease;
-}
-
-/* ホバー時も文字色はそのまま、下線だけ表示 */
-.footer-logo:hover {
-  color: #444444; /* 明示的に色を変えない */
+  border-radius: 1px;
+  transition: width 0.5s cubic-bezier(0, .32, .23, .95); /* ← 消えるとき */
 }
 
 .footer-logo:hover::after {
   width: 100%;
-}
+  transition: width 0.5s cubic-bezier(.05, .73, .68, 1); /* ← 出るとき */
 
+}
 
 .footer-nav ul {
   display: flex;
@@ -264,9 +249,11 @@ a:hover {
   position: relative;
   padding-bottom: 4px;
 }
+
 .footer-nav a:hover {
   color: #333333;
 }
+
 .footer-nav a::after {
   content: '';
   position: absolute;
@@ -276,21 +263,21 @@ a:hover {
   height: 2px;
   background-color: currentColor;
   border-radius: 1px;
-  transition: width 0.3s ease;
+  transition: width 0.5s cubic-bezier(0, .32, .23, .95); /* ← 消えるとき */
 }
+
 .footer-nav a:hover::after {
   width: 100%;
+  transition: width 0.5s cubic-bezier(.05, .73, .68, 1); /* ← 出るとき */
 }
 
 .copyright {
-  margin-top: 5em;  /* 上に余白を追加（お好みで増減） */
+  margin-top: 5em;
   padding-top: 2em;
   color: #888888;
   font-size: 0.6rem;
-  margin-top: 0.5em;
 }
 
-/* フッター右側 */
 .footer-right {
   display: flex;
   flex-direction: column;
@@ -298,13 +285,11 @@ a:hover {
   gap: 1em;
 }
 
-/* SNSボタンの親エリア */
 .sns-buttons {
   display: flex;
   gap: 1em;
 }
 
-/* 各ボタン共通 */
 .sns-btn {
   width: 48px;
   height: 48px;
@@ -319,15 +304,11 @@ a:hover {
   transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
-/* ホバー時に影のみ表示 */
 .sns-btn:hover {
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
   transform: scale(1.1);
 }
 
-
-/* SNSごとの色（オプションで変更したければ） */
 .sns-btn.twitter:hover { color: #1DA1F2; }
 .sns-btn.youtube:hover { color: #FF0000; }
-.sns-btn.line:hover  { color: #00C300; }
-
+.sns-btn.line:hover    { color: #00C300; }
