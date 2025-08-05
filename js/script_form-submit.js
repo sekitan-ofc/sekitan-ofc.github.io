@@ -19,7 +19,7 @@ document.querySelector('form').addEventListener('submit', async function(e) {
   }
 
   try {
-    const res = await fetch('https://script.google.com/macros/s/AKfycbxk9ZFuikQ48Nk4APPbkIYFPgRYXMVXpwnG6Wfi1lOlTPrKDsalqQdKbWimXaZgs-frMg/exec', {
+    const res = await fetch('https://script.google.com/macros/s/AKfycbxOfKogUv3TlRn_iOe2FbCCLEo7xVTFX-zDXfZgxT6OYhHCI8cCr4as8YqFX7BxND8fKg/exec', {
       method: 'POST',
       body: formData // FormDataオブジェクトを直接bodyに指定
       // Content-TypeヘッダーはFormDataを使用する場合、自動的に設定されるため不要
