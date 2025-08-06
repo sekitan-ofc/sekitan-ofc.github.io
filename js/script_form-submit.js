@@ -1,46 +1,54 @@
-// base64形式で送信
-document.querySelector('form').addEventListener('submit', async function(e) {
+document.getElementById('contact-form').addEventListener('submit', async function(e) {
   e.preventDefault();
 
   const form = e.target;
-  const fileInput = form.querySelector('input[type="file"]');
-  const file = fileInput.files[0];
+  const files = form.file.files;
 
-  let base64 = '';
-  let fileName = '';
-  let mimeType = '';
+  const fileDataList = [];
 
-  if (file) {
-    fileName = file.name;
-    mimeType = file.type;
-
+  // ファイルをbase64に変換
+  for (let i = 0; i < files.length; i++) {
+    const file = files[i];
     const reader = new FileReader();
-    base64 = await new Promise((resolve) => {
-      reader.onload = () => {
-        resolve(reader.result.split(',')[1]); // base64のみ抽出
-      };
+
+    const fileData = await new Promise((resolve) => {
+      reader.onload = () => resolve(reader.result.split(',')[1]); // base64部分のみ
       reader.readAsDataURL(file);
+    });
+
+    fileDataList.push({
+      name: file.name,
+      mimeType: file.type,
+      data: fileData
     });
   }
 
-  const formData = {
+  const jsonData = {
     name: form.name.value,
     email: form.email.value,
     subject: form.subject.value,
     message: form.message.value,
-    fileName: fileName,
-    mimeType: mimeType,
-    fileData: base64
+    files: fileDataList
   };
 
-  const res = await fetch('https://script.google.com/macros/s/AKfycbxGTLuNkJk1O5quii4YfZa6Mue_PXflKc7uaCpO2cfWj_BExoPXeNU_SNSuOlC2Tpio5g/exec', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(formData)
-  });
+  try {
+    const response = await fetch("https://script.google.com/macros/s/AKfycbyt8w9KFZHZtzZwGZumFBzsELaAhw4NsFDyM-jxyvMo_dNCi71PW-BAdrKtptIqYbvMqg/exec", {
+      method: "POST",
+      body: JSON.stringify(jsonData),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
 
-  const result = await res.json();
-  console.log(result);
+    const result = await response.json();
+    if (result.result === "success") {
+      alert("送信が完了しました！");
+      form.reset();
+    } else {
+      alert("送信失敗: " + result.message);
+    }
+  } catch (err) {
+    console.error("送信エラー:", err);
+    alert("送信中にエラーが発生しました。");
+  }
 });
