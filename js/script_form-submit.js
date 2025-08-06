@@ -32,7 +32,7 @@ document.getElementById('contact-form').addEventListener('submit', async functio
   };
 
   try {
-    const response = await fetch("https://script.google.com/macros/s/AKfycbxWkJs6hPU5PockeehLDrFmkb19P4BQDumUUgB7-dOLT291-mUidub_FFD-pCPuGAZJgA/exec", {
+    const response = await fetch("https://script.google.com/macros/s/AKfycbzcRMOEyQF9hQawINbJpMG2BRz1wuc1hz49KOotE7OS6Ygs7bzWx7RGq2DL7fbRLnr2xQ/exec", {
       method: "POST",
       body: JSON.stringify(jsonData),
       headers: {
