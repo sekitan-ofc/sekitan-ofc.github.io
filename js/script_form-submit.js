@@ -3,41 +3,50 @@ document.querySelector('form').addEventListener('submit', async function(e) {
 
   const form = e.target;
   const fileInput = form.querySelector('input[type="file"]');
+  const file = fileInput.files[0];
 
-  // FormDataオブジェクトを作成
-  const formData = new FormData();
-  formData.append('name', form.name.value);
-  formData.append('email', form.email.value);
-  formData.append('subject', form.subject.value);
-  formData.append('message', form.message.value);
+  let base64 = '';
+  let fileName = '';
+  let mimeType = '';
 
-  // ファイルがある場合のみFormDataに追加
-  if (fileInput.files.length > 0) {
-    for (let i = 0; i < fileInput.files.length; i++) {
-      formData.append('file', fileInput.files[i]); // 複数ファイルに対応
-    }
+  if (file) {
+    fileName = file.name;
+    mimeType = file.type;
+
+    const reader = new FileReader();
+    base64 = await new Promise((resolve) => {
+      reader.onload = () => {
+        const result = reader.result.split(',')[1];
+        resolve(result);
+      };
+      reader.readAsDataURL(file);
+    });
   }
 
-  try {
-    const res = await fetch('https://script.google.com/macros/s/AKfycbxOfKogUv3TlRn_iOe2FbCCLEo7xVTFX-zDXfZgxT6OYhHCI8cCr4as8YqFX7BxND8fKg/exec', {
-      method: 'POST',
-      body: formData // FormDataオブジェクトを直接bodyに指定
-      // Content-TypeヘッダーはFormDataを使用する場合、自動的に設定されるため不要
-    });
+  const formData = {
+    name: form.name.value,
+    email: form.email.value,
+    subject: form.subject.value,
+    message: form.message.value,
+    fileName: fileName,
+    mimeType: mimeType,
+    fileData: base64
+  };
 
-    if (!res.ok) {
-        throw new Error(`HTTP error! status: ${res.status}`);
-    }
+  const res = await fetch('https://script.google.com/macros/s/AKfycbzF323MTvk18h9mPa9NHQD3jSI0615jAEiSAmUixttEO8IVOaUBwb-U5VdiLRCjKqkS8w/exec', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(formData)
+  });
 
-    const result = await res.json();
-    console.log(result);
-
-    // 成功時の処理（例: フォームのリセット、成功メッセージの表示）
-    alert('お問い合わせを送信しました。');
-    form.reset(); // フォームをリセット
-
-  } catch (error) {
-    console.error('送信エラー:', error);
-    alert('お問い合わせの送信中にエラーが発生しました。時間をおいて再度お試しください。');
+  const result = await res.json();
+  console.log(result);
+  if (result.result === 'success') {
+    alert('送信完了しました。ID: ' + result.id);
+    form.reset();
+  } else {
+    alert('送信エラー: ' + result.message);
   }
 });
