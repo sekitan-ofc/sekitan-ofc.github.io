@@ -1,3 +1,4 @@
+// base64形式で送信
 document.querySelector('form').addEventListener('submit', async function(e) {
   e.preventDefault();
 
@@ -16,8 +17,7 @@ document.querySelector('form').addEventListener('submit', async function(e) {
     const reader = new FileReader();
     base64 = await new Promise((resolve) => {
       reader.onload = () => {
-        const result = reader.result.split(',')[1];
-        resolve(result);
+        resolve(reader.result.split(',')[1]); // base64のみ抽出
       };
       reader.readAsDataURL(file);
     });
@@ -33,7 +33,7 @@ document.querySelector('form').addEventListener('submit', async function(e) {
     fileData: base64
   };
 
-  const res = await fetch('https://script.google.com/macros/s/AKfycbzF323MTvk18h9mPa9NHQD3jSI0615jAEiSAmUixttEO8IVOaUBwb-U5VdiLRCjKqkS8w/exec', {
+  const res = await fetch('https://script.google.com/macros/s/AKfycbzEoLwgoOVA1vhTjgBhgETNAKT-JZ1KfAjxvtDaeDNBnDCIut2tMcGeVXh-NQSe7gVbXw/exec', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -43,10 +43,4 @@ document.querySelector('form').addEventListener('submit', async function(e) {
 
   const result = await res.json();
   console.log(result);
-  if (result.result === 'success') {
-    alert('送信完了しました。ID: ' + result.id);
-    form.reset();
-  } else {
-    alert('送信エラー: ' + result.message);
-  }
 });
