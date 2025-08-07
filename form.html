@@ -44,56 +44,9 @@
 
   <!-- メインコンテンツ -->
   <main class="container">
-    <section id="form">
-      <h2>お問い合わせフォーム</h2>
-      <p>必要事項をご記入の上、送信してください。</p>
-      <form id="contact-form"
-            action="https://script.google.com/macros/s/AKfycbwlnGpefFjU2yDFAZnsoP985lOBNM0gyXriaPKdWa4-FnUr6ggk0GHzrUfhkloJkxFv0Q/exec"
-            method="post"
-            enctype="multipart/form-data"
-            novalidate
-            onsubmit="return disableSubmit(this.querySelector('[type=submit]'))">
-
-        <label for="name">お名前 <span class="required">*</span></label>
-        <input type="text" id="name" name="name" required placeholder="名前">
-
-        <label for="email">メールアドレス <span class="required">*</span></label>
-        <input type="email" id="email" name="email" required placeholder="example@mail.com">
-
-        <label for="subject">お問い合わせ内容 <span class="required">*</span></label>
-        <select id="subject" name="subject" required>
-          <option value="">選択してください</option>
-          <option value="moka">真岡線Projectについて</option>
-          <option value="create">データ制作について</option>
-          <option value="bug">公開中データの不具合について</option>
-          <option value="site">本サイトについて</option>
-          <option value="sns">SNSについて</option>
-          <option value="other">その他</option>
-        </select>
-
-        <label for="message">詳細 <span class="required">*</span></label>
-        <textarea id="message" name="message" rows="6" required placeholder="できるだけ詳しくご記入ください"></textarea>
-
-        <label for="file" class="form-label">添付ファイル（複数選択可）</label>
-        <div class="file-wrapper" id="file-label">
-          <span class="file-heading">添付ファイル（複数選択可）</span>
-          <span class="file-note">エラー画面の画像など</span>
-          <input type="file" id="file" name="file" multiple>
-        </div>
-
-        <label class="checkbox-label">
-          <input type="checkbox" name="confirm" required>
-          入力内容に誤りがないことを確認しました <span class="required">*</span>
-        </label>
-
-        <label class="checkbox-label">
-          <input type="checkbox" name="privacy" required>
-          <a href="policy.html" target="_blank">プライバシーポリシー</a>に同意します <span class="required">*</span>
-        </label>
-
-        <button type="submit">送信</button>
-      </form>
-    </section>
+<iframe src="https://script.google.com/macros/s/https://script.google.com/macros/s/AKfycbx7nZ6oOqk1dik-p3F0hIFhdIlA7cKYxzD106JTggREirA-N5ypN8KMfpAWtSmxhaG_/exec/exec"
+        width="100%" height="1400" frameborder="0" allowfullscreen>
+</iframe>
   </main>
 
 
