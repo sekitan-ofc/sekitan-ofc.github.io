@@ -4,7 +4,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('contact-form');
   const submitBtn = form.querySelector('button[type="submit"]');
-  const endpoint = 'https://script.google.com/macros/s/AKfycbzUFDSCxnjNFWCYTam8yAoIA8r0lNy_yaebp1IM1AnIeqszVKvmlF2xQuOeTud8YSIZkQ/exec';
+  const endpoint = 'https://script.google.com/macros/s/AKfycbx03hvDNPmmLOJaJZBIw5vOc1G8oYgwynpfJL58oN_Z4m-8AIvn92sbsaWCo3eIMKdpOQ/exec';
 
   form.addEventListener('submit', async e => {
     e.preventDefault();

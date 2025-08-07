@@ -1,24 +1,23 @@
-<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>お問い合わせフォーム | せきたん公式サイト</title>
-
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0FZX21V1LN"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-0FZX21V1LN');
-  </script>
-
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/style_form.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+  <script>
+    // 送信中ボタン制御
+    function disableSubmit(btn) {
+      btn.disabled = true;
+      btn.textContent = '送信中…';
+      return true; // フォーム送信継続
+    }
+  </script>
 </head>
+
+
 <body>
   <!-- ヘッダー -->
   <header class="site-header">
@@ -48,19 +47,19 @@
     <section id="form">
       <h2>お問い合わせフォーム</h2>
       <p>必要事項をご記入の上、送信してください。</p>
+      <form id="contact-form"
+            action="https://script.google.com/macros/s/AKfycbx03hvDNPmmLOJaJZBIw5vOc1G8oYgwynpfJL58oN_Z4m-8AIvn92sbsaWCo3eIMKdpOQ/exec"
+            method="post"
+            enctype="multipart/form-data"
+            novalidate
+            onsubmit="return disableSubmit(this.querySelector('[type=submit]'))">
 
-      <!-- idを付与してJSから取得できるように -->
-      <form id="contact-form" action="#" method="post" novalidate>
-
-        <!-- 名前 -->
-        <label for="name">お名前 <span class="required">*</span>（ハンドルネーム可）</label>
+        <label for="name">お名前 <span class="required">*</span></label>
         <input type="text" id="name" name="name" required placeholder="名前">
 
-        <!-- メール -->
         <label for="email">メールアドレス <span class="required">*</span></label>
         <input type="email" id="email" name="email" required placeholder="example@mail.com">
 
-        <!-- 件名 -->
         <label for="subject">お問い合わせ内容 <span class="required">*</span></label>
         <select id="subject" name="subject" required>
           <option value="">選択してください</option>
@@ -72,20 +71,16 @@
           <option value="other">その他</option>
         </select>
 
-        <!-- 詳細 -->
         <label for="message">詳細 <span class="required">*</span></label>
         <textarea id="message" name="message" rows="6" required placeholder="できるだけ詳しくご記入ください"></textarea>
 
-        <!-- 添付ファイル -->
         <label for="file" class="form-label">添付ファイル（複数選択可）</label>
         <div class="file-wrapper" id="file-label">
           <span class="file-heading">添付ファイル（複数選択可）</span>
           <span class="file-note">エラー画面の画像など</span>
-          <!-- multiple を追加 -->
           <input type="file" id="file" name="file" multiple>
         </div>
 
-        <!-- チェックボックス群 -->
         <label class="checkbox-label">
           <input type="checkbox" name="confirm" required>
           入力内容に誤りがないことを確認しました <span class="required">*</span>
@@ -96,9 +91,7 @@
           <a href="policy.html" target="_blank">プライバシーポリシー</a>に同意します <span class="required">*</span>
         </label>
 
-        <!-- 送信ボタン -->
         <button type="submit">送信</button>
-
       </form>
     </section>
   </main>
