@@ -1,54 +1,96 @@
-document.getElementById('contact-form').addEventListener('submit', async function(e) {
-  e.preventDefault();
+// js/script_form-submit.js
+// フォーム送信処理とバリデーション
 
-  const form = e.target;
-  const files = form.file.files;
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('contact-form');
+  const submitBtn = form.querySelector('button[type="submit"]');
+  const endpoint = 'https://script.google.com/macros/s/AKfycbzUFDSCxnjNFWCYTam8yAoIA8r0lNy_yaebp1IM1AnIeqszVKvmlF2xQuOeTud8YSIZkQ/exec';
 
-  const fileDataList = [];
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
 
-  // ファイルをbase64に変換
-  for (let i = 0; i < files.length; i++) {
-    const file = files[i];
-    const reader = new FileReader();
+    // バリデーション
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const subject = form.subject.value;
+    const message = form.message.value.trim();
+    const confirmChecked = form.confirm.checked;
+    const privacyChecked = form.privacy.checked;
 
-    const fileData = await new Promise((resolve) => {
-      reader.onload = () => resolve(reader.result.split(',')[1]); // base64部分のみ
-      reader.readAsDataURL(file);
-    });
-
-    fileDataList.push({
-      name: file.name,
-      mimeType: file.type,
-      data: fileData
-    });
-  }
-
-  const jsonData = {
-    name: form.name.value,
-    email: form.email.value,
-    subject: form.subject.value,
-    message: form.message.value,
-    files: fileDataList
-  };
-
-  try {
-    const response = await fetch("https://script.google.com/macros/s/AKfycbzcRMOEyQF9hQawINbJpMG2BRz1wuc1hz49KOotE7OS6Ygs7bzWx7RGq2DL7fbRLnr2xQ/exec", {
-      method: "POST",
-      body: JSON.stringify(jsonData),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    });
-
-    const result = await response.json();
-    if (result.result === "success") {
-      alert("送信が完了しました！");
-      form.reset();
-    } else {
-      alert("送信失敗: " + result.message);
+    if (!name) {
+      alert('お名前を入力してください。');
+      form.name.focus();
+      return;
     }
-  } catch (err) {
-    console.error("送信エラー:", err);
-    alert("送信中にエラーが発生しました。");
-  }
+    if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+      alert('有効なメールアドレスを入力してください。');
+      form.email.focus();
+      return;
+    }
+    if (!subject) {
+      alert('お問い合わせ内容を選択してください。');
+      form.subject.focus();
+      return;
+    }
+    if (!message) {
+      alert('詳細を入力してください。');
+      form.message.focus();
+      return;
+    }
+    if (!confirmChecked) {
+      alert('「入力内容に誤りがないことを確認しました」をチェックしてください。');
+      return;
+    }
+    if (!privacyChecked) {
+      alert('プライバシーポリシーへの同意が必要です。');
+      return;
+    }
+
+    // 2重送信防止
+    submitBtn.disabled = true;
+    submitBtn.textContent = '送信中...';
+
+    try {
+      // ファイル添付の base64 変換
+      const files = Array.from(form.file.files);
+      const fileDataList = [];
+      for (let file of files) {
+        const reader = new FileReader();
+        const data = await new Promise(resolve => {
+          reader.onload = () => resolve(reader.result.split(',')[1]);
+          reader.readAsDataURL(file);
+        });
+        fileDataList.push({ name: file.name, mimeType: file.type, data });
+      }
+
+      // 送信データ作成
+      const payload = { name, email, subject, message, files: fileDataList };
+
+      // fetch 送信
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const result = await res.json();
+
+      if (result.result === 'success') {
+        // 確認ページへリダイレクト
+        const params = new URLSearchParams({
+          id: result.id,
+          name,
+          email
+        });
+        window.location.href = `form-confirm.html?${params.toString()}`;
+      } else {
+        alert('送信に失敗しました: ' + (result.message || '原因不明'));
+      }
+    } catch (err) {
+      console.error(err);
+      alert('送信中にエラーが発生しました。');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = '送信';
+    }
+  });
 });
