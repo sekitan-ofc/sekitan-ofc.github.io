@@ -25,10 +25,10 @@
     <a href="home.html" class="link-home">ホームページへ戻る</a>
   </main>
   <script>
-    const p=new URLSearchParams(location.search);
-    document.getElementById('confirm-id').textContent    =p.get('id')||'-';
-    document.getElementById('confirm-name').textContent  =decodeURIComponent(p.get('name')||'-');
-    document.getElementById('confirm-email').textContent =decodeURIComponent(p.get('email')||'-');
+    const p = new URLSearchParams(location.search);
+    document.getElementById('confirm-id').textContent    = p.get('id')    || '-';
+    document.getElementById('confirm-name').textContent  = decodeURIComponent(p.get('name')|| '-');
+    document.getElementById('confirm-email').textContent = decodeURIComponent(p.get('email')|| '-');
   </script>
 </body>
 </html>
