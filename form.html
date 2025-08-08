@@ -44,9 +44,40 @@
 
   <!-- メインコンテンツ -->
   <main class="container">
-<iframe src="https://script.google.com/macros/s/AKfycbzWTvJC1tv7dAfL1GllncQTQy0CoNk2kFMxAUGtwDJQUi__giZSut-_aS6EuvB6tybW/exec"
-        width="100%" height="1400" frameborder="0" allowfullscreen>
-</iframe>
+<body>
+    <div class="main-content">
+        <!-- GASでデプロイしたウェブアプリのURLを埋め込む -->
+        <iframe 
+            src="https://script.google.com/macros/s/AKfycbzEponMDiN5uoxXj8Ajv8l7sSS1ZIVwzzIcQ5CTCHgr1mx500BZBZdiIAgMoq6dxPUCpw/exec"
+            width="100%" 
+            height="800px" 
+            frameborder="0"
+            allowtransparency="true"
+        ></iframe>
+    </div>
+
+    <script>
+        window.addEventListener("message", (event) => {
+            // イベントのoriginを確認してセキュリティを確保
+            // 例: if (event.origin !== "https://script.googleusercontent.com") return;
+            
+            try {
+                const response = JSON.parse(event.data);
+                
+                if (response.success) {
+                    const name = encodeURIComponent(response.name);
+                    const email = encodeURIComponent(response.email);
+                    const inquiryId = encodeURIComponent(response.inquiryId);
+                    
+                    // サイト内の完了ページURLにクエリパラメータを付けて遷移
+                    window.location.href = `confirm.html?name=${name}&email=${email}&inquiryId=${inquiryId}`;
+                }
+            } catch (e) {
+                console.error("Failed to parse message from iframe:", e);
+            }
+        }, false);
+    </script>
+
   </main>
 
 

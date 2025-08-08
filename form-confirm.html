@@ -1,34 +1,43 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>お問い合わせ受付完了 | せきたん公式サイト</title>
-  <link rel="stylesheet" href="css/style.css">
-  <style>
-    .container{max-width:600px;margin:4em auto;padding:2em;background:#fff;border-radius:6px}
-    h2{font-size:1.5rem;border-bottom:3px solid #4CAF50;padding-bottom:.3em;margin-bottom:1em}
-    p{margin:.8em 0}
-    .id{font-weight:bold;color:#1a0000}
-    .link-home{display:inline-block;margin-top:2em;text-decoration:underline;color:#065FD4}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お問い合わせ完了</title>
+    <!-- サイトの既存スタイルシートを読み込む -->
+    <link rel="stylesheet" href="style.css"> 
 </head>
 <body>
-  <main class="container">
-    <h2>お問い合わせを受け付けました</h2>
-    <p>以下の内容で受付いたしました。</p>
-    <p>■ 問い合わせID：<span class="id" id="confirm-id">-</span></p>
-    <p>■ お名前：<span id="confirm-name">-</span></p>
-    <p>■ メールアドレス：<span id="confirm-email">-</span></p>
-    <p>後ほど自動返信メールをお送りしています。<br>
-       「sekitan.info@gmail.com」からの受信設定をお願いします。</p>
-    <a href="index.html" class="link-home">ホームページへ戻る</a>
-  </main>
-  <script>
-    const p = new URLSearchParams(location.search);
-    document.getElementById('confirm-id').textContent    = p.get('id')    || '-';
-    document.getElementById('confirm-name').textContent  = decodeURIComponent(p.get('name')|| '-');
-    document.getElementById('confirm-email').textContent = decodeURIComponent(p.get('email')|| '-');
-  </script>
+    <div class="container">
+        <h1>お問い合わせが完了しました</h1>
+        <p id="confirmName"></p>
+        <p>お問い合わせありがとうございます。</p>
+        <p>お問い合わせID: <strong id="confirmId"></strong></p>
+        <p id="confirmEmail"></p>
+        <p>
+            内容を確認後、改めて担当者よりご連絡させていただきます。<br>
+            今しばらくお待ちください。
+        </p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const name = params.get('name');
+            const email = params.get('email');
+            const inquiryId = params.get('inquiryId');
+
+            if (name && email && inquiryId) {
+                document.getElementById('confirmName').textContent = `${name}様`;
+                document.getElementById('confirmId').textContent = inquiryId;
+                document.getElementById('confirmEmail').textContent = `入力いただいたメールアドレス（${email}）宛に、確認メールを自動送信いたしました。`;
+            } else {
+                // パラメータがない場合のフォールバック表示
+                document.getElementById('confirmName').textContent = `お客様`;
+                document.getElementById('confirmId').textContent = '情報がありません。';
+                document.getElementById('confirmEmail').textContent = `お問い合わせありがとうございます。`;
+            }
+        });
+    </script>
 </body>
 </html>
