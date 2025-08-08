@@ -47,8 +47,9 @@
 <body>
     <div class="main-content">
         <!-- GASでデプロイしたウェブアプリのURLを埋め込む -->
+        <!-- GASのウェブアプリをデプロイ後、そのURLに置き換えてください -->
         <iframe 
-            src="https://script.google.com/macros/s/AKfycbzEponMDiN5uoxXj8Ajv8l7sSS1ZIVwzzIcQ5CTCHgr1mx500BZBZdiIAgMoq6dxPUCpw/exec"
+            src="https://script.google.com/macros/s/AKfycbwtsqAlrxCgen-1hihiDaRNAIQe9Y4tKTAMrLUXVikr5mo8AIkBqh8g9LW0eNDpArBTmw/exec"
             width="100%" 
             height="800px" 
             frameborder="0"
@@ -59,7 +60,8 @@
     <script>
         window.addEventListener("message", (event) => {
             // イベントのoriginを確認してセキュリティを確保
-            // 例: if (event.origin !== "https://script.googleusercontent.com") return;
+            // 例: if (event.origin !== "https://n-erhpgowbqfwfnnvtouxf6uhk7zgjfpprdze7ggq-0lu-script.googleusercontent.com") return;
+            // 上記は開発環境での例です。本番環境ではデプロイしたURLのオリジンを指定してください。
             
             try {
                 const response = JSON.parse(event.data);
@@ -70,7 +72,8 @@
                     const inquiryId = encodeURIComponent(response.inquiryId);
                     
                     // サイト内の完了ページURLにクエリパラメータを付けて遷移
-                    window.location.href = `confirm.html?name=${name}&email=${email}&inquiryId=${inquiryId}`;
+                    // 確認ページへのパスを正しいものに変更してください
+                    window.location.href = `form-confirm.html?name=${name}&email=${email}&inquiryId=${inquiryId}`;
                 }
             } catch (e) {
                 console.error("Failed to parse message from iframe:", e);
