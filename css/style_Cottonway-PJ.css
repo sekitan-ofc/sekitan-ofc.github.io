@@ -501,3 +501,138 @@ footer {
         gap: 20px;
     }
 }
+
+/* News (お知らせ) セクションのスタイル調整 */
+
+#news h2 { /* 既存のセクションタイトルスタイルを適用 */
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+    font-family: 'Zen Old Mincho', serif; /* PJページのフォントに合わせる */
+    color: var(--main-color); /* PJページのメインカラーに合わせる */
+}
+
+#news h2::after { /* 既存のセクションタイトル下線スタイルを適用 */
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: var(--accent-color-1); /* PJページのアクセントカラーに合わせる */
+    margin: 15px auto 0;
+}
+
+#news-feed {
+    background-color: var(--white-color); /* PJページの背景色に合わせる */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+#news-feed .loading, #news-feed p:not(.news-description) { /* ロード中メッセージや記事なしメッセージ */
+    color: #666; /* PJページのテキストカラーに合わせる */
+    text-align: center;
+    font-size: 0.95em;
+    padding: 15px 0;
+}
+
+/* ニュースアイテムのスタイル */
+#news-feed .news-item {
+    display: block; /* カード全体をリンクにする */
+    background-color: var(--bg-color-light); /* PJページの薄い背景色に合わせる */
+    border-left: 5px solid var(--accent-color-1); /* PJページのアクセントカラーで強調 */
+    border-radius: 8px; /* PJページの角丸に合わせる */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    padding: 15px 20px;
+    margin-bottom: 15px; /* 各ニュースアイテム間のスペース */
+    text-decoration: none;
+    transition: all 0.3s ease;
+    color: inherit; /* 親要素から色を継承 */
+}
+
+#news-feed .news-item:last-child {
+    margin-bottom: 0; /* 最後のアイテムの下マージンをなくす */
+}
+
+#news-feed .news-item:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transform: translateY(-3px);
+    background-color: var(--white-color); /* ホバーで背景色を少し明るく */
+}
+
+/* ニュースサマリーのグリッドレイアウト */
+#news-feed .news-summary {
+    display: grid;
+    /* 日付、カテゴリ、タイトルの順 */
+    grid-template-columns: 90px 100px 1fr; /* 各要素の幅を調整 */
+    align-items: center;
+    gap: 15px; /* 各要素間のスペース */
+}
+
+#news-feed .news-summary .date {
+    color: #555; /* 落ち着いた色 */
+    font-size: 0.85em;
+    white-space: nowrap; /* 日付が改行されないように */
+    font-variant-numeric: tabular-nums; /* 数字の幅を揃える */
+}
+
+#news-feed .news-category {
+    background-color: var(--accent-color-2); /* PJページのアクセントカラー（ベージュ） */
+    color: var(--text-color-dark); /* PJページのテキストカラー */
+    font-weight: bold;
+    padding: 0.3em 0.8em;
+    border-radius: 999px;
+    font-size: 0.8em;
+    text-align: center;
+    white-space: nowrap;
+}
+
+#news-feed .news-summary h3 {
+    margin: 0;
+    font-size: 1.0em; /* 見出しのサイズを調整 */
+    font-weight: bold;
+    color: var(--main-color); /* PJページのメインカラー */
+    font-family: 'Zen Old Mincho', serif; /* PJページのフォントに合わせる */
+}
+
+/* 「全てのお知らせを見る」ボタンのスタイル */
+.view-all a {
+    display: inline-block;
+    background-color: var(--accent-color-1); /* PJページのアクセントカラー（緑） */
+    color: var(--white-color);
+    padding: 10px 25px;
+    border-radius: 5px; /* PJページのボタンの角丸に合わせる */
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.view-all a:hover {
+    background-color: #3e5036; /* ホバー時の色を少し濃く */
+    transform: translateY(-2px);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+
+/* モバイル対応（既存のメディアクエリに追記） */
+@media (max-width: 768px) {
+    #news-feed .news-item {
+        padding: 12px 15px;
+        margin-bottom: 10px;
+    }
+    #news-feed .news-summary {
+        grid-template-columns: 1fr; /* モバイルでは1列に */
+        gap: 5px; /* スペースを狭める */
+        align-items: flex-start;
+    }
+    #news-feed .news-summary .date,
+    #news-feed .news-category,
+    #news-feed .news-summary h3 {
+        padding-left: 0; /* 左の余白をなくす */
+        margin-bottom: 0; /* 下の余白をなくす */
+    }
+    #news-feed .news-summary h3 {
+        font-size: 0.95em;
+    }
+    #news-feed .news-category {
+        align-self: flex-start; /* 上寄せ */
+        margin-top: 5px; /* 日付の下に少しスペース */
+    }
+}
