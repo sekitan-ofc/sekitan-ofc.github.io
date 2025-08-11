@@ -1,124 +1,163 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BVE真岡線Project | せきたん公式サイト</title>
-
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0FZX21V1LN"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-0FZX21V1LN');
-  </script>
-
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BVE真岡線Project - 公式紹介ページ</title>
+    <link rel="stylesheet" href="css/style_Cottonway-PJ.css">
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho&family=Shippori+Mincho&display=swap" rel="stylesheet">
+    <meta name="description" content="BVE真岡線Projectの公式紹介ページ。活動内容、作品紹介、制作方針などを掲載。">
 </head>
 <body>
-  <!-- ヘッダー -->
-  <header class="site-header">
-    <div class="container header-container">
-      <div class="header-left">
-        <a href="index.html" class="logo-link">
-          <img src="assets/logo.png" alt="せきたん公式サイト" class="site-logo">
-        </a>
-      </div>
-      <div class="header-right">
-        <nav class="site-nav">
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="cottonway-project.html" class="project-link">Cottonway Project</a></li>
-            <li><a href="download.html">BVE Data</a></li>
-            <li><a href="news.html">News</a></li>
-            <li><a href="profile.html">Profile</a></li>
-            <li><a href="support.html">Support</a></li>
-          </ul>
-        </nav>
-      </div>
-    </div>
-  </header>
-
-  <!-- メインコンテンツ -->
-  <main class="container">
-    <section id="intro">
-      <h2>BVE真岡線 — cottonway Project</h2>
-      <p>
-        「cottonway Project」は、BVE Trainsim向けに開発された真岡線のアドオンデータです。<br>
-        実際の真岡線の信号や駅処理を忠実に再現し、リアルな運転体験を目指しています。
-      </p>
-    </section>
-
-    <section id="features">
-      <h2>真岡線のこだわり</h2>
-      <ul>
-        <li>実際の真岡線の信号設置駅をベースにした電子閉塞制御</li>
-        <li>駅停車処理と信号制御の連動によるリアルな列車運行</li>
-        <li>開発者自作のプラグインで細部の挙動を再現</li>
-      </ul>
-    </section>
-
-    <section id="gallery">
-      <h2>スクリーンショット・地図</h2>
-      <img src="assets/img/screenshot1.png" alt="真岡線スクリーンショット1" style="max-width:100%;height:auto;">
-      <img src="assets/img/map.png" alt="真岡線路線図" style="max-width:100%;height:auto;margin-top:1em;">
-    </section>
-
-    <section id="faq">
-      <h2>よくあるご質問（Q&A）</h2>
-      <dl>
-        <dt>Q. 以前に公開していたようですが、今後配布の予定はありますか？</dt>
-        <dd>A. 現時点で配布の予定はありません。開発の様子を温かく見守っていただければ幸いです。</dd>
-
-        <dt>Q. 創作活動に参加したいのですが可能ですか？</dt>
-        <dd>A. ご関心ありがとうございます。現在、路線データの制作はせきたん個人で行っております。ただし今後、部分的に技術的な協力をお願いする可能性があります。</dd>
-
-        <dt>Q. 資料を提供したいのですが、どうすればよいですか？</dt>
-        <dd>A. <a href="form.html">お問い合わせフォーム</a>または各種SNSを通じて、一度ご連絡ください。</dd>
-
-        <dt>Q. YouTubeや配信で使用しても大丈夫ですか？</dt>
-        <dd>A. 非営利目的での使用に限り、動画配信等での使用は許可しています。商用利用をご希望の場合は、事前にご相談ください。</dd>
-      </dl>
-    </section>
-  </main>
-
-  <!-- フッター -->
-  <footer class="site-footer">
-    <div class="container footer-content">
-     <div class="footer-left">
-        <div class="footer-top">
-          <a href="index.html" class="footer-logo">せきたん / sekitan</a>
-          <nav class="footer-nav">
-            <ul>
-              <li><a href="support.html">お問い合わせ</a></li>
-              <li><a href="policy.html">プライバシーポリシー</a></li>
-              <li><a href="terms.html">利用規約</a></li>
-            </ul>
-          </nav>
+    <header>
+        <div class="container">
+            <h1>BVE真岡線Project</h1>
+            <p class="tagline">真岡線の魅力をBVEで再現する</p>
+            <nav>
+                <ul>
+                    <li><a href="#about">Project概要</a></li>
+                    <li><a href="#works">作品・制作過程</a></li>
+                    <li><a href="#news">News</a></li>
+                    <li><a href="#qa">Q&A</a></li>
+                    <li><a href="#sns">SNS</a></li>
+                </ul>
+            </nav>
         </div>
-        <small class="copyright">&copy; 2026 せきたん. All rights reserved.</small>
-      </div>
+    </header>
 
-      <div class="footer-right">
-        <div class="sns-buttons">
-          <a href="https://twitter.com/sekitan_ofc" class="sns-btn twitter" target="_blank" aria-label="X (Twitter)">
-            <i class="fab fa-x-twitter"></i>
-            <span class="circle-border"></span>
-          </a>
-          <a href="https://youtube.com/@sekitan_ofc" class="sns-btn youtube" target="_blank" aria-label="YouTube">
-            <i class="fab fa-youtube"></i>
-            <span class="circle-border"></span>
-          </a>
-          <a href="https://lin.ee/qwxmeAy" class="sns-btn line" target="_blank" aria-label="Line">
-            <i class="fab fa-line"></i>
-            <span class="circle-border"></span>
-        </a>
-      </div>
-    </div>
-  </footer>
+    <main>
+        <section id="hero" class="hero-section">
+            <div class="hero-content">
+                <h2>BVE真岡線 Project</h2>
+                <p>SLと豊かな自然が織りなす、懐かしい鉄道の旅をBVEで再現。</p>
+                <a href="#works" class="btn-primary">作品を見る</a>
+            </div>
+            </section>
 
+        <section id="about" class="section-padding">
+            <div class="container">
+                <h2>Projectの概要</h2>
+                <p>BVE真岡線Projectは、栃木県と茨城県を跨ぐ真岡鐵道真岡線の魅力を、リアルな鉄道シミュレーターBVE Trainsimの世界で再現することを目指し活動しています。</p>
+                <p>私たちは、真岡線の豊かな自然、歴史ある駅舎、そしてSL「もおか」号が織りなす情景を、細部にわたるこだわりをもってデータ化しています。</p>
+                <h3>活動の歴史</h3>
+                <div class="history-timeline">
+                    <div class="timeline-item">
+                        <span class="timeline-year">20XX年</span>
+                        <p class="timeline-description">Project発足。真岡線の調査・資料収集を開始。</p>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-year">20YY年</span>
+                        <p class="timeline-description">第一工区（茂木-七井間）の線形制作に着手。</p>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-year">現在</span>
+                        <p class="timeline-description">第一工区のストラクチャー制作と、車両データ開発を進行中。</p>
+                    </div>
+                    </div>
+            </div>
+        </section>
+
+        <section id="policy" class="section-padding bg-light">
+            <div class="container">
+                <h2>創作活動方針</h2>
+                <div class="policy-grid">
+                    <div class="policy-item">
+                        <h3>段階的な路線制作</h3>
+                        <p>真岡線全線を3つの工区に分割し、詳細な再現を目指します。</p>
+                        <ul>
+                            <li><strong>第一工区:</strong> 茂木 ⇄ 七井間 (約13.5km) - 線形改良と沿線ストラクチャー制作に注力。</li>
+                            <li><strong>第二工区:</strong> 七井 ⇄ 真岡間 (約12km) - 第一工区完了後に着手。</li>
+                            <li><strong>第三工区:</strong> 真岡 ⇄ 下館間 (約16.4km) - 第二工区完了後に着手。</li>
+                        </ul>
+                    </div>
+                    <div class="policy-item">
+                        <h3>車両データ開発と品質</h3>
+                        <p>第一工区完了後、<strong>モオカ14形車両データ</strong>開発に着手。製作者のモチベーション維持のため、適宜、車両やストラクチャーの単体制作も行います。</p>
+                    </div>
+                    <div class="policy-item">
+                        <h3>制作協力と展望</h3>
+                        <p>一部の高度な工程では外部の制作協力を検討。現状、メンバー募集・データ配布は未定ですが、将来的に「幻の未成線」**長倉線**の再現も視野に入れています。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="works" class="section-padding">
+            <div class="container">
+                <h2>作品・制作過程紹介</h2>
+                <p>私たちのこだわりが詰まった作品の一部をご紹介します。真岡線の情景を忠実に再現するための試行錯誤をご覧ください。</p>
+                <div class="work-gallery">
+                    <div class="work-item">
+                        <img src="images/work_example_01.jpg" alt="作品例1：真岡駅構内">
+                        <h3>真岡駅構内の再現</h3>
+                        <p>扇形機関庫やSLキューロク館など、真岡駅周辺の象徴的なストラクチャーを精巧にモデル化しました。細部の表現にご注目ください。</p>
+                    </div>
+                    <div class="work-item">
+                        <img src="images/work_example_02.jpg" alt="作品例2：田園風景">
+                        <h3>里山の風景</h3>
+                        <p>季節によって表情を変える真岡線沿線の田園風景を、緻密なテクスチャと配置で再現。走行中の車窓から見える豊かな自然を感じてください。</p>
+                    </div>
+                    </div>
+                <p class="note">※画像は開発中のものです。</p>
+            </div>
+        </section>
+
+        <section id="news" class="section-padding bg-light">
+            <div class="container">
+                <h2>News (お知らせ)</h2>
+                <div id="news-feed">
+                    <p>※同サイト内のNews表示システムより「BVE真岡線」カテゴリの記事をここに表示します。</p>
+                    </div>
+                <p class="view-all"><a href="[同サイトNewsページのBVE真岡線カテゴリURL]" target="_blank">全てのお知らせを見る</a></p>
+            </div>
+        </section>
+
+        <section id="qa" class="section-padding">
+            <div class="container">
+                <h2>Q&A (よくある質問)</h2>
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <button class="accordion-header">BVE Trainsimとは何ですか？</button>
+                        <div class="accordion-content">
+                            <p>BVE Trainsimは、主に日本型鉄道車両の運転をシミュレートできるフリーウェアの鉄道運転シミュレーターです。高精細なグラフィックとリアルな運転操作が特徴で、ユーザーが作成した路線データや車両データを組み合わせて楽しむことができます。</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">データの配布予定はありますか？</button>
+                        <div class="accordion-content">
+                            <p>現時点では、本プロジェクトで制作しているデータの一般配布の予定はございません。制作の進捗状況や今後の計画によっては、将来的に検討する可能性もございます。</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">プロジェクトメンバーの募集はしていますか？</button>
+                        <div class="accordion-content">
+                            <p>現在、プロジェクトメンバーの新規募集は行っておりません。一部の専門的な工程では、個別に制作協力をお願いする場合がございます。</p>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+        </section>
+
+        <section id="sns" class="section-padding bg-light">
+            <div class="container">
+                <h2>SNSアカウントリンク集</h2>
+                <p>BVE真岡線Projectの最新情報はこちらから！</p>
+                <div class="sns-links">
+                    <a href="https://x.com/your_bve_moka_pj" target="_blank" class="sns-icon x-icon">
+                        <img src="images/x_logo.png" alt="X (旧Twitter)">
+                        <span>X (旧Twitter)</span>
+                    </a>
+                    </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 BVE真岡線Project. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script_Cottonway-PJ.js"></script>
 </body>
 </html>
