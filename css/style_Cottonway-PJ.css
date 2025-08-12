@@ -1,11 +1,12 @@
 /* 基本設定 */
 :root {
     --main-color: #1A214D; /* 落ち着いた紺色 */
-    --accent-color-1: #4A5F40; /* 深いフォレストグリーン */
+    --accent-color-1: #B5A642; /* 真鍮色 - 新しい主要アクセントカラー */
+    --accent-color-2: #D1C7AE; /* 明るめのベージュ/オフホワイト - 補助アクセント (元々あった明るいベージュを流用) */
     --bg-color-light: #F0F2F5; /* ごく薄いライトグレー */
     --text-color-dark: #2C3E50; /* チャコールグレー */
-    --accent-color-2: #D1C7AE; /* かすれたベージュ */
     --white-color: #FFFFFF;
+    --nav-height: 60px; /* ナビゲーションの高さの目安 */
 }
 
 body {
@@ -16,7 +17,7 @@ body {
     padding: 0;
     background-color: var(--white-color);
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    -moz-osx-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -55,42 +56,95 @@ a:hover {
     background-color: var(--bg-color-light);
 }
 
-/* ヘッダー */
-header {
+/* ヘッダー上部（タイトルとタグライン） */
+.header-top {
     background-color: var(--main-color);
     color: var(--white-color);
-    padding: 20px 0;
     text-align: center;
+    padding: 20px 0;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     position: relative;
-    z-index: 1000;
+    z-index: 9;
 }
 
-header h1 {
-    color: var(--white-color);
+/* ロゴとタイトルを横並びにするコンテナ */
+.header-branding {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-bottom: 5px;
 }
 
-header .tagline {
-    font-size: 1.1em;
-    opacity: 0.9;
-    margin-bottom: 20px;
+/* ロゴ画像のスタイル */
+.site-logo {
+    height: 60px;
+    width: auto;
+    margin-right: 15px;
+    vertical-align: middle;
 }
 
-header nav ul {
+.header-top h1 {
+    color: var(--white-color);
+    margin-bottom: 0;
+    font-size: 2.8em;
+    line-height: 1.2;
+}
+
+.header-top .tagline {
+    font-size: 1.1em;
+    opacity: 0.9;
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+/* モバイル対応の調整 */
+@media (max-width: 768px) {
+    .header-branding {
+        flex-direction: column;
+    }
+
+    .site-logo {
+        height: 40px;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .header-top h1 {
+        font-size: 2em;
+    }
+}
+
+/* ナビゲーション部分（スクロールすると固定される） */
+nav.site-nav {
+    background-color: var(--main-color);
+    color: var(--white-color);
+    padding: 15px 0;
+    height: var(--nav-height);
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+nav.site-nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
     justify-content: center;
-    flex-wrap: wrap; /* モバイル対応 */
+    flex-wrap: wrap;
 }
 
-header nav ul li {
+nav.site-nav ul li {
     margin: 0 15px;
 }
 
-header nav ul li a {
+nav.site-nav ul li a {
     color: var(--white-color);
     font-weight: bold;
     font-size: 1.05em;
@@ -99,7 +153,7 @@ header nav ul li a {
     transition: all 0.3s ease;
 }
 
-header nav ul li a:hover {
+nav.site-nav ul li a:hover {
     color: var(--accent-color-2);
     border-bottom-color: var(--accent-color-2);
 }
@@ -107,17 +161,28 @@ header nav ul li a:hover {
 /* ヒーローセクション */
 .hero-section {
     position: relative;
-    height: 600px; /* 必要に応じて調整 */
-    background-image: url('images/hero_background.jpg'); /* 背景画像を設定 */
+    margin-top: calc(-1 * var(--nav-height));
+    padding-top: var(--nav-height);
+    height: 600px;
+    background-image: url('../assets/hero_background.png');
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     color: var(--white-color);
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-    overflow: hidden; /* 画像がはみ出さないように */
+    overflow: hidden;
+}
+
+/* モバイル対応（既存のメディアクエリ内にも追加または調整） */
+@media (max-width: 768px) {
+    .hero-section {
+        height: 400px;
+        background-position: center top;
+    }
 }
 
 .hero-content {
@@ -149,14 +214,14 @@ header nav ul li a:hover {
     background-color: #3e5036; /* アクセントカラーの少し濃い色 */
 }
 
-/* プロジェクト概要 */
-#about h2, #policy h2, #works h2, #news h2, #qa h2, #sns h2 {
+/* 各セクション共通のタイトル下線 */
+#about h2, #about-moka-line h2, #creation-policy h2, #works h2, #news h2, #qa h2, #sns h2 {
     text-align: center;
     margin-bottom: 40px;
     position: relative;
 }
 
-#about h2::after, #policy h2::after, #works h2::after, #news h2::after, #qa h2::after, #sns h2::after {
+#about h2::after, #about-moka-line h2::after, #creation-policy h2::after, #works h2::after, #news h2::after, #qa h2::after, #sns h2::after {
     content: '';
     display: block;
     width: 60px;
@@ -165,6 +230,45 @@ header nav ul li a:hover {
     margin: 15px auto 0;
 }
 
+/* ---------- セクション背景色の調整 ---------- */
+/* プロジェクト概要 */
+#about {
+    background-color: var(--white-color); /* 白背景 */
+}
+
+/* 真岡線とは */
+#about-moka-line {
+    background-color: var(--bg-color-light); /* 薄いグレー背景 */
+}
+
+/* 創作活動方針 */
+#creation-policy {
+    background-color: var(--white-color); /* 白背景 */
+}
+
+/* 作品・制作過程紹介 */
+#works {
+    background-color: var(--bg-color-light); /* 薄いグレー背景 */
+}
+
+/* お知らせ */
+#news {
+    background-color: var(--white-color); /* 白背景 */
+}
+
+/* Q&A */
+#qa {
+    background-color: var(--bg-color-light); /* 薄いグレー背景 */
+}
+
+/* SNSリンク集 */
+#sns {
+    background-color: var(--white-color); /* 白背景 */
+}
+/* ------------------------------------------ */
+
+
+/* プロジェクト概要 */
 .history-timeline {
     position: relative;
     padding: 20px 0;
@@ -210,14 +314,17 @@ header nav ul li a:hover {
     background-color: var(--main-color);
     border-radius: 50%;
     z-index: 1;
+    /* --- 修正ポイント --- */
+    /* right/left プロパティと transform を使って、中央線に正確に配置する */
+    transform: translate(-50%, 0); /* 自身の幅の半分を左に移動して中央に寄せる */
 }
 
 .timeline-item:nth-child(odd)::before {
-    right: -6px;
+    right: -6px; /* 中央の線（left: 50%）から外側（右）に半分の丸の幅（6px）移動 */
 }
 
 .timeline-item:nth-child(even)::before {
-    left: -6px;
+    left: -6px; /* 中央の線（left: 50%）から外側（左）に半分の丸の幅（6px）移動 */
 }
 
 .timeline-year {
@@ -229,7 +336,39 @@ header nav ul li a:hover {
     display: block;
 }
 
-/* 創作活動方針 */
+/* 真岡線とはセクション内の車両画像コンテナ */
+.vehicle-images {
+    display: flex;
+    gap: 15px;
+    margin: 25px auto;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* 個々の車両画像 */
+.vehicle-image {
+    width: calc(50% - 7.5px);
+    max-width: 450px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* モバイル対応 */
+@media (max-width: 768px) {
+    .vehicle-images {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .vehicle-image {
+        width: 100%;
+        height: 200px;
+    }
+}
+
+/* 創作活動方針 (旧 policy-grid) */
 .policy-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -259,6 +398,128 @@ header nav ul li a:hover {
 .policy-item ul li {
     margin-bottom: 8px;
 }
+
+/* 路線図セクション (旧 route-map) */
+.route-map-wrapper {
+    position: relative;
+    max-width: 800px;
+    margin: 40px auto 20px;
+    background-color: var(--white-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    overflow: hidden;
+}
+
+.responsive-map {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.map-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.map-overlay .segment {
+    position: absolute;
+    font-size: 0.9em;
+    font-weight: bold;
+    color: var(--white-color);
+    background-color: rgba(26, 33, 77, 0.7);
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    white-space: nowrap;
+    pointer-events: auto;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.map-overlay .segment:hover {
+    background-color: var(--accent-color-1);
+}
+
+/* 各工区の具体的な位置調整（画像サイズに合わせて調整が必要です） */
+.map-overlay .segment-1 { top: 13%; left: 66%; }
+.map-overlay .segment-2 { top: 27%; left: 33%; }
+.map-overlay .segment-3 { top: 70%; left: 20%; }
+.map-overlay .uncompleted-line { top: 90%; left: 5%; background-color: rgba(209, 199, 174, 0.7); color: #555; font-size: 0.8em;}
+
+
+.segment-descriptions {
+    margin-top: 50px;
+}
+
+.segment-descriptions h3 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* 工区説明のアコーディオン */
+.accordion-segment .accordion-header {
+    background-color: var(--bg-color-light);
+    color: var(--main-color);
+    font-family: 'Zen Old Mincho', serif;
+    font-size: 1.1em;
+    font-weight: bold;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    padding: 15px 20px;
+    width: 100%;
+    text-align: left;
+    outline: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.accordion-segment .accordion-header::after {
+    content: '+';
+    font-size: 1.5em;
+    line-height: 1;
+    transition: transform 0.3s ease;
+}
+
+.accordion-segment .accordion-header.active {
+    background-color: var(--accent-color-1);
+    color: var(--white-color);
+}
+
+.accordion-segment .accordion-header.active::after {
+    content: '-';
+    transform: rotate(180deg);
+}
+
+.accordion-segment .accordion-content {
+    padding: 0 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+}
+
+.accordion-segment .accordion-content p {
+    padding-bottom: 15px;
+    margin-bottom: 0;
+    font-size: 0.95em;
+}
+
+.accordion-segment .accordion-content ul {
+    list-style: disc;
+    padding-left: 20px;
+    padding-bottom: 15px;
+}
+.accordion-segment .accordion-content ul li {
+    margin-bottom: 5px;
+}
+
 
 /* 作品・制作過程紹介 */
 .work-gallery {
@@ -305,46 +566,98 @@ header nav ul li a:hover {
     margin-top: 40px;
 }
 
-/* News (お知らせ) */
+/* News (お知らせ) セクション */
 #news-feed {
     background-color: var(--white-color);
     padding: 30px;
     border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
-.news-item {
-    border-bottom: 1px solid #eee;
-    padding-bottom: 15px;
-    margin-bottom: 15px;
-}
-
-.news-item:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-    padding-bottom: 0;
-}
-
-.news-item h3 {
-    font-size: 1.2em;
-    color: var(--main-color);
-    margin-bottom: 5px;
-}
-
-.news-item p {
+#news-feed .loading, #news-feed p:not(.news-description) {
+    color: #666;
+    text-align: center;
     font-size: 0.95em;
-    margin-bottom: 10px;
+    padding: 15px 0;
 }
 
-.news-item .read-more {
-    font-size: 0.9em;
-    color: var(--accent-color-1);
+/* ニュースアイテムのスタイル */
+#news-feed .news-item {
+    display: block;
+    background-color: var(--bg-color-light);
+    border-left: 5px solid var(--accent-color-1);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    padding: 0px 10px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    color: inherit;
+}
+
+#news-feed .news-item:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transform: translateY(-3px);
+    background-color: var(--white-color);
+}
+
+/* ニュースサマリーのグリッドレイアウト */
+#news-feed .news-summary {
+    display: grid;
+    grid-template-columns: 90px 100px 1fr;
+    align-items: center;
+    gap: 15px;
+}
+
+#news-feed .news-summary .date {
+    color: #555;
+    font-size: 0.85em;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+}
+
+#news-feed .news-category {
+    background-color: var(--accent-color-2);
+    color: var(--text-color-dark);
     font-weight: bold;
+    padding: 0.3em 0.8em;
+    border-radius: 999px;
+    font-size: 0.8em;
+    text-align: center;
+    white-space: nowrap;
 }
 
+#news-feed .news-summary h3 {
+    margin: 0;
+    font-size: 1.0em;
+    font-weight: bold;
+    color: var(--main-color);
+    font-family: 'Zen Old Mincho', serif;
+}
+
+/* 「全てのお知らせを見る」ボタンのスタイル */
 .view-all {
     text-align: center;
     margin-top: 30px;
+}
+
+.view-all a {
+    display: inline-block;
+    background-color: var(--accent-color-1);
+    color: var(--white-color);
+    padding: 10px 25px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.view-all a:hover {
+    background-color: #3e5036;
+    transform: translateY(-2px);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
 }
 
 /* Q&A */
@@ -358,7 +671,7 @@ header nav ul li a:hover {
     margin-bottom: 15px;
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
 }
 
 .accordion-header {
@@ -415,6 +728,7 @@ header nav ul li a:hover {
     justify-content: center;
     gap: 30px;
     margin-top: 40px;
+    flex-wrap: wrap;
 }
 
 .sns-icon {
@@ -423,27 +737,24 @@ header nav ul li a:hover {
     align-items: center;
     color: var(--text-color-dark);
     font-size: 0.95em;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .sns-icon:hover {
     transform: translateY(-5px);
+    color: var(--accent-color-1);
 }
 
-.sns-icon img {
-    width: 60px;
-    height: 60px;
+/* Font Awesome アイコンのサイズ調整 */
+.sns-icon i {
+    font-size: 4.5em;
     margin-bottom: 10px;
-    border-radius: 50%; /* 必要に応じて */
+    color: var(--main-color);
+    transition: color 0.3s ease;
 }
 
-/* フッター */
-footer {
-    background-color: var(--main-color);
-    color: var(--white-color);
-    text-align: center;
-    padding: 30px 0;
-    font-size: 0.9em;
+.sns-icon:hover i {
+    color: var(--accent-color-1);
 }
 
 /* モバイル対応 */
@@ -456,17 +767,36 @@ footer {
         padding: 50px 0;
     }
 
-    header nav ul {
+    .header-top {
+        padding: 15px 0;
+    }
+
+    .header-top h1 {
+        font-size: 2em;
+    }
+    .header-top .tagline {
+        font-size: 1em;
+    }
+
+    nav.site-nav {
+        padding: 10px 0;
+        height: auto;
+    }
+    nav.site-nav ul {
         flex-direction: column;
         align-items: center;
     }
 
-    header nav ul li {
-        margin: 10px 0;
+    nav.site-nav ul li {
+        margin: 5px 0;
     }
 
+    /* ヒーローセクションの調整 */
     .hero-section {
+        margin-top: 0;
+        padding-top: var(--nav-height);
         height: 400px;
+        background-position: center top;
     }
 
     .hero-section h2 {
@@ -485,15 +815,57 @@ footer {
     }
 
     .history-timeline::before {
-        left: 20px; /* モバイルでのタイムラインの位置 */
+        left: 20px;
     }
 
+    /* モバイルでのタイムラインの丸の位置を修正 */
     .timeline-item::before {
-        left: 14px !important;
+        left: 14px !important; /* 中央線（20px）から外側（左）に半分の丸の幅（6px）移動 */
+        transform: translate(-50%, 0) !important; /* 自身の幅の半分を左に移動して中央に寄せる */
     }
 
     .policy-grid, .work-gallery {
         grid-template-columns: 1fr;
+    }
+
+    /* モバイルでの路線図工区オーバーレイの位置調整例 */
+    .map-overlay .segment {
+        font-size: 0.8em;
+        padding: 3px 6px;
+    }
+    .map-overlay .segment-1 { top: 5%; left: 65%; }
+    .map-overlay .segment-2 { top: 30%; left: 40%; }
+    .map-overlay .segment-3 { top: 65%; left: 15%; }
+    .map-overlay .uncompleted-line { top: 85%; left: 2%; }
+
+
+    .segment-descriptions {
+        margin-top: 30px;
+    }
+    .accordion-segment .accordion-header {
+        font-size: 1em;
+        padding: 12px 15px;
+    }
+
+    /* モバイルでのニュース表示調整 */
+    #news-feed .news-item {
+        padding: 12px 15px;
+        margin-bottom: 10px;
+    }
+    #news-feed .news-summary {
+        grid-template-columns: 1fr;
+        gap: 5px;
+        align-items: flex-start;
+    }
+    #news-feed .news-summary .date,
+    #news-feed .news-category,
+    #news-feed .news-summary h3 {
+        padding-left: 0;
+        margin-bottom: 0;
+    }
+    #news-feed .news-category {
+        align-self: flex-start;
+        margin-top: 5px;
     }
 
     .sns-links {
@@ -502,137 +874,11 @@ footer {
     }
 }
 
-/* News (お知らせ) セクションのスタイル調整 */
-
-#news h2 { /* 既存のセクションタイトルスタイルを適用 */
-    text-align: center;
-    margin-bottom: 40px;
-    position: relative;
-    font-family: 'Zen Old Mincho', serif; /* PJページのフォントに合わせる */
-    color: var(--main-color); /* PJページのメインカラーに合わせる */
-}
-
-#news h2::after { /* 既存のセクションタイトル下線スタイルを適用 */
-    content: '';
-    display: block;
-    width: 60px;
-    height: 3px;
-    background-color: var(--accent-color-1); /* PJページのアクセントカラーに合わせる */
-    margin: 15px auto 0;
-}
-
-#news-feed {
-    background-color: var(--white-color); /* PJページの背景色に合わせる */
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-}
-
-#news-feed .loading, #news-feed p:not(.news-description) { /* ロード中メッセージや記事なしメッセージ */
-    color: #666; /* PJページのテキストカラーに合わせる */
-    text-align: center;
-    font-size: 0.95em;
-    padding: 15px 0;
-}
-
-/* ニュースアイテムのスタイル */
-#news-feed .news-item {
-    display: block; /* カード全体をリンクにする */
-    background-color: var(--bg-color-light); /* PJページの薄い背景色に合わせる */
-    border-left: 5px solid var(--accent-color-1); /* PJページのアクセントカラーで強調 */
-    border-radius: 8px; /* PJページの角丸に合わせる */
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    padding: 15px 20px;
-    margin-bottom: 15px; /* 各ニュースアイテム間のスペース */
-    text-decoration: none;
-    transition: all 0.3s ease;
-    color: inherit; /* 親要素から色を継承 */
-}
-
-#news-feed .news-item:last-child {
-    margin-bottom: 0; /* 最後のアイテムの下マージンをなくす */
-}
-
-#news-feed .news-item:hover {
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    transform: translateY(-3px);
-    background-color: var(--white-color); /* ホバーで背景色を少し明るく */
-}
-
-/* ニュースサマリーのグリッドレイアウト */
-#news-feed .news-summary {
-    display: grid;
-    /* 日付、カテゴリ、タイトルの順 */
-    grid-template-columns: 90px 100px 1fr; /* 各要素の幅を調整 */
-    align-items: center;
-    gap: 15px; /* 各要素間のスペース */
-}
-
-#news-feed .news-summary .date {
-    color: #555; /* 落ち着いた色 */
-    font-size: 0.85em;
-    white-space: nowrap; /* 日付が改行されないように */
-    font-variant-numeric: tabular-nums; /* 数字の幅を揃える */
-}
-
-#news-feed .news-category {
-    background-color: var(--accent-color-2); /* PJページのアクセントカラー（ベージュ） */
-    color: var(--text-color-dark); /* PJページのテキストカラー */
-    font-weight: bold;
-    padding: 0.3em 0.8em;
-    border-radius: 999px;
-    font-size: 0.8em;
-    text-align: center;
-    white-space: nowrap;
-}
-
-#news-feed .news-summary h3 {
-    margin: 0;
-    font-size: 1.0em; /* 見出しのサイズを調整 */
-    font-weight: bold;
-    color: var(--main-color); /* PJページのメインカラー */
-    font-family: 'Zen Old Mincho', serif; /* PJページのフォントに合わせる */
-}
-
-/* 「全てのお知らせを見る」ボタンのスタイル */
-.view-all a {
-    display: inline-block;
-    background-color: var(--accent-color-1); /* PJページのアクセントカラー（緑） */
+/* フッター */
+footer {
+    background-color: var(--main-color);
     color: var(--white-color);
-    padding: 10px 25px;
-    border-radius: 5px; /* PJページのボタンの角丸に合わせる */
-    font-weight: bold;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.view-all a:hover {
-    background-color: #3e5036; /* ホバー時の色を少し濃く */
-    transform: translateY(-2px);
-    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
-}
-
-/* モバイル対応（既存のメディアクエリに追記） */
-@media (max-width: 768px) {
-    #news-feed .news-item {
-        padding: 12px 15px;
-        margin-bottom: 10px;
-    }
-    #news-feed .news-summary {
-        grid-template-columns: 1fr; /* モバイルでは1列に */
-        gap: 5px; /* スペースを狭める */
-        align-items: flex-start;
-    }
-    #news-feed .news-summary .date,
-    #news-feed .news-category,
-    #news-feed .news-summary h3 {
-        padding-left: 0; /* 左の余白をなくす */
-        margin-bottom: 0; /* 下の余白をなくす */
-    }
-    #news-feed .news-summary h3 {
-        font-size: 0.95em;
-    }
-    #news-feed .news-category {
-        align-self: flex-start; /* 上寄せ */
-        margin-top: 5px; /* 日付の下に少しスペース */
-    }
+    text-align: center;
+    padding: 30px 0;
+    font-size: 0.9em;
 }
