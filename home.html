@@ -1,22 +1,23 @@
+<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>お問い合わせフォーム | せきたん公式サイト</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home | せきたん公式サイト</title>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0FZX21V1LN"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-0FZX21V1LN');
+  </script>
+
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/style_form.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
-  <script>
-    // 送信中ボタン制御
-    function disableSubmit(btn) {
-      btn.disabled = true;
-      btn.textContent = '送信中…';
-      return true; // フォーム送信継続
-    }
-  </script>
 </head>
-
 
 <body>
   <!-- ヘッダー -->
@@ -41,50 +42,14 @@
       </div>
     </div>
   </header>
-
+  
   <!-- メインコンテンツ -->
   <main class="container">
-<body>
-    <div class="main-content">
-        <!-- GASでデプロイしたウェブアプリのURLを埋め込む -->
-        <!-- GASのウェブアプリをデプロイ後、そのURLに置き換えてください -->
-        <iframe 
-            src="https://script.google.com/macros/s/AKfycbwtsqAlrxCgen-1hihiDaRNAIQe9Y4tKTAMrLUXVikr5mo8AIkBqh8g9LW0eNDpArBTmw/exec"
-            width="100%" 
-            height="800px" 
-            frameborder="0"
-            allowtransparency="true"
-        ></iframe>
-    </div>
-
-    <script>
-        window.addEventListener("message", (event) => {
-            // イベントのoriginを確認してセキュリティを確保
-            // 例: if (event.origin !== "https://n-erhpgowbqfwfnnvtouxf6uhk7zgjfpprdze7ggq-0lu-script.googleusercontent.com") return;
-            // 上記は開発環境での例です。本番環境ではデプロイしたURLのオリジンを指定してください。
-            
-            try {
-                const response = JSON.parse(event.data);
-                
-                if (response.success) {
-                    const name = encodeURIComponent(response.name);
-                    const email = encodeURIComponent(response.email);
-                    const inquiryId = encodeURIComponent(response.inquiryId);
-                    
-                    // サイト内の完了ページURLにクエリパラメータを付けて遷移
-                    // 確認ページへのパスを正しいものに変更してください
-                    window.location.href = `form-confirm.html?name=${name}&email=${email}&inquiryId=${inquiryId}`;
-                }
-            } catch (e) {
-                console.error("Failed to parse message from iframe:", e);
-            }
-        }, false);
-    </script>
-
+    <section class="hero">
+      <h2>Welcome to せきたん公式サイト</h2>
+      <p>Your one-stop destination for all things せきたん.</p>
+    </section>
   </main>
-
-
-
 
   <!-- フッター -->
   <footer class="site-footer">
@@ -121,7 +86,6 @@
     </div>
   </footer>
 
-
-
+  
 </body>
 </html>
