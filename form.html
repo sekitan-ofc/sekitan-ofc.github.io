@@ -1,127 +1,86 @@
+<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>お問い合わせフォーム | せきたん公式サイト</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/style_form.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
-  <script>
-    // 送信中ボタン制御
-    function disableSubmit(btn) {
-      btn.disabled = true;
-      btn.textContent = '送信中…';
-      return true; // フォーム送信継続
-    }
-  </script>
 </head>
-
-
 <body>
-  <!-- ヘッダー -->
-  <header class="site-header">
-    <div class="container header-container">
-      <div class="header-left">
-        <a href="home.html" class="logo-link">
-          <img src="assets/logo.webp" alt="せきたん公式サイト" class="site-logo">
-        </a>
-      </div>
-      <div class="header-right">
-        <nav class="site-nav">
-          <ul>
-            <li><a href="home.html">Home</a></li>
-            <li><a href="cottonway-project.html" class="project-link">Cottonway Project</a></li>
-            <li><a href="download.html">BVE Data</a></li>
-            <li><a href="news.html">News</a></li>
-            <li><a href="profile.html">Profile</a></li>
-            <li><a href="support.html">Support</a></li>
-          </ul>
-        </nav>
-      </div>
-    </div>
-  </header>
 
-  <!-- メインコンテンツ -->
   <main class="container">
-<body>
-    <div class="main-content">
-        <!-- GASでデプロイしたウェブアプリのURLを埋め込む -->
-        <!-- GASのウェブアプリをデプロイ後、そのURLに置き換えてください -->
-        <iframe 
-            src="https://script.google.com/macros/s/AKfycbwtsqAlrxCgen-1hihiDaRNAIQe9Y4tKTAMrLUXVikr5mo8AIkBqh8g9LW0eNDpArBTmw/exec"
-            width="100%" 
-            height="800px" 
-            frameborder="0"
-            allowtransparency="true"
-        ></iframe>
-    </div>
+    <h1>お問い合わせ</h1>
+    <form id="contact-form">
+      <label>氏名:<br>
+        <input type="text" name="name" required>
+      </label><br><br>
 
-    <script>
-        window.addEventListener("message", (event) => {
-            // イベントのoriginを確認してセキュリティを確保
-            // 例: if (event.origin !== "https://n-erhpgowbqfwfnnvtouxf6uhk7zgjfpprdze7ggq-0lu-script.googleusercontent.com") return;
-            // 上記は開発環境での例です。本番環境ではデプロイしたURLのオリジンを指定してください。
-            
-            try {
-                const response = JSON.parse(event.data);
-                
-                if (response.success) {
-                    const name = encodeURIComponent(response.name);
-                    const email = encodeURIComponent(response.email);
-                    const inquiryId = encodeURIComponent(response.inquiryId);
-                    
-                    // サイト内の完了ページURLにクエリパラメータを付けて遷移
-                    // 確認ページへのパスを正しいものに変更してください
-                    window.location.href = `form-confirm.html?name=${name}&email=${email}&inquiryId=${inquiryId}`;
-                }
-            } catch (e) {
-                console.error("Failed to parse message from iframe:", e);
-            }
-        }, false);
-    </script>
+      <label>メールアドレス:<br>
+        <input type="email" name="email" required>
+      </label><br><br>
 
+      <label>カテゴリ:<br>
+        <select name="category" required>
+          <option value="">選択してください</option>
+          <option value="ご意見">ご意見</option>
+          <option value="不具合">不具合</option>
+          <option value="その他">その他</option>
+        </select>
+      </label><br><br>
+
+      <label>詳細:<br>
+        <textarea name="details" required></textarea>
+      </label><br><br>
+
+      <button type="submit" id="submit-btn">送信</button>
+    </form>
+
+    <p id="response"></p>
   </main>
 
+  <script>
+  const scriptURL = "https://script.google.com/macros/s/AKfycbw1nid0650jzJTCdcSUl_C234TE484ERbRL4W2r8a0nPXsPNkAU28hJKUKUcgBEzKWAUw/exec";
 
+  document.getElementById("contact-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById("submit-btn");
+    btn.disabled = true;
+    btn.textContent = "送信中…";
 
+    const form = e.target;
+    const data = {
+      name: form.name.value,
+      email: form.email.value,
+      category: form.category.value,
+      details: form.details.value
+    };
 
-  <!-- フッター -->
-  <footer class="site-footer">
-    <div class="container footer-content">
-     <div class="footer-left">
-        <div class="footer-top">
-          <a href="home.html" class="footer-logo">せきたん / sekitan</a>
-          <nav class="footer-nav">
-            <ul>
-              <li><a href="support.html">お問い合わせ</a></li>
-              <li><a href="policy.html">プライバシーポリシー</a></li>
-              <li><a href="terms.html">利用規約</a></li>
-            </ul>
-          </nav>
-        </div>
-        <small class="copyright">&copy; 2026 せきたん. All rights reserved.</small>
-      </div>
+    try {
+      const res = await fetch(scriptURL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
 
-      <div class="footer-right">
-        <div class="sns-buttons">
-          <a href="https://twitter.com/sekitan_ofc" class="sns-btn twitter" target="_blank" aria-label="X (Twitter)">
-            <i class="fab fa-x-twitter"></i>
-            <span class="circle-border"></span>
-          </a>
-          <a href="https://youtube.com/@sekitan_ofc" class="sns-btn youtube" target="_blank" aria-label="YouTube">
-            <i class="fab fa-youtube"></i>
-            <span class="circle-border"></span>
-          </a>
-          <a href="https://lin.ee/qwxmeAy" class="sns-btn line" target="_blank" aria-label="Line">
-            <i class="fab fa-line"></i>
-            <span class="circle-border"></span>
-        </a>
-      </div>
-    </div>
-  </footer>
+      const json = await res.json();
 
-
+      if (json.success) {
+        document.getElementById("response").textContent = 
+          `送信完了しました！お問い合わせID: ${json.inquiryId}`;
+        form.reset();
+      } else {
+        document.getElementById("response").textContent = 
+          "送信に失敗しました: " + json.error;
+      }
+    } catch (err) {
+      document.getElementById("response").textContent = "通信エラーが発生しました。";
+      console.error(err);
+    } finally {
+      btn.disabled = false;
+      btn.textContent = "送信";
+    }
+  });
+  </script>
 
 </body>
 </html>
