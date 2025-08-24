@@ -24,7 +24,7 @@ form.addEventListener('submit', async (e) => {
   const formData = new FormData(form);
 
   try {
-    const response = await fetch('https://script.google.com/macros/s/AKfycbyCwFcGQfuKigAdiYsJNJD5L9LU4VIdoRsJxpt8qDgzi9Gj2OTKLmAtSWZF7D39a9Aitg/exec', { // ← GASのデプロイURLに置き換え
+    const response = await fetch('https://script.google.com/macros/s/AKfycbz7vOUWkXszEzQznxExfN9IZvbRPY4tdzsnQ4x4gyvJQ7jKMywtzlPNGtlklZmYeMU1Cg/exec', { // ← GASのデプロイURLに置き換え
       method: 'POST',
       body: formData
     });
