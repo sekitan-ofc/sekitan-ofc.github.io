@@ -1,17 +1,41 @@
-// js/script_form.js
-document.addEventListener('DOMContentLoaded', () => {
-  const fileInput = document.getElementById('file');
-  const note      = document.querySelector('.file-note');
+const form = document.getElementById('contactForm');
+const fileInput = document.getElementById('fileUpload');
+const fileList = document.getElementById('fileList');
+const resultMessage = document.getElementById('resultMessage');
 
-  fileInput.addEventListener('change', () => {
-    if (fileInput.files.length === 0) {
-      note.textContent = 'エラー画面の画像など';
-    } else {
-      // 複数ファイル名を改行リストで表示
-      const names = Array.from(fileInput.files).map(f => f.name);
-      note.textContent = names.join('\n');
-      // ボックスを「selected」クラスに切り替え
-      fileInput.closest('.file-wrapper').classList.add('selected');
-    }
+// ファイル選択時にファイル名を表示
+fileInput.addEventListener('change', () => {
+  fileList.innerHTML = '';
+  const files = Array.from(fileInput.files);
+  if (files.length === 0) return;
+  const ul = document.createElement('ul');
+  files.forEach(file => {
+    const li = document.createElement('li');
+    li.textContent = file.name;
+    ul.appendChild(li);
   });
+  fileList.appendChild(ul);
+});
+
+// フォーム送信
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const formData = new FormData(form);
+
+  try {
+    const response = await fetch('https://script.google.com/macros/s/AKfycbyCwFcGQfuKigAdiYsJNJD5L9LU4VIdoRsJxpt8qDgzi9Gj2OTKLmAtSWZF7D39a9Aitg/exec', { // ← GASのデプロイURLに置き換え
+      method: 'POST',
+      body: formData
+    });
+
+    if (!response.ok) throw new Error('送信に失敗しました');
+
+    const result = await response.text();
+    resultMessage.innerHTML = result;
+    form.reset();
+    fileList.innerHTML = '';
+  } catch (error) {
+    resultMessage.innerHTML = `<p style="color:red">エラー: ${error.message}</p>`;
+  }
 });

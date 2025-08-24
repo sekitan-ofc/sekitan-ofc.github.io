@@ -7,14 +7,6 @@
   <link rel="stylesheet" href="css/style_form.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
-  <script>
-    // 送信中ボタン制御
-    function disableSubmit(btn) {
-      btn.disabled = true;
-      btn.textContent = '送信中…';
-      return true; // フォーム送信継続
-    }
-  </script>
 </head>
 
 
@@ -44,44 +36,59 @@
 
   <!-- メインコンテンツ -->
   <main class="container">
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>お問い合わせフォーム | せきたんWeb</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
 <body>
-    <div class="main-content">
-        <!-- GASでデプロイしたウェブアプリのURLを埋め込む -->
-        <!-- GASのウェブアプリをデプロイ後、そのURLに置き換えてください -->
-        <iframe 
-            src="https://script.google.com/macros/s/AKfycbyCtKaIu8dUqVKJQ-l_TVxSv1pxw4sK2aq6LbAykyna4AS2ABExTXmkWDgnrvZh753i4Q/exec"
-            width="100%" 
-            height="800px" 
-            frameborder="0"
-            allowtransparency="true"
-        ></iframe>
-    </div>
+  <div class="container">
+    <h1>お問い合わせ</h1>
+    <form id="contactForm">
+      <label for="name">氏名（ハンドルネーム可）<span class="required">*</span></label>
+      <input type="text" id="name" name="name" required>
 
-    <script>
-        window.addEventListener("message", (event) => {
-            // イベントのoriginを確認してセキュリティを確保
-            // 例: if (event.origin !== "https://n-erhpgowbqfwfnnvtouxf6uhk7zgjfpprdze7ggq-0lu-script.googleusercontent.com") return;
-            // 上記は開発環境での例です。本番環境ではデプロイしたURLのオリジンを指定してください。
-            
-            try {
-                const response = JSON.parse(event.data);
-                
-                if (response.success) {
-                    const name = encodeURIComponent(response.name);
-                    const email = encodeURIComponent(response.email);
-                    const inquiryId = encodeURIComponent(response.inquiryId);
-                    
-                    // サイト内の完了ページURLにクエリパラメータを付けて遷移
-                    // 確認ページへのパスを正しいものに変更してください
-                    window.location.href = `form-confirm.html?name=${name}&email=${email}&inquiryId=${inquiryId}`;
-                }
-            } catch (e) {
-                console.error("Failed to parse message from iframe:", e);
-            }
-        }, false);
-    </script>
+      <label for="email">メールアドレス<span class="required">*</span></label>
+      <input type="email" id="email" name="email" required>
 
-  </main>
+      <label for="category">内容選択<span class="required">*</span></label>
+      <select id="category" name="category" required>
+        <option value="">選択してください</option>
+        <option value="当サイトに関して">当サイトに関して</option>
+        <option value="BVEデータに対するご意見・ご要望">BVEデータに対するご意見・ご要望</option>
+        <option value="BVEデータの不具合報告">BVEデータの不具合報告</option>
+        <option value="BVE 真岡線 Projectに関して">BVE 真岡線 Projectに関して</option>
+        <option value="規約・ポリシーに関して">規約・ポリシーに関して</option>
+        <option value="その他">その他</option>
+      </select>
+
+      <label for="details">詳細<span class="required">*</span></label>
+      <textarea id="details" name="details" rows="5" required></textarea>
+
+      <label for="fileUpload">ファイル添付（複数可）</label>
+      <input type="file" id="fileUpload" name="fileUpload" multiple>
+      <div id="fileList"></div>
+
+      <div>
+        <input type="checkbox" id="confirmCheckbox" name="confirmCheckbox" required>
+        <label for="confirmCheckbox">入力内容が正しいことを確認しました<span class="required">*</span></label>
+      </div>
+
+      <div>
+        <input type="checkbox" id="privacyPolicyCheckbox" name="privacyPolicyCheckbox" required>
+        <label for="privacyPolicyCheckbox">プライバシーポリシーに同意します<span class="required">*</span></label>
+      </div>
+
+      <button type="submit" id="submitButton">送信する</button>
+    </form>
+
+    <div id="resultMessage"></div>
+  </div>
+
+
 
 
 
@@ -121,7 +128,7 @@
     </div>
   </footer>
 
-
+<script src="js/script_form.js"></script>
 
 </body>
 </html>
