@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
@@ -8,7 +9,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
 </head>
-
 
 <body>
   <!-- ヘッダー -->
@@ -36,61 +36,82 @@
 
   <!-- メインコンテンツ -->
   <main class="container">
-
-
-<body>
-  <div class="container" id="formContainer">
-    <h1>お問い合わせ</h1>
-    <form id="contactForm">
-      <label for="name">氏名 (ハンドルネーム可)<span class="required"></span></label>
-      <input type="text" id="name" name="name" required>
-
-      <label for="email">メールアドレス<span class="required"></span></label>
-      <input type="email" id="email" name="email" required>
-
-      <label for="category">内容選択<span class="required"></span></label>
-      <select id="category" name="category" required>
-        <option value="">選択してください</option>
-        <option value="当サイトに関して">当サイトに関して</option>
-        <option value="BVEデータに対するご意見・ご要望">BVEデータに対するご意見・ご要望</option>
-        <option value="BVEデータの不具合報告">BVEデータの不具合報告</option>
-        <option value="BVE 真岡線 Projectに関して">BVE 真岡線 Projectに関して</option>
-        <option value="規約・ポリシーに関して">規約・ポリシーに関して</option>
-        <option value="その他">その他</option>
-      </select>
-
-      <label for="details">詳細<span class="required"></span></label>
-      <textarea id="details" name="details" rows="5" required></textarea>
-
-      <label for="fileUpload">ファイル添付</label>
-      <input type="file" id="fileUpload" name="fileUpload" multiple>
-      <div id="fileList"></div>
-
-      <div>
-        <input type="checkbox" id="confirmCheckbox" name="confirmCheckbox" required>
-        <label for="confirmCheckbox">入力内容が正しいことを確認しました<span class="required"></span></label>
+    <div class="container" id="formContainer">
+      <h1>お問い合わせ</h1>
+      
+      <!-- メッセージ表示エリア -->
+      <div id="messageArea"></div>
+      
+      <!-- ローディング表示 -->
+      <div id="loadingArea" class="loading">
+        <div class="spinner"></div>
+        <span>送信中...</span>
       </div>
+      
+      <form id="contactForm">
+        <div class="form-group">
+          <label for="name">氏名 (ハンドルネーム可)<span class="required"></span></label>
+          <input type="text" id="name" name="name" required maxlength="100">
+        </div>
 
-      <div>
-        <input type="checkbox" id="privacyPolicyCheckbox" name="privacyPolicyCheckbox" required>
-        <label for="privacyPolicyCheckbox">プライバシーポリシーに同意します<span class="required"></span></label>
-      </div>
+        <div class="form-group">
+          <label for="email">メールアドレス<span class="required"></span></label>
+          <input type="email" id="email" name="email" required maxlength="255">
+        </div>
 
-      <button type="submit" id="submitButton">送信する</button>
-    </form>
-  </div>
+        <div class="form-group">
+          <label for="category">内容選択<span class="required"></span></label>
+          <select id="category" name="category" required>
+            <option value="">選択してください</option>
+            <option value="当サイトに関して">当サイトに関して</option>
+            <option value="BVEデータに対するご意見・ご要望">BVEデータに対するご意見・ご要望</option>
+            <option value="BVEデータの不具合報告">BVEデータの不具合報告</option>
+            <option value="BVE 真岡線 Projectに関して">BVE 真岡線 Projectに関して</option>
+            <option value="規約・ポリシーに関して">規約・ポリシーに関して</option>
+            <option value="その他">その他</option>
+          </select>
+        </div>
 
-  <script src="script_form.js"></script>
-</body>
-</html>
+        <div class="form-group">
+          <label for="details">詳細<span class="required"></span></label>
+          <textarea id="details" name="details" rows="6" required maxlength="2000" placeholder="お問い合わせの詳細をご記入ください"></textarea>
+          <div class="char-count">
+            <span id="charCount">0</span>/2000文字
+          </div>
+        </div>
 
+        <div class="form-group">
+          <label for="fileUpload">ファイル添付</label>
+            <input type="file" id="fileUpload" name="fileUpload" multiple>
+          </div>
+          <div id="fileList"></div>
+        </div>
 
+        <div class="form-group">
+          <label>
+            <input type="checkbox" id="confirmCheckbox" name="confirmCheckbox" required>
+            入力内容が正しいことを確認しました<span class="required"></span>
+          </label>
+        </div>
 
+        <div class="form-group">
+          <label>
+            <input type="checkbox" id="privacyPolicyCheckbox" name="privacyPolicyCheckbox" required>
+            <a href="policy.html" target="_blank">プライバシーポリシー</a>に同意します<span class="required"></span>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <button type="submit" id="submitButton" class="submit-button">送信する</button>
+        </div>
+      </form>
+    </div>
+  </main>
 
   <!-- フッター -->
   <footer class="site-footer">
     <div class="container footer-content">
-     <div class="footer-left">
+      <div class="footer-left">
         <div class="footer-top">
           <a href="home.html" class="footer-logo">せきたん / sekitan</a>
           <nav class="footer-nav">
@@ -117,12 +138,12 @@
           <a href="https://lin.ee/qwxmeAy" class="sns-btn line" target="_blank" aria-label="Line">
             <i class="fab fa-line"></i>
             <span class="circle-border"></span>
-        </a>
+          </a>
+        </div>
       </div>
     </div>
   </footer>
 
-<script src="js/script_form.js"></script>
-
+  <script src="js/script_form.js"></script>
 </body>
 </html>
