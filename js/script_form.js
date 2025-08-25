@@ -2,10 +2,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('contactForm');
   const fileInput = document.getElementById('fileUpload');
   const fileList = document.getElementById('fileList');
-  const resultMessage = document.createElement('div'); // 送信結果表示用
+  const resultMessage = document.createElement('div');
   form.parentNode.insertBefore(resultMessage, form.nextSibling);
 
-  // ファイル選択時にファイル名を表示
+  // ファイル選択時に表示
   fileInput.addEventListener('change', () => {
     fileList.innerHTML = '';
     const files = Array.from(fileInput.files);
@@ -19,14 +19,13 @@ document.addEventListener('DOMContentLoaded', () => {
     fileList.appendChild(ul);
   });
 
-  // フォーム送信
+  // フォーム送信（ファイルなしでもOK）
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-
     const formData = new FormData(form);
 
     try {
-      const response = await fetch('https://script.google.com/macros/s/AKfycbxCx8DHRl0WqFytvihevkOHzbvCcDyeBSAESxjm4FVd3ogG-MzJpXV3U3AV2N4gZezPHA/exec', { // ← GASデプロイURL
+      const response = await fetch('https://script.google.com/macros/s/AKfycbwT_KIZKRcYjBhpu6bOkE-Rsa_saZJl9lo2Aeq32DhHGiKonTsVdfyxgPd3LKx1rehOhw/exec', {
         method: 'POST',
         body: formData
       });
@@ -35,8 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const result = await response.text();
       resultMessage.innerHTML = result;
-
-      // フォームリセット
       form.reset();
       fileList.innerHTML = '';
     } catch (error) {

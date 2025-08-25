@@ -36,25 +36,19 @@
 
   <!-- メインコンテンツ -->
   <main class="container">
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>お問い合わせフォーム | せきたんWeb</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
+
+
 <body>
-  <div class="container">
+  <div class="container" id="formContainer">
     <h1>お問い合わせ</h1>
     <form id="contactForm">
-      <label for="name">氏名（ハンドルネーム可）<span class="required">*</span></label>
+      <label for="name">氏名 (ハンドルネーム可)<span class="required"></span></label>
       <input type="text" id="name" name="name" required>
 
-      <label for="email">メールアドレス<span class="required">*</span></label>
+      <label for="email">メールアドレス<span class="required"></span></label>
       <input type="email" id="email" name="email" required>
 
-      <label for="category">内容選択<span class="required">*</span></label>
+      <label for="category">内容選択<span class="required"></span></label>
       <select id="category" name="category" required>
         <option value="">選択してください</option>
         <option value="当サイトに関して">当サイトに関して</option>
@@ -65,30 +59,30 @@
         <option value="その他">その他</option>
       </select>
 
-      <label for="details">詳細<span class="required">*</span></label>
+      <label for="details">詳細<span class="required"></span></label>
       <textarea id="details" name="details" rows="5" required></textarea>
 
-      <label for="fileUpload">ファイル添付（複数可）</label>
+      <label for="fileUpload">ファイル添付</label>
       <input type="file" id="fileUpload" name="fileUpload" multiple>
       <div id="fileList"></div>
 
       <div>
         <input type="checkbox" id="confirmCheckbox" name="confirmCheckbox" required>
-        <label for="confirmCheckbox">入力内容が正しいことを確認しました<span class="required">*</span></label>
+        <label for="confirmCheckbox">入力内容が正しいことを確認しました<span class="required"></span></label>
       </div>
 
       <div>
         <input type="checkbox" id="privacyPolicyCheckbox" name="privacyPolicyCheckbox" required>
-        <label for="privacyPolicyCheckbox">プライバシーポリシーに同意します<span class="required">*</span></label>
+        <label for="privacyPolicyCheckbox">プライバシーポリシーに同意します<span class="required"></span></label>
       </div>
 
       <button type="submit" id="submitButton">送信する</button>
     </form>
-
-    <div id="resultMessage"></div>
   </div>
 
-
+  <script src="script_form.js"></script>
+</body>
+</html>
 
 
 
