@@ -1,5 +1,5 @@
 (() => {
-  const GAS_WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbzWoeDDi-_0tg67-vfYaYKx8a1W0jqXTO3G4iLMT-yHnSSWQTtRpkzz4MMvz04fQQIILA/exec';
+  const GAS_WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbzjCd60UXj_3Ps1u6W9brC1M_f327mZq3Hr8ZP6wpg0dPWqAZV34jHZgKoQVXJpmGRHhA/exec';
 
   const form = document.getElementById('contactForm');
   const fileInput = document.getElementById('fileUpload');
@@ -7,9 +7,9 @@
   const messageArea = document.getElementById('messageArea');
   const loadingArea = document.getElementById('loadingArea');
   const charCountSpan = document.getElementById('charCount');
-  const details = document.getElementById('details');
 
-  // 文字数カウント
+  // 文字カウント
+  const details = document.getElementById('details');
   details.addEventListener('input', () => {
     charCountSpan.textContent = details.value.length;
   });
@@ -18,7 +18,7 @@
   fileInput.addEventListener('change', () => {
     fileListDiv.innerHTML = '';
     const files = Array.from(fileInput.files);
-    if (!files.length) return;
+    if (files.length === 0) return;
     const ul = document.createElement('ul');
     files.forEach(f => {
       const li = document.createElement('li');
@@ -28,7 +28,7 @@
     fileListDiv.appendChild(ul);
   });
 
-  // File → base64
+  // File -> base64
   function fileToBase64(file) {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -36,17 +36,15 @@
       reader.onload = () => {
         const result = reader.result;
         const commaIndex = result.indexOf(',');
-        resolve({
-          name: file.name,
-          size: file.size,
-          mimeType: result.slice(5, commaIndex).split(';')[0],
-          base64: result.slice(commaIndex + 1)
-        });
+        const base64 = result.slice(commaIndex + 1);
+        const mime = result.slice(5, commaIndex).split(';')[0];
+        resolve({ name: file.name, size: file.size, mimeType: mime, base64 });
       };
       reader.readAsDataURL(file);
     });
   }
 
+  // メッセージ表示
   function showMessage(text, isError=false) {
     messageArea.innerHTML = `<p class="${isError ? 'error' : 'success'}">${text}</p>`;
   }
@@ -69,35 +67,37 @@
       }
 
       const files = Array.from(fileInput.files || []);
-      if (files.length > 5) throw new Error('ファイルは最大 5 件までです。');
+      const MAX_FILES = 5;
+      if (files.length > MAX_FILES) throw new Error(`ファイルは最大 ${MAX_FILES} 件までです。`);
+
       const totalSize = files.reduce((s, f) => s + f.size, 0);
-      if (totalSize > 50 * 1024 * 1024) throw new Error('添付ファイル合計は50MBまでです。');
+      const MAX_TOTAL_BYTES = 50 * 1024 * 1024;
+      if (totalSize > MAX_TOTAL_BYTES) throw new Error('添付ファイルの合計サイズが大きすぎます。');
 
       const filesConverted = [];
-      for (const f of files) filesConverted.push(await fileToBase64(f));
+      for (const f of files) {
+        const obj = await fileToBase64(f);
+        filesConverted.push(obj);
+      }
 
       const payload = { name, email, category, details: detailsText, files: filesConverted };
 
-      const resp = await fetch(GAS_WEBAPP_URL, {
+      // fetch で no-cors を指定（ブラウザで CORS を回避）
+      await fetch(GAS_WEBAPP_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(payload),
+        mode: 'no-cors' // ← ここが重要
       });
 
-      if (!resp.ok) throw new Error('サーバーエラー: ' + resp.status);
-      const resJson = await resp.json();
+      showMessage('送信完了！ブラウザ上ではレスポンスは取得できませんが、GASには届いています。');
+      form.reset();
+      fileListDiv.innerHTML = '';
+      charCountSpan.textContent = '0';
 
-      if (resJson.success) {
-        showMessage(`送信が完了しました。お問い合わせID: ${resJson.inquiryId}`);
-        form.reset();
-        fileListDiv.innerHTML = '';
-        charCountSpan.textContent = '0';
-      } else {
-        throw new Error(resJson.message || '送信失敗（不明なエラー）');
-      }
     } catch (err) {
       console.error(err);
-      showMessage('エラー: ' + err.message, true);
+      showMessage('エラー: ' + (err.message || err), true);
     } finally {
       loadingArea.style.display = 'none';
     }
