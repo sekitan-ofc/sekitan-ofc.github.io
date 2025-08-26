@@ -1,5 +1,5 @@
 (() => {
-  const GAS_WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbzWoeDDi-_0tg67-vfYaYKx8a1W0jqXTO3G4iLMT-yHnSSWQTtRpkzz4MMvz04fQQIILA/exec';
+  const GAS_WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbzDr-_YElsY54l0_hSbuYJaXZ3mj7EEBJLsazT4-auCOQuoFQ_hHQGwtEVEkL6FxklBUQ/exec';
 
   const form = document.getElementById('contactForm');
   const fileInput = document.getElementById('fileUpload');
@@ -8,6 +8,10 @@
   const loadingArea = document.getElementById('loadingArea');
   const charCountSpan = document.getElementById('charCount');
   const details = document.getElementById('details');
+  const submitButton = document.getElementById('submitButton');
+
+  // 初期状態は非表示
+  loadingArea.style.display = 'none';
 
   // 文字数カウント
   details.addEventListener('input', () => {
@@ -28,25 +32,6 @@
     fileListDiv.appendChild(ul);
   });
 
-  // File → base64
-  function fileToBase64(file) {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onerror = () => reject(new Error('ファイル読み込みエラー'));
-      reader.onload = () => {
-        const result = reader.result;
-        const commaIndex = result.indexOf(',');
-        resolve({
-          name: file.name,
-          size: file.size,
-          mimeType: result.slice(5, commaIndex).split(';')[0],
-          base64: result.slice(commaIndex + 1)
-        });
-      };
-      reader.readAsDataURL(file);
-    });
-  }
-
   function showMessage(text, isError=false) {
     messageArea.innerHTML = `<p class="${isError ? 'error' : 'success'}">${text}</p>`;
   }
@@ -56,32 +41,15 @@
     ev.preventDefault();
     messageArea.innerHTML = '';
     loadingArea.style.display = 'flex';
+    submitButton.disabled = true;
 
     try {
       const formData = new FormData(form);
-      const name = formData.get('name') || '';
-      const email = formData.get('email') || '';
-      const category = formData.get('category') || '';
-      const detailsText = formData.get('details') || '';
 
-      if (!name || !email || !category || !detailsText) {
-        throw new Error('必須項目を入力してください。');
-      }
-
-      const files = Array.from(fileInput.files || []);
-      if (files.length > 5) throw new Error('ファイルは最大 5 件までです。');
-      const totalSize = files.reduce((s, f) => s + f.size, 0);
-      if (totalSize > 50 * 1024 * 1024) throw new Error('添付ファイル合計は50MBまでです。');
-
-      const filesConverted = [];
-      for (const f of files) filesConverted.push(await fileToBase64(f));
-
-      const payload = { name, email, category, details: detailsText, files: filesConverted };
-
+      // ファイル送信は無効化している場合は不要
       const resp = await fetch(GAS_WEBAPP_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+        body: formData
       });
 
       if (!resp.ok) throw new Error('サーバーエラー: ' + resp.status);
@@ -100,6 +68,7 @@
       showMessage('エラー: ' + err.message, true);
     } finally {
       loadingArea.style.display = 'none';
+      submitButton.disabled = false;
     }
   });
 })();
