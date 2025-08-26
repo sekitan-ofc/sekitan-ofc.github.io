@@ -106,3 +106,189 @@
 .sns-list a.fa-line:hover {
   color: #00C300;
 }
+
+
+
+/* --- プロフィールセクション共通スタイル --- */
+.profile-section {
+    margin-bottom: 60px; /* 各セクション間の余白 */
+}
+
+/* --- 自己紹介セクションのレイアウト --- */
+.self-introduction-content {
+    display: flex;
+    align-items: flex-start; /* コンテンツの上端を揃える */
+    gap: 60px; /* ロゴとテキスト/SNS間の余白 */
+    flex-wrap: wrap; /* 画面幅が狭くなった時に折り返す */
+}
+
+.left-content {
+    flex: 1; /* 残りのスペースを均等に占めるように変更 */
+    max-width: 50%; /* 親要素の最大50%を占めるように設定 */
+    min-width: 320px; /* 最小幅を設定して、小さくなりすぎないようにする */
+    text-align: center; /* ロゴを中央寄せ */
+}
+
+.large-profile-logo {
+    width: 100%; /* 親要素のleft-contentいっぱいに広がる */
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover; /* 画像の縦横比を保ちつつ、コンテナを埋める */
+}
+
+.right-content {
+    flex: 1; /* 残りのスペースを全て占める */
+    min-width: 320px; /* 右側コンテンツの最小幅を設定 */
+}
+
+/* --- レスポンシブ対応 --- */
+@media (max-width: 768px) {
+    .self-introduction-content {
+        flex-direction: column; /* 縦並びに変更 */
+        align-items: center; /* 中央揃え */
+        gap: 40px;
+    }
+
+    .left-content {
+        width: 100%; /* スマホではロゴの幅を調整 */
+        max-width: 300px; /* ロゴの最大幅を調整 */
+        min-width: unset; /* 最小幅をリセット */
+    }
+
+    .large-profile-logo {
+        width: 100%; /* スマホでも幅いっぱいに */
+        height: auto; /* 高さは自動調整 */
+    }
+
+    .right-content {
+        width: 100%; /* スマホでは右側コンテンツを全幅に */
+        min-width: unset; /* 最小幅をリセット */
+        align-items: center; /* 右側コンテンツ内の要素を中央寄せ */
+        display: flex; /* SNSリストを中央寄せするためにflexboxを使用 */
+        flex-direction: column;
+    }
+}
+
+
+/* --- ポートフォリオセクションのレイアウト --- */
+.portfolio-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+}
+
+.portfolio-card {
+    display: flex;
+    flex-direction: row;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    max-width: 100%;
+    width: 100%;
+    /* ホバーアニメーションは削除済み */
+}
+
+/* --- ポートフォリオセクションのレイアウト --- */
+/* (portfolio-content および portfolio-card の既存スタイルは省略) */
+
+.card-image-container {
+    width: 40%; /* 写真領域をカード左側4割に固定 */
+    flex-shrink: 0; /* 写真領域が縮まないように固定 */
+    height: 250px; /* 縦方向を固定値に設定（例: 250px） */
+    overflow: hidden;
+    display: flex;
+    align-items: center; /* ⭐︎ロゴを縦方向中央に配置 */
+    justify-content: center; /* ロゴを横方向中央に配置 */
+    padding: 20px; /* ⭐︎ロゴとコンテナの境界に20pxの余白を追加 */
+    box-sizing: border-box; /* ⭐︎paddingをwidth/heightに含める */
+}
+
+.project-logo {
+    width: 100%; /* ⭐︎親要素のコンテンツボックスいっぱいに広がる */
+    height: 100%; /* ⭐︎親要素のコンテンツボックスいっぱいに広がる */
+    object-fit: contain; /* 縦横比を保ちつつコンテナに収める */
+    display: block;
+    /* ⭐︎以前あったmargin: 20px; はcard-image-containerのpaddingに移したため削除 */
+}
+
+
+.card-details {
+    flex: 1; /* 残りのスペースを全て占める */
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card-details h3 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.card-details p {
+    font-size: 1.05rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.card-details .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 25px;
+    background-color: #4caf50;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    align-self: flex-start;
+}
+
+.card-details .button:hover {
+    background-color: #45a049;
+}
+
+.card-details .button i {
+    margin-left: 10px;
+    font-size: 1rem;
+}
+
+/* --- レスポンシブ対応 (ポートフォリオセクション) --- */
+@media (max-width: 768px) {
+    .portfolio-card {
+        flex-direction: column;
+        max-width: 100%;
+    }
+
+    .card-image-container {
+        width: 100%; /* スマホでは全幅を占める */
+        height: 200px; /* スマホ時の画像コンテナの高さを調整 */
+        padding: 20px; /* ⭐︎スマホ時もpaddingを維持 */
+        box-sizing: border-box; /* ⭐︎スマホ時もpaddingをwidth/heightに含める */
+    }
+
+    .project-logo {
+        width: 100%; /* ⭐︎スマホでも親要素のコンテンツボックスいっぱいに広がる */
+        height: 100%; /* ⭐︎スマホでも親要素のコンテンツボックスいっぱいに広がる */
+        /* max-width: 80%; */ /* ⭐︎必要に応じて調整。100%に広げるなら不要 */
+        /* ⭐︎以前あったmargin: 20px auto; はcard-image-containerのpaddingに移したため削除 */
+    }
+
+    /* (card-details および button の既存スタイルは省略) */
+
+    .card-details {
+        padding: 20px;
+        text-align: center;
+    }
+
+    .card-details .button {
+        align-self: center;
+    }
+}

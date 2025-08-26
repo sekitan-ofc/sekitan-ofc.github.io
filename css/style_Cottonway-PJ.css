@@ -164,7 +164,7 @@ nav.site-nav ul li a:hover {
     margin-top: calc(-1 * var(--nav-height));
     padding-top: var(--nav-height);
     height: 600px;
-    background-image: url('../assets/hero_background.png');
+    background-image: url('../assets/hero_background.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -368,41 +368,114 @@ nav.site-nav ul li a:hover {
     }
 }
 
-/* 創作活動方針 (旧 policy-grid) */
-.policy-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+/* 創作活動方針 - 既存の .policy-grid を .roadmap-container に置き換え、新しいスタイルを適用 */
+.roadmap-container {
+    display: flex;
+    overflow-x: auto; /* 横スクロールを可能にする */
+    gap: 20px; /* アイテム間のスペース */
+    padding: 20px 0;
     margin-top: 30px;
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: var(--accent-color-1) var(--bg-color-light); /* Firefox */
+    /* ここを修正: アイテムの配置基準を Flex-start に設定 */
+    /* これにより、個々のアイテム（カードと矢印）で align-self を使って位置を制御できます */
+    align-items: flex-start;
 }
 
-.policy-item {
+.roadmap-container::-webkit-scrollbar {
+    height: 8px; /* スクロールバーの高さ */
+}
+
+.roadmap-container::-webkit-scrollbar-track {
+    background: var(--bg-color-light); /* スクロールバーのトラックの背景色 */
+    border-radius: 10px;
+}
+
+.roadmap-container::-webkit-scrollbar-thumb {
+    background-color: var(--accent-color-1); /* スクロールバーのつまみの色 */
+    border-radius: 10px;
+    border: 2px solid var(--bg-color-light); /* つまみの周りのスペース */
+}
+
+.roadmap-item {
+    /* flex-grow を 1 に設定することで、高さを親要素（一番背の高いアイテム）に合わせて伸ばす */
+    flex: 1 0 300px; /* flex-grow: 1; flex-shrink: 0; flex-basis: 300px; */
+
+    /* ここを修正: カード自身の高さを、コンテナの高さ全体に伸ばす */
+    align-self: stretch; 
+
     background-color: var(--white-color);
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
     border-top: 5px solid var(--accent-color-1);
+    
+    /* カード内のテキストを左揃えにする */
+    text-align: left; 
+
+    min-width: 280px; /* 小さすぎるデバイスでの最小幅 */
+    
+    /* カード内のコンテンツをFlexboxで制御し、高さを適切に伸ばす */
+    display: flex;
+    flex-direction: column; /* コンテンツを縦に並べる */
+    justify-content: flex-start; /* コンテンツを上揃えにする */
+    align-items: flex-start; /* コンテンツを左揃えにする */
 }
 
-.policy-item h3 {
+.roadmap-item .roadmap-phase {
+    display: block;
+    font-family: 'Zen Old Mincho', serif;
+    font-size: 1.3em;
+    font-weight: bold;
     color: var(--main-color);
-    font-size: 1.6em;
     margin-bottom: 15px;
+    /* 親要素の text-align を継承しますが、明示的に設定してもOK */
+    text-align: left;
 }
 
-.policy-item ul {
-    list-style: disc;
-    padding-left: 20px;
+.roadmap-item p {
+    font-size: 0.95em;
+    margin-bottom: 0;
+    /* 親要素の text-align を継承しますが、明示的に設定してもOK */
+    text-align: left;
+    /* ここを追加: 段落が残りの高さを埋めるように伸びる */
+    flex: 1; /* これにより、pタグがカードの残りの高さを埋める */
 }
 
-.policy-item ul li {
-    margin-bottom: 8px;
+.roadmap-arrow {
+    display: flex;
+    align-items: center; /* 矢印のコンテンツ（例: →）を垂直方向の中央に揃える */
+    justify-content: center; /* 矢印のコンテンツを水平方向の中央に揃える */
+    font-size: 2em;
+    color: var(--accent-color-1);
+    min-width: 40px; /* 矢印の最小幅を確保 */
+    
+    /* ここを修正: この矢印だけ垂直方向の中央に配置する */
+    align-self: center;
+}
+
+@media (max-width: 768px) {
+    .roadmap-container {
+        flex-direction: row;
+        justify-content: flex-start;
+        /* モバイルでもアイテムの配置基準を維持 */
+        align-items: flex-start; 
+    }
+
+    .roadmap-item {
+        align-self: stretch; /* モバイルでも高さを揃える */
+    }
+
+    .roadmap-arrow {
+        min-width: 30px;
+        align-self: center; /* モバイルでも中央に */
+    }
 }
 
 /* 路線図セクション (旧 route-map) */
 .route-map-wrapper {
     position: relative;
-    max-width: 800px;
+    max-width: 500px;
     margin: 40px auto 20px;
     background-color: var(--white-color);
     border-radius: 8px;
@@ -446,7 +519,7 @@ nav.site-nav ul li a:hover {
 
 /* 各工区の具体的な位置調整（画像サイズに合わせて調整が必要です） */
 .map-overlay .segment-1 { top: 13%; left: 66%; }
-.map-overlay .segment-2 { top: 27%; left: 33%; }
+.map-overlay .segment-2 { top: 25%; left: 30%; }
 .map-overlay .segment-3 { top: 70%; left: 20%; }
 .map-overlay .uncompleted-line { top: 90%; left: 5%; background-color: rgba(209, 199, 174, 0.7); color: #555; font-size: 0.8em;}
 
