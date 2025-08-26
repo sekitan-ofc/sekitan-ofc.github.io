@@ -1,5 +1,5 @@
 (() => {
-  const GAS_WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbzDr-_YElsY54l0_hSbuYJaXZ3mj7EEBJLsazT4-auCOQuoFQ_hHQGwtEVEkL6FxklBUQ/exec';
+  const GAS_WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbyMdoXaNkJwN80ztr6ST5Lu8W_kzQ_vPydsMxva4iHTmAdzbHttAZc0s1zU4Q1Fil_8hA/exec';
 
   const form = document.getElementById('contactForm');
   const fileInput = document.getElementById('fileUpload');
