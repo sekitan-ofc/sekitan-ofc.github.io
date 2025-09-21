@@ -1,26 +1,29 @@
-function formSubmitted() {
-  // window.formSubmittedFlag が true の場合のみリダイレクトを実行
-  if (window.formSubmittedFlag) {
-    window.location.href = 'thanks.html'; // サンクスページのURLに変更
-  }
-}
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("google-form");
+  const messageBox = document.getElementById("form-message");
 
-document.getElementById('google-form').addEventListener('submit', function(event) {
-  const honeypot = document.getElementById('honeypot-field').value; // スパム対策
-  if (honeypot) {
-    event.preventDefault();
-    console.log('スパムの疑いがあります');
-    alert('不正なアクセスを検知しました');
-    return;
-  }
+  form.addEventListener("submit", function (e) {
+    e.preventDefault(); // 通常送信をキャンセル
 
-  // 送信済みフラグを立てる
-  window.formSubmittedFlag = true;
+    // honeypot チェック
+    if (form.querySelector("#honeypot-field").value) {
+      return; // ボット判定
+    }
 
-  // 送信ボタンを無効化（連打防止）
-  const submitButton = document.querySelector('#google-form input[type="submit"]');
-  if (submitButton) {
-    submitButton.disabled = true;
-    submitButton.value = '送信中...';
-  }
+    const formData = new FormData(form);
+
+    fetch("https://docs.google.com/forms/d/e/1FAIpQLSc90iFTa9CdCGsUAMJP-WrwnpQ3T-paPqLRaKu_53Lq6cVJcA/formResponse", {
+      method: "POST",
+      body: formData,
+      mode: "no-cors", // Googleフォームは必須
+    })
+      .then(() => {
+        messageBox.innerHTML = "<p>送信ありがとうございました。</p>";
+        form.reset();
+      })
+      .catch((error) => {
+        messageBox.innerHTML = "<p>送信に失敗しました。時間をおいて再度お試しください。</p>";
+        console.error(error);
+      });
+  });
 });
