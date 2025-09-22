@@ -16,26 +16,22 @@ main.container {
 }
 
 /* 見出し（下線のみ） */
-#privacy-policy h2,
-#terms-of-service h2 { /* h2も両方に対応 */
+.regulation-page h2 {
   font-size: 1.8rem;
   padding-bottom: 6px;
 }
 
-#privacy-policy h3,
-#terms-of-service h3 { /* h3も両方に対応 */
+.regulation-page h3 {
   font-size: 1.3rem;
   margin-top: 48px;
   margin-bottom: 16px;
-  border-bottom: 1px solid #ccc; /* この線ですね */
+  border-bottom: 1px solid #ccc;
   padding-bottom: 4px;
 }
 
 /* リスト：全体の行間を均等に */
-#privacy-policy ol,
-#privacy-policy ul,
-#terms-of-service ol,
-#terms-of-service ul { /* ulも念のため含めるが、基本olを使用 */
+.regulation-page ol,
+.regulation-page ul {
   margin: 0;
   padding-left: 1.8em; /* マーカーが外側に出るように調整 */
   list-style-position: outside;
@@ -43,20 +39,17 @@ main.container {
 }
 
 /* 第1階層のol */
-#privacy-policy > .policy-block > ol,
-#terms-of-service > .policy-block > ol { /* こちらも両方に対応 */
+.regulation-page > .policy-block > ol {
   list-style: none;
   counter-reset: list1;
 }
 
-#privacy-policy > .policy-block > ol > li,
-#terms-of-service > .policy-block > ol > li { /* こちらも両方に対応 */
+.regulation-page > .policy-block > ol > li {
   counter-increment: list1;
   position: relative;
 }
 
-#privacy-policy > .policy-block > ol > li::marker,
-#terms-of-service > .policy-block > ol > li::marker { /* こちらも両方に対応 */
+.regulation-page > .policy-block > ol > li::marker {
   content: counter(list1) ". ";
   color: #1a0000;
   font-weight: bold;
@@ -64,20 +57,17 @@ main.container {
 }
 
 /* 第2階層のol */
-#privacy-policy ol ol,
-#terms-of-service ol ol { /* こちらも両方に対応 */
+.regulation-page ol ol {
   list-style: none;
   counter-reset: list2;
 }
 
-#privacy-policy ol ol > li,
-#terms-of-service ol ol > li { /* こちらも両方に対応 */
+.regulation-page ol ol > li {
   counter-increment: list2;
   position: relative;
 }
 
-#privacy-policy ol ol > li::marker,
-#terms-of-service ol ol > li::marker { /* こちらも両方に対応 */
+.regulation-page ol ol > li::marker {
   content: "(" counter(list2) ") ";
   color: #1a0000;
   font-weight: bold;
@@ -85,20 +75,17 @@ main.container {
 }
 
 /* 第3階層のol */
-#privacy-policy ol ol ol,
-#terms-of-service ol ol ol { /* こちらも両方に対応 */
+.regulation-page ol ol ol {
   list-style: none;
   counter-reset: list3;
 }
 
-#privacy-policy ol ol ol > li,
-#terms-of-service ol ol ol > li { /* こちらも両方に対応 */
+.regulation-page ol ol ol > li {
   counter-increment: list3;
   position: relative;
 }
 
-#privacy-policy ol ol ol > li::marker,
-#terms-of-service ol ol ol > li::marker { /* こちらも両方に対応 */
+.regulation-page ol ol ol > li::marker {
   content: counter(list3) ". ";
   color: #1a0000;
   font-weight: bold;
@@ -106,16 +93,14 @@ main.container {
 }
 
 /* 段落 */
-#privacy-policy p,
-#terms-of-service p { /* こちらも両方に対応 */
+.regulation-page p {
   font-size: 1rem;
   line-height: 2.0;
-  margin: 0 0 0; /* マージンを調整 */
+  margin: 0 0 0;
 }
 
 /* 制定日・改定日表示 */
-#privacy-policy .policy-date,
-#terms-of-service .policy-date { /* こちらも両方に対応 */
+.regulation-page .policy-date {
   font-size: 1rem;
   color: #1a0000;
   margin-top: 32px;
@@ -123,45 +108,29 @@ main.container {
 
 /* 規約・ポリシー一覧に戻るボタンのコンテナ */
 .return-button-container {
-  text-align: center; /* ボタンを中央に配置 */
-  margin-top: 60px; /* 上部に余白を多めに確保 */
-  margin-bottom: 40px; /* 下部に余白 */
-}
-
-/* 規約・ポリシー一覧に戻るボタンのコンテナ */
-.return-button-container {
-  text-align: center; /* ボタンを中央に配置 */
-  margin-top: 60px; /* 上部に余白を多めに確保 */
-  margin-bottom: 40px; /* 下部に余白 */
-}
-
-/* 規約・ポリシー一覧に戻るボタンのコンテナ */
-.return-button-container {
-  text-align: center; /* ボタンを中央に配置 */
-  margin-top: 60px; /* 上部に余白を多めに確保 */
-  margin-bottom: 40px; /* 下部に余白 */
+  text-align: center;
+  margin-top: 60px;
+  margin-bottom: 40px;
 }
 
 /* 規約・ポリシー一覧に戻るボタン本体 */
 .return-button {
-  display: inline-block; /* インライン要素だが、幅や高さ、余白を設定できるように */
-  padding: 14px 30px; /* 内側の余白 */
-  background-color: #4CAF50; /* 緑色の背景色（サイトのテーマカラーに合わせて調整してください） */
-  color: #ffffff; /* 文字色を白に維持 */
-  text-decoration: none; /* 下線をなくす */
-  border-radius: 999px; /* 角を少し丸くする */
-  font-weight: bold; /* 文字を太く */
-  font-size: 1.1rem; /* 文字サイズを調整 */
-  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* ホバー時のアニメーション */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 軽く影をつけて立体感を出す */
+  display: inline-block;
+  padding: 14px 30px;
+  background-color: #4CAF50;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 999px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* ボタンホバー時のスタイル */
 .return-button:hover {
-  background-color: #45a049; /* ホバー時の背景色を少し暗く */
-  /* color: #ffffff;  ← この行は削除またはコメントアウトして文字色が変わらないようにします */
-  transform: translateY(-2px); /* 少し上に移動させるアニメーション */
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* 影を強調 */
-  color : #ffffff; /* 明示的に文字色を白に設定 */
+  background-color: #45a049;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  color: #ffffff;
 }
-

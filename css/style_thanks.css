@@ -1,0 +1,30 @@
+body {
+  text-align: center;
+  padding: 2rem;
+}
+h1 {
+  color: #2e7d32; /* 緑系アクセント */
+  margin-bottom: 1rem;
+}
+p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+.note {
+  color: #555;
+  font-size: 0.9rem;
+  margin-top: 2rem;
+}
+a.button {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.8rem 1.5rem;
+  background-color: #2e7d32;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+}
+a.button:hover {
+  background-color: #1b5e20;
+}

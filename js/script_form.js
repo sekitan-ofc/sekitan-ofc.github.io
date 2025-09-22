@@ -1,29 +1,46 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const form = document.getElementById("google-form");
-  const messageBox = document.getElementById("form-message");
+function formSubmitted() {
+  // submit イベント後の onload で呼ばれる
+  if (window.formSubmittedFlag) {
+    window.location.href = "thanks.html"; // ← サンクスページへリダイレクト
+  }
+}
 
-  form.addEventListener("submit", function (e) {
-    e.preventDefault(); // 通常送信をキャンセル
+document.getElementById("google-form").addEventListener("submit", function (e) {
+  // 送信ボタン無効化（連打防止）
+  const submitButton = this.querySelector('input[type="submit"]');
+  if (submitButton) {
+    submitButton.disabled = true;
+    submitButton.value = "送信中...";
+  }
 
-    // honeypot チェック
-    if (form.querySelector("#honeypot-field").value) {
-      return; // ボット判定
-    }
-
-    const formData = new FormData(form);
-
-    fetch("https://docs.google.com/forms/d/e/1FAIpQLSc90iFTa9CdCGsUAMJP-WrwnpQ3T-paPqLRaKu_53Lq6cVJcA/formResponse", {
-      method: "POST",
-      body: formData,
-      mode: "no-cors", // Googleフォームは必須
-    })
-      .then(() => {
-        messageBox.innerHTML = "<p>送信ありがとうございました。</p>";
-        form.reset();
-      })
-      .catch((error) => {
-        messageBox.innerHTML = "<p>送信に失敗しました。時間をおいて再度お試しください。</p>";
-        console.error(error);
-      });
-  });
+  // 0.5秒後に強制的に thanks ページへ遷移
+  // （Googleフォーム側の処理は iframe 内で非表示で進む）
+  setTimeout(() => {
+    window.location.href = "thanks.html";
+  }, 500);
 });
+
+
+// 文字数カウンター
+const messageField = document.getElementById("message");
+const charCounter = document.getElementById("charCounter");
+const submitButton = document.querySelector('#google-form input[type="submit"]');
+
+function checkMessageValidity() {
+  const len = messageField.value.length;
+  charCounter.textContent = `${len} / 2000`;
+
+  if (len < 20 || len > 2000) {
+    charCounter.style.color = "red";
+    submitButton.disabled = true; // 送信不可
+  } else {
+    charCounter.style.color = "green";
+    submitButton.disabled = false; // 送信可
+  }
+}
+
+// 初期チェック
+checkMessageValidity();
+
+// 入力中にチェック
+messageField.addEventListener("input", checkMessageValidity);

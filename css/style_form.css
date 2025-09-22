@@ -197,3 +197,11 @@ input[type="checkbox"] {
   #formContainer { padding: 20px; border-radius: 14px; }
   .submit-button { font-size: 15px; padding: 13px 16px; }
 }
+
+
+#charCounter {
+  font-size: 0.9em;
+  margin-top: 4px;
+  text-align: right;
+  color: gray;
+}

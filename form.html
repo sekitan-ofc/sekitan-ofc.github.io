@@ -14,48 +14,50 @@
 </head>
 
 <body>
+  <!-- ヘッダー -->
   <header class="site-header">
-    <div class="container header-container">
-      <div class="header-left">
-        <a href="home.html" class="logo-link">
-          <img src="assets/logo.webp" alt="せきたん公式サイト" class="site-logo">
-        </a>
-      </div>
-      <div class="header-right">
-        <nav class="site-nav">
-          <ul>
-            <li><a href="home.html">Home</a></li>
-            <li><a href="cottonway-project.html" class="project-link">Cottonway Project</a></li>
-            <li><a href="download.html">BVE Data</a></li>
-            <li><a href="news.html">News</a></li>
-            <li><a href="profile.html">Profile</a></li>
-            <li><a href="support.html">Support</a></li>
-          </ul>
-        </nav>
-      </div>
+  <div class="container header-container">
+    <div class="header-left">
+      <a href="home.html" class="logo-link">
+        <img src="assets/logo.webp" alt="せきたん公式サイト" class="site-logo">
+      </a>
+    </div>
+    <div class="header-right">
+      <nav class="site-nav">
+        <ul>
+          <li><a href="home.html">Home</a></li>
+          <li><a href="cottonway-project.html" class="project-link">Cottonway Project</a></li>
+          <li><a href="download.html">BVE Data</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="profile.html">Profile</a></li>
+          <li><a href="support.html">Support</a></li>
+        </ul>
+      </nav>
     </div>
   </header>
 
+  <!-- メインコンテンツ -->
   <main class="container">
     <div class="container" id="formContainer">
       <h1>お問い合わせ</h1>
+      <p>必要事項をご記入の上、送信してください。</p>
 
-<form id="google-form" 
-  action="https://docs.google.com/forms/d/e/1FAIpQLSc90iFTa9CdCGsUAMJP-WrwnpQ3T-paPqLRaKu_53Lq6cVJcA/formResponse" 
-  method="post">
+  <form id="google-form" 
+    action="https://docs.google.com/forms/d/e/1FAIpQLSc90iFTa9CdCGsUAMJP-WrwnpQ3T-paPqLRaKu_53Lq6cVJcA/formResponse" 
+    method="post">
 
   <div class="form-group">
-    <label for="name">お名前 <span class="required">*</span></label>
+    <label for="name">お名前 <span class="required"></span></label>
     <input type="text" id="name" name="entry.1796302635" required>
   </div>
 
   <div class="form-group">
-    <label for="email">メールアドレス <span class="required">*</span></label>
+    <label for="email">メールアドレス <span class="required"></span></label>
     <input type="email" id="email" name="entry.1828066755" required>
   </div>
 
   <div class="form-group">
-    <label>返信 <span class="required">*</span></label><br>
+    <label>返信 <span class="required"></span></label><br>
     <label><input type="radio" name="entry.2073571980" value="必要" required> 必要</label>
     <label><input type="radio" name="entry.2073571980" value="不要"> 不要</label>
   </div>
@@ -74,9 +76,28 @@
   </div>
 
   <div class="form-group">
-    <label for="message">お問い合わせ内容</label>
-    <textarea id="message" name="entry.1433012703" rows="5"></textarea>
+    <label for="message">お問い合わせ内容 <span class="required"></span></label>
+    <textarea id="message"
+      name="entry.1433012703"
+      placeholder="内容の詳細を記入してください"
+      rows="5"
+      required></textarea>
+    <div id="charCounter">0 / 2000</div>
   </div>
+
+  <div class="form-group">
+  <label>
+    <input type="checkbox" id="confirmCheckbox">
+    入力内容が正しいことを確認しました
+  </label>
+</div>
+
+<div class="form-group">
+  <label>
+    <input type="checkbox" id="privacyCheckbox">
+    <a href="privacypolicy.html" target="_blank">プライバシーポリシー</a>に同意します
+  </label>
+</div>
 
   <!-- Honeypot -->
   <div style="display:none;">
@@ -89,6 +110,13 @@
 
 <div id="form-message"></div>
 
+<!-- 隠しiframe（送信完了検知用） -->
+<iframe
+  name="hidden_iframe"
+  id="hidden_iframe"
+  style="display:none;"
+  onload="formSubmitted()"
+></iframe>
 
 </body>
 </html>
