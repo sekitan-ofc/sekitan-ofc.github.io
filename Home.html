@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>News Archive | せきたん公式サイト</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home | せきたん公式サイト</title>
 
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-0FZX21V1LN"></script>
@@ -14,10 +14,9 @@
     gtag('config', 'G-0FZX21V1LN');
   </script>
 
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/style_news-archive.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Zen+Kaku+Gothic+New&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -43,62 +42,12 @@
     </div>
   </header>
 
-
-  <!-- メイン -->
-  <main class="container archive-main">
-    <section class="archive-left">
-      <h2>ニュースアーカイブ</h2>
-      <div id="news-list" class="news-list">
-        <p id="loading-message">読み込み中です...</p>
-      </div>
+  <!-- メインコンテンツ -->
+  <main class="container">
+    <section class="hero">
+      <h2>Welcome to せきたん公式サイト</h2>
+      <p>Your one-stop destination for all things せきたん.</p>
     </section>
-
-    <aside class="archive-right">
-      <section class="filter-section">
-        <h3>タイトルで検索</h3>
-        <input type="text" id="search-title" class="search-title-box" placeholder="タイトルで検索" />
-      </section>
-
-      <section class="filter-section">
-        <h3>カテゴリで絞り込む</h3>
-        <div class="checkbox-group" id="filter-category"></div>
-      </section>
-
-      <section class="filter-section">
-        <h3>タグで絞り込む</h3>
-        <div class="checkbox-group" id="filter-tag"></div>
-      </section>
-
-      <section class="filter-section date-filter">
-        <h3>発表年で絞り込む</h3>
-        <select id="filter-year">
-          <option value="">すべて</option>
-        </select>
-      </section>
-
-      <section class="filter-section date-filter">
-        <h3>発表月で絞り込む</h3>
-        <select id="filter-month" disabled>
-          <option value="">すべて</option>
-          <option value="01">1月</option>
-          <option value="02">2月</option>
-          <option value="03">3月</option>
-          <option value="04">4月</option>
-          <option value="05">5月</option>
-          <option value="06">6月</option>
-          <option value="07">7月</option>
-          <option value="08">8月</option>
-          <option value="09">9月</option>
-          <option value="10">10月</option>
-          <option value="11">11月</option>
-          <option value="12">12月</option>
-        </select>
-      </section>
-
-      <section class="filter-section">
-        <button id="clear-filters" class="clear-filters-btn">絞り込みクリア</button>
-      </section>
-    </aside>
   </main>
 
 <!-- フッター -->
@@ -136,6 +85,5 @@
     </div>
   </footer>
 
-  <script src="js/script_news-archive.js"></script>
 </body>
 </html>

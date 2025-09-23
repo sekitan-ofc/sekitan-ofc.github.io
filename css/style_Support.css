@@ -1,0 +1,120 @@
+/* サポートページ用スタイル */
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+#support {
+  padding: 40px 20px;
+}
+
+#support h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.support-intro {
+  text-align: left;
+  margin-bottom: 40px;
+  color: #333;
+}
+
+.support-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.support-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.support-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+
+.support-icon {
+  font-size: 2.5rem;
+  color: #2c7a7b;
+  margin-bottom: 15px;
+}
+
+.support-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  color: #222;
+}
+
+.support-card p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #444;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 18px;
+  background: #2c7a7b;
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: background 0.3s;
+}
+
+.btn:hover {
+  background: #256568;
+}
+
+/* infoアイコン付き案内 */
+.support-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f9ff;
+  padding: 15px 20px;
+  border-left: 4px solid #2c7a7b;
+  border-radius: 6px;
+}
+
+.info-icon {
+  font-size: 1.8rem;
+  color: #2c7a7b;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.support-info p {
+  margin: 0;
+  color: #333;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+
+/* モバイル対応 */
+@media (max-width: 600px) {
+  #support {
+    padding: 20px 10px;
+  }
+
+  .support-card {
+    padding: 20px;
+  }
+
+  .support-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .support-card p {
+    font-size: 0.9rem;
+  }
+}

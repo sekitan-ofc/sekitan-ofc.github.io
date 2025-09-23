@@ -16,7 +16,7 @@ document.getElementById("google-form").addEventListener("submit", function (e) {
   // 0.5秒後に強制的に thanks ページへ遷移
   // （Googleフォーム側の処理は iframe 内で非表示で進む）
   setTimeout(() => {
-    window.location.href = "thanks.html";
+    window.location.href = "Thanks.html";
   }, 500);
 });
 
